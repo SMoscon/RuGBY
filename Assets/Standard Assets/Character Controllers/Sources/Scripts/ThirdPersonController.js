@@ -340,7 +340,7 @@ function Update() {
 
 	if (Input.GetMouseButtonDown(0))
 	{
-		Debug.Log("We are attacking = "+attacking);
+		//Debug.Log("We are attacking = "+attacking);
 		lastAttackButtonTime = Time.time;
 	}
 	
@@ -392,9 +392,9 @@ function Update() {
 		} 
 		else if(_characterState == CharacterState.Attacking)
 		{
-			_animation[attackAnimation.name].speed = attackAnimationSpeed;
+			//_animation[attackAnimation.name].speed = attackAnimationSpeed;
 			//_animation[attackAnimation.name].wrapMode = WrapMode.ClampForever;
-			_animation.CrossFade(attackAnimation.name);
+			//_animation.CrossFade(attackAnimation.name);
 		}
 		else
 		{
