@@ -46,9 +46,11 @@ var trotAfterSeconds = 3.0;
 
 var canJump = true;
 
-private var jumpRepeatTime = 0.05;
+private var jumpRepeatTime = 0.1;
 private var jumpTimeout = 0.15;
 private var groundedTimeout = 0.25;
+
+private var attackComboTime = 0.3;
 
 // The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
 private var lockCameraTimer = 0.0;
@@ -67,6 +69,9 @@ private var collisionFlags : CollisionFlags;
 private var jumping = false;
 private var jumpingReachedApex = false;
 
+// Are we attacking?
+private var jumping = false;
+
 // Are we moving backwards (This locks the camera to not do a 180 degree spin)
 private var movingBack = false;
 // Is the user pressing any keys?
@@ -78,6 +83,11 @@ private var lastJumpButtonTime = -10.0;
 // Last time we performed a jump
 private var lastJumpTime = -1.0;
 
+
+// Last time the attack button was clicked down
+private var lastAttackButtonTime = -10.0;
+// Last time we performed an attack
+private var lastAttackTime = -1.0;
 
 // the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 private var lastJumpStartHeight = 0.0;
@@ -238,11 +248,29 @@ function ApplyJumping ()
 		// Jump
 		// - Only when pressing the button down
 		// - With a timeout so you can press the button slightly before landing		
-		if (canJump && Time.time < lastJumpButtonTime + jumpTimeout) {
+		if (canJump && Time.time < lastJumpButtonTime) {
 			verticalSpeed = CalculateJumpVerticalSpeed (jumpHeight);
 			SendMessage("DidJump", SendMessageOptions.DontRequireReceiver);
 		}
 	}
+}
+
+function ApplyAttacking ()
+{
+	// Prevent jumping too fast after each other
+	if (attackComboTime > Time.time)
+	Debug.log("Combo next attack okay");
+		return;
+
+	if (IsGrounded()) {
+		// Jump
+		// - Only when pressing the button down
+		// - With a timeout so you can press the button slightly before landing		
+		Debug.log("Attack Applied");
+		SendMessage("DidAttack", SendMessageOptions.DontRequireReceiver);
+	}
+	attacking = true;
+	transform.rotation = Camera.main.transform.rotation;
 }
 
 
@@ -286,15 +314,22 @@ function DidJump ()
 	_characterState = CharacterState.Jumping;
 }
 
+function DidAttack ()
+{
+	attacking = true;
+	lastAttackTime = Time.time;
+	lastAttackButtonTime = -10;
+	
+	_characterState = CharacterState.Jumping;
+}
+
 function Update() {
 
 	if (Input.GetMouseButtonDown(0))
 	{
 		Debug.Log("We are attacking");
-		transform.rotation = Camera.main.transform.rotation;
-		//moveDirection = Vector3.RotateTowards (Camera.main.transform.rotate, Camera.main.transform.position, 10, 0.0); //sCamera.main.transform.rotation;
+		lastAttackButtonTime = Time.time;
 	}
-	
 	
 	if (!isControllable)
 	{
@@ -316,6 +351,8 @@ function Update() {
 
 	// Apply jumping logic
 	ApplyJumping ();
+	
+	ApplyAttacking ();
 	
 	// Calculate actual motion
 	var movement = moveDirection * moveSpeed + Vector3 (0, verticalSpeed, 0) + inAirVelocity;
@@ -411,6 +448,10 @@ function IsJumping () {
 
 function IsGrounded () {
 	return (collisionFlags & CollisionFlags.CollidedBelow) != 0;
+}
+
+function IsAttacking() {
+	return attacking;
 }
 
 function GetDirection () {
