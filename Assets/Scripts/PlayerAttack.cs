@@ -46,11 +46,9 @@ public class PlayerAttack : MonoBehaviour {
 		Vector3 dir = (target.transform.position - transform.position).normalized;
 
 		float direction = Vector3.Dot (dir, transform.forward);
-
-		Debug.Log (direction);
+		animation.Play("Yellow_Rig|Yellow_Attack1");
+		attacking = true;
 		if (distance < 2.5f && direction > 0){
-			animation.Play("Yellow_Rig|Yellow_Attack1");
-			attacking = true;
 			EnemyHealth eh = (EnemyHealth)target.GetComponent("EnemyHealth");
 			eh.AdjustCurrentHealth(-10);
 		}

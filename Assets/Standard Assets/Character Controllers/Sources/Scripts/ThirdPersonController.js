@@ -173,7 +173,7 @@ function UpdateSmoothedMovementDirection ()
 	var targetDirection = h * right + v * forward;
 	
 	// Grounded controls
-	if (grounded && _characterState != CharacterState.Attacking)
+	if (grounded && !attacking)
 	{
 		// Lock camera for short period when transitioning moving & standing still
 		lockCameraTimer += Time.deltaTime;
@@ -332,6 +332,9 @@ function DidAttack ()
 	attacking = true;
 	lastAttackTime = Time.time;
 	lastAttackButtonTime = -10;
+	//var controller : CharacterController = GetComponent(CharacterController);
+	moveSpeed = 0;
+	//moveDirection = transform.TransformDirection(Vector3.forward);
 	
 	_characterState = CharacterState.Attacking;
 }
@@ -449,13 +452,9 @@ function Update() {
 			SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
 		}
 	}
-	attackLength = attackAnimation.length;
-	//Debug.Log("double check if attacking is false...attacklength = "+attackLength+" current animation = "+(Time.time - lastAttackButtonTime));
-	if (attackLength <= (Time.time - lastAttackButtonTime))
-	{
-		//haha carl you'll never understand this
-		//Debug.Log("double check if attacking is false...attacklength = "+attackLength+" current animation = "+(Time.time - lastAttackButtonTime));
-		if (attacking){
+	if (attacking){
+		if (!_animation.isPlaying){
+			//haha carl you'll never understand this
 			attacking = false;
 			SendMessage("DidEndAttack", SendMessageOptions.DontRequireReceiver);
 		}
