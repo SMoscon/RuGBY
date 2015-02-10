@@ -1,0 +1,532 @@
+fileFormatVersion: 2
+guid: 418f26184d2ed49499b135ef2f24a6ed
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Circle.316
+    100002: Circle.317
+    100004: Circle.318
+    100006: Circle.319
+    100008: Circle.320
+    100010: Circle.321
+    100012: Circle.322
+    100014: Circle.323
+    100016: Circle.324
+    100018: Circle.325
+    100020: Circle.326
+    100022: Circle.327
+    100024: Circle.328
+    100026: Circle.329
+    100028: Cube.077
+    100030: Cube.244
+    100032: Cube.245
+    100034: Cube.246
+    100036: Cube.247
+    100038: Cube.252
+    100040: Cube.288
+    100042: Cube.288_MeshPart0
+    100044: Cube.288_MeshPart1
+    100046: Cube.289
+    100048: Cube.290
+    100050: Cube.291
+    100052: Cube.292
+    100054: Cube.437
+    100056: Cube.438
+    100058: Cube.439
+    100060: Cube.440
+    100062: Cube.443
+    100064: Cube.444
+    100066: Cube.445
+    100068: Cube.446
+    100070: Cube.457
+    100072: Cube.538
+    100074: Cube.539
+    100076: Cube.540
+    100078: Cube.541
+    100080: Cube.542
+    100082: Cube.543
+    100084: Cube.544
+    100086: Cube.545
+    100088: Cube.546
+    100090: Cube.547
+    100092: Cube.548
+    100094: Cube.549
+    100096: Cube.550
+    100098: Cube.551
+    100100: Cube.552
+    100102: Cube.554
+    100104: Cube.555
+    100106: Cube.556
+    100108: Cube.557
+    100110: Cube.558
+    100112: Cube.559
+    100114: Cube.560
+    100116: Cube.561
+    100118: Cube.562
+    100120: Cylinder.013
+    100122: Cylinder.014
+    100124: Cylinder.015
+    100126: Cylinder.016
+    100128: Cylinder.017
+    100130: Cylinder.018
+    100132: Cylinder.070
+    100134: Cylinder.072
+    100136: Cylinder.073
+    100138: dom opata
+    100140: dom opata.001
+    100142: dom opata.002
+    100144: dom opata.003
+    100146: dom opata.004
+    100148: dom opata.004_MeshPart0
+    100150: dom opata.004_MeshPart1
+    100152: dom opata.004_MeshPart2
+    100154: dom opata.004_MeshPart3
+    100156: dom opata.005
+    100158: dom opata.005_MeshPart0
+    100160: dom opata.005_MeshPart1
+    100162: dom opata.005_MeshPart2
+    100164: dom opata.005_MeshPart3
+    100166: dom opata.013
+    100168: dom opata.014
+    100170: dom opata.015
+    100172: kosciol1
+    100174: kosciol3
+    100176: //RootNode
+    100178: NurbsPath.000
+    100180: NurbsPath.001
+    100182: NurbsPath.002
+    100184: NurbsPath.003
+    100186: NurbsPath.004
+    100188: NurbsPath.005
+    100190: NurbsPath.013
+    100192: Plane.196
+    100194: Plane.212
+    400000: Circle.316
+    400002: Circle.317
+    400004: Circle.318
+    400006: Circle.319
+    400008: Circle.320
+    400010: Circle.321
+    400012: Circle.322
+    400014: Circle.323
+    400016: Circle.324
+    400018: Circle.325
+    400020: Circle.326
+    400022: Circle.327
+    400024: Circle.328
+    400026: Circle.329
+    400028: Cube.077
+    400030: Cube.244
+    400032: Cube.245
+    400034: Cube.246
+    400036: Cube.247
+    400038: Cube.252
+    400040: Cube.288
+    400042: Cube.288_MeshPart0
+    400044: Cube.288_MeshPart1
+    400046: Cube.289
+    400048: Cube.290
+    400050: Cube.291
+    400052: Cube.292
+    400054: Cube.437
+    400056: Cube.438
+    400058: Cube.439
+    400060: Cube.440
+    400062: Cube.443
+    400064: Cube.444
+    400066: Cube.445
+    400068: Cube.446
+    400070: Cube.457
+    400072: Cube.538
+    400074: Cube.539
+    400076: Cube.540
+    400078: Cube.541
+    400080: Cube.542
+    400082: Cube.543
+    400084: Cube.544
+    400086: Cube.545
+    400088: Cube.546
+    400090: Cube.547
+    400092: Cube.548
+    400094: Cube.549
+    400096: Cube.550
+    400098: Cube.551
+    400100: Cube.552
+    400102: Cube.554
+    400104: Cube.555
+    400106: Cube.556
+    400108: Cube.557
+    400110: Cube.558
+    400112: Cube.559
+    400114: Cube.560
+    400116: Cube.561
+    400118: Cube.562
+    400120: Cylinder.013
+    400122: Cylinder.014
+    400124: Cylinder.015
+    400126: Cylinder.016
+    400128: Cylinder.017
+    400130: Cylinder.018
+    400132: Cylinder.070
+    400134: Cylinder.072
+    400136: Cylinder.073
+    400138: dom opata
+    400140: dom opata.001
+    400142: dom opata.002
+    400144: dom opata.003
+    400146: dom opata.004
+    400148: dom opata.004_MeshPart0
+    400150: dom opata.004_MeshPart1
+    400152: dom opata.004_MeshPart2
+    400154: dom opata.004_MeshPart3
+    400156: dom opata.005
+    400158: dom opata.005_MeshPart0
+    400160: dom opata.005_MeshPart1
+    400162: dom opata.005_MeshPart2
+    400164: dom opata.005_MeshPart3
+    400166: dom opata.013
+    400168: dom opata.014
+    400170: dom opata.015
+    400172: kosciol1
+    400174: kosciol3
+    400176: //RootNode
+    400178: NurbsPath.000
+    400180: NurbsPath.001
+    400182: NurbsPath.002
+    400184: NurbsPath.003
+    400186: NurbsPath.004
+    400188: NurbsPath.005
+    400190: NurbsPath.013
+    400192: Plane.196
+    400194: Plane.212
+    2300000: Circle.316
+    2300002: Circle.317
+    2300004: Circle.318
+    2300006: Circle.319
+    2300008: Circle.320
+    2300010: Circle.321
+    2300012: Circle.322
+    2300014: Circle.323
+    2300016: Circle.324
+    2300018: Circle.325
+    2300020: Circle.326
+    2300022: Circle.327
+    2300024: Circle.328
+    2300026: Circle.329
+    2300028: Cube.077
+    2300030: Cube.244
+    2300032: Cube.245
+    2300034: Cube.246
+    2300036: Cube.247
+    2300038: Cube.252
+    2300040: Cube.288_MeshPart0
+    2300042: Cube.288_MeshPart1
+    2300044: Cube.289
+    2300046: Cube.290
+    2300048: Cube.291
+    2300050: Cube.292
+    2300052: Cube.437
+    2300054: Cube.438
+    2300056: Cube.439
+    2300058: Cube.440
+    2300060: Cube.443
+    2300062: Cube.444
+    2300064: Cube.445
+    2300066: Cube.446
+    2300068: Cube.457
+    2300070: Cube.538
+    2300072: Cube.539
+    2300074: Cube.540
+    2300076: Cube.541
+    2300078: Cube.542
+    2300080: Cube.543
+    2300082: Cube.544
+    2300084: Cube.545
+    2300086: Cube.546
+    2300088: Cube.547
+    2300090: Cube.548
+    2300092: Cube.549
+    2300094: Cube.550
+    2300096: Cube.551
+    2300098: Cube.552
+    2300100: Cube.554
+    2300102: Cube.555
+    2300104: Cube.556
+    2300106: Cube.557
+    2300108: Cube.558
+    2300110: Cube.559
+    2300112: Cube.560
+    2300114: Cube.561
+    2300116: Cube.562
+    2300118: Cylinder.013
+    2300120: Cylinder.014
+    2300122: Cylinder.015
+    2300124: Cylinder.016
+    2300126: Cylinder.017
+    2300128: Cylinder.018
+    2300130: Cylinder.070
+    2300132: Cylinder.072
+    2300134: Cylinder.073
+    2300136: dom opata
+    2300138: dom opata.001
+    2300140: dom opata.002
+    2300142: dom opata.003
+    2300144: dom opata.004_MeshPart0
+    2300146: dom opata.004_MeshPart1
+    2300148: dom opata.004_MeshPart2
+    2300150: dom opata.004_MeshPart3
+    2300152: dom opata.005_MeshPart0
+    2300154: dom opata.005_MeshPart1
+    2300156: dom opata.005_MeshPart2
+    2300158: dom opata.005_MeshPart3
+    2300160: dom opata.013
+    2300162: dom opata.014
+    2300164: dom opata.015
+    2300166: kosciol1
+    2300168: kosciol3
+    2300170: NurbsPath.000
+    2300172: NurbsPath.001
+    2300174: NurbsPath.002
+    2300176: NurbsPath.003
+    2300178: NurbsPath.004
+    2300180: NurbsPath.005
+    2300182: NurbsPath.013
+    2300184: Plane.196
+    2300186: Plane.212
+    3300000: Circle.316
+    3300002: Circle.317
+    3300004: Circle.318
+    3300006: Circle.319
+    3300008: Circle.320
+    3300010: Circle.321
+    3300012: Circle.322
+    3300014: Circle.323
+    3300016: Circle.324
+    3300018: Circle.325
+    3300020: Circle.326
+    3300022: Circle.327
+    3300024: Circle.328
+    3300026: Circle.329
+    3300028: Cube.077
+    3300030: Cube.244
+    3300032: Cube.245
+    3300034: Cube.246
+    3300036: Cube.247
+    3300038: Cube.252
+    3300040: Cube.288_MeshPart0
+    3300042: Cube.288_MeshPart1
+    3300044: Cube.289
+    3300046: Cube.290
+    3300048: Cube.291
+    3300050: Cube.292
+    3300052: Cube.437
+    3300054: Cube.438
+    3300056: Cube.439
+    3300058: Cube.440
+    3300060: Cube.443
+    3300062: Cube.444
+    3300064: Cube.445
+    3300066: Cube.446
+    3300068: Cube.457
+    3300070: Cube.538
+    3300072: Cube.539
+    3300074: Cube.540
+    3300076: Cube.541
+    3300078: Cube.542
+    3300080: Cube.543
+    3300082: Cube.544
+    3300084: Cube.545
+    3300086: Cube.546
+    3300088: Cube.547
+    3300090: Cube.548
+    3300092: Cube.549
+    3300094: Cube.550
+    3300096: Cube.551
+    3300098: Cube.552
+    3300100: Cube.554
+    3300102: Cube.555
+    3300104: Cube.556
+    3300106: Cube.557
+    3300108: Cube.558
+    3300110: Cube.559
+    3300112: Cube.560
+    3300114: Cube.561
+    3300116: Cube.562
+    3300118: Cylinder.013
+    3300120: Cylinder.014
+    3300122: Cylinder.015
+    3300124: Cylinder.016
+    3300126: Cylinder.017
+    3300128: Cylinder.018
+    3300130: Cylinder.070
+    3300132: Cylinder.072
+    3300134: Cylinder.073
+    3300136: dom opata
+    3300138: dom opata.001
+    3300140: dom opata.002
+    3300142: dom opata.003
+    3300144: dom opata.004_MeshPart0
+    3300146: dom opata.004_MeshPart1
+    3300148: dom opata.004_MeshPart2
+    3300150: dom opata.004_MeshPart3
+    3300152: dom opata.005_MeshPart0
+    3300154: dom opata.005_MeshPart1
+    3300156: dom opata.005_MeshPart2
+    3300158: dom opata.005_MeshPart3
+    3300160: dom opata.013
+    3300162: dom opata.014
+    3300164: dom opata.015
+    3300166: kosciol1
+    3300168: kosciol3
+    3300170: NurbsPath.000
+    3300172: NurbsPath.001
+    3300174: NurbsPath.002
+    3300176: NurbsPath.003
+    3300178: NurbsPath.004
+    3300180: NurbsPath.005
+    3300182: NurbsPath.013
+    3300184: Plane.196
+    3300186: Plane.212
+    4300000: Cube.562
+    4300002: Cube.561
+    4300004: Circle.329
+    4300006: Cube.560
+    4300008: NurbsPath.005
+    4300010: Circle.328
+    4300012: Cube.559
+    4300014: NurbsPath.004
+    4300016: Circle.327
+    4300018: Cube.558
+    4300020: NurbsPath.003
+    4300022: Circle.326
+    4300024: Cube.557
+    4300026: NurbsPath.002
+    4300028: Cube.556
+    4300030: Cube.555
+    4300032: Cube.554
+    4300034: dom opata.015
+    4300036: dom opata.014
+    4300038: dom opata.013
+    4300040: Cube.552
+    4300042: Cube.551
+    4300044: Cube.550
+    4300046: Plane.196
+    4300048: dom opata.005_MeshPart0
+    4300050: dom opata.005_MeshPart1
+    4300052: dom opata.005_MeshPart2
+    4300054: dom opata.005_MeshPart3
+    4300056: dom opata.004_MeshPart0
+    4300058: dom opata.004_MeshPart1
+    4300060: dom opata.004_MeshPart2
+    4300062: dom opata.004_MeshPart3
+    4300064: Circle.318
+    4300066: Cube.549
+    4300068: NurbsPath.001
+    4300070: Cube.548
+    4300072: Cube.547
+    4300074: Cube.546
+    4300076: Cylinder.018
+    4300078: Cylinder.016
+    4300080: Cylinder.015
+    4300082: Cylinder.013
+    4300084: Cube.545
+    4300086: Cube.544
+    4300088: Cube.543
+    4300090: Circle.317
+    4300092: Cube.542
+    4300094: NurbsPath.000
+    4300096: Cube.292
+    4300098: Cube.291
+    4300100: Cube.290
+    4300102: Cube.289
+    4300104: dom opata.003
+    4300106: dom opata.002
+    4300108: dom opata.001
+    4300110: Cube.288_MeshPart0
+    4300112: Cube.288_MeshPart1
+    4300114: Cube.252
+    4300116: kosciol3
+    4300118: Cube.077
+    4300120: kosciol1
+    4300122: dom opata
+    4300124: Cube.244
+    4300126: Cube.245
+    4300128: Cube.246
+    4300130: Cube.247
+    4300132: Circle.316
+    4300134: Cube.540
+    4300136: NurbsPath.013
+    4300138: Cube.538
+    4300140: Cube.539
+    4300142: Cube.541
+    4300144: Cylinder.070
+    4300146: Cylinder.072
+    4300148: Cylinder.073
+    4300150: Circle.319
+    4300156: Circle.322
+    4300160: Circle.324
+    4300164: Cube.437
+    4300166: Cube.438
+    4300168: Cube.439
+    4300170: Cube.440
+    4300172: Cube.443
+    4300174: Cube.444
+    4300176: Cube.445
+    4300178: Cube.446
+    4300180: Cube.457
+    4300182: Cylinder.014
+    4300184: Cylinder.017
+    4300186: Plane.212
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
