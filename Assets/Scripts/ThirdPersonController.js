@@ -1,4 +1,4 @@
-
+﻿
 // Require a character controller to be attached to the same game object
 @script RequireComponent(CharacterController)
 
@@ -287,14 +287,6 @@ function DidJump ()
 }
 
 function Update() {
-
-	if (Input.GetMouseButtonDown(0))
-	{
-		Debug.Log("We are attacking");
-		transform.rotation = Camera.main.transform.rotation;
-		//moveDirection = Vector3.RotateTowards (Camera.main.transform.rotate, Camera.main.transform.position, 10, 0.0); //sCamera.main.transform.rotation;
-	}
-	
 	
 	if (!isControllable)
 	{
@@ -368,7 +360,7 @@ function Update() {
 	if (IsGrounded())
 	{
 		
-		//transform.rotation = Quaternion.LookRotation(moveDirection);
+		transform.rotation = Quaternion.LookRotation(moveDirection);
 			
 	}	
 	else
