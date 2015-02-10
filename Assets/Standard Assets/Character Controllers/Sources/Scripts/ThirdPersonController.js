@@ -53,7 +53,7 @@ private var jumpRepeatTime = 0.1;
 private var jumpTimeout = 0.15;
 private var groundedTimeout = 0.25;
 
-private var attackComboTime = 0.3;
+//private var attackComboTime = 0.3;
 
 // The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
 private var lockCameraTimer = 0.0;
@@ -73,7 +73,7 @@ private var jumping = false;
 private var jumpingReachedApex = false;
 
 // Are we attacking?
-private var jumping = false;
+private var attacking = false;
 
 // Are we moving backwards (This locks the camera to not do a 180 degree spin)
 private var movingBack = false;
@@ -91,6 +91,8 @@ private var lastJumpTime = -1.0;
 private var lastAttackButtonTime = -10.0;
 // Last time we performed an attack
 private var lastAttackTime = -1.0;
+// Attack length
+private var attackLength = 0.0;
 
 // the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 private var lastJumpStartHeight = 0.0;
@@ -133,6 +135,10 @@ public var jumpPoseAnimation : AnimationClip;
 		_animation = null;
 		Debug.Log("No jump animation found and the character has canJump enabled. Turning off animations.");
 	}
+	if(!attackAnimation) {
+		_animation = null;
+		Debug.Log("No attack animation found and the character has canJump enabled. Turning off animations.");
+	}
 			
 }
 
@@ -167,7 +173,7 @@ function UpdateSmoothedMovementDirection ()
 	var targetDirection = h * right + v * forward;
 	
 	// Grounded controls
-	if (grounded)
+	if (grounded && _characterState != CharacterState.Attacking)
 	{
 		// Lock camera for short period when transitioning moving & standing still
 		lockCameraTimer += Time.deltaTime;
@@ -251,7 +257,7 @@ function ApplyJumping ()
 		// Jump
 		// - Only when pressing the button down
 		// - With a timeout so you can press the button slightly before landing		
-		if (canJump && Time.time < lastJumpButtonTime) {
+		if (canJump && Time.time < lastJumpButtonTime + jumpTimeout) {
 			verticalSpeed = CalculateJumpVerticalSpeed (jumpHeight);
 			SendMessage("DidJump", SendMessageOptions.DontRequireReceiver);
 		}
@@ -261,19 +267,23 @@ function ApplyJumping ()
 function ApplyAttacking ()
 {
 	// Prevent jumping too fast after each other
-	if (attackComboTime > Time.time)
-	Debug.log("Combo next attack okay");
-		return;
+	//if (attackComboTime > Time.time){
+		//Debug.log("Combo next attack okay");
+	//	return;
+	//}
 
-	if (IsGrounded()) {
-		// Jump
-		// - Only when pressing the button down
+	if (IsGrounded() && !IsAttacking()) {
+		if (lastAttackButtonTime != -10){
+			transform.rotation = Camera.main.transform.rotation;
+			SendMessage("DidAttack", SendMessageOptions.DontRequireReceiver);
+			//Debug.Log("attacking = "+attacking);
+		}
+		// Attack
 		// - With a timeout so you can press the button slightly before landing		
-		Debug.log("Attack Applied");
-		SendMessage("DidAttack", SendMessageOptions.DontRequireReceiver);
+		//transform.rotation = Camera.main.transform.rotation;
+		//SendMessage("DidAttack", SendMessageOptions.DontRequireReceiver);
+		//Debug.log("Attack Applied = "+attacking);
 	}
-	attacking = true;
-	transform.rotation = Camera.main.transform.rotation;
 }
 
 
@@ -323,23 +333,16 @@ function DidAttack ()
 	lastAttackTime = Time.time;
 	lastAttackButtonTime = -10;
 	
-	_characterState = CharacterState.Jumping;
+	_characterState = CharacterState.Attacking;
 }
 
 function Update() {
 
 	if (Input.GetMouseButtonDown(0))
 	{
-		Debug.Log("We are attacking");
-<<<<<<< HEAD
+		Debug.Log("We are attacking = "+attacking);
 		lastAttackButtonTime = Time.time;
 	}
-=======
-		transform.rotation = Camera.main.transform.rotation;
-		//moveDirection = Vector3.RotateTowards (Camera.main.transform.rotate, Camera.main.transform.position, 10, 0.0); //sCamera.main.transform.rotation;
-		animation.Play("Yellow_Rig|Yellow_Jump");	
-		}
->>>>>>> origin/master
 	
 	if (!isControllable)
 	{
@@ -362,6 +365,7 @@ function Update() {
 	// Apply jumping logic
 	ApplyJumping ();
 	
+	// Apply attacking logic
 	ApplyAttacking ();
 	
 	// Calculate actual motion
@@ -389,7 +393,8 @@ function Update() {
 		else if(_characterState == CharacterState.Attacking)
 		{
 			_animation[attackAnimation.name].speed = attackAnimationSpeed;
-			_animation.Play(attackAnimation.name);
+			//_animation[attackAnimation.name].wrapMode = WrapMode.ClampForever;
+			_animation.CrossFade(attackAnimation.name);
 		}
 		else
 		{
@@ -442,6 +447,17 @@ function Update() {
 		{
 			jumping = false;
 			SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
+		}
+	}
+	attackLength = attackAnimation.length;
+	//Debug.Log("double check if attacking is false...attacklength = "+attackLength+" current animation = "+(Time.time - lastAttackButtonTime));
+	if (attackLength <= (Time.time - lastAttackButtonTime))
+	{
+		//haha carl you'll never understand this
+		//Debug.Log("double check if attacking is false...attacklength = "+attackLength+" current animation = "+(Time.time - lastAttackButtonTime));
+		if (attacking){
+			attacking = false;
+			SendMessage("DidEndAttack", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }
