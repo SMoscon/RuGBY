@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 1d5ac211a643e447ca78c2d794a16381
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - idleAnimation: {instanceID: 0}
+  - walkAnimation: {instanceID: 0}
+  - runAnimation: {instanceID: 0}
+  - jumpPoseAnimation: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
