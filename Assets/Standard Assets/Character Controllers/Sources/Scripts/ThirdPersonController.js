@@ -6,12 +6,14 @@ public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
 public var runAnimation : AnimationClip;
 public var jumpPoseAnimation : AnimationClip;
+public var attackAnimation : AnimationClip;
 
 public var walkMaxAnimationSpeed : float = 0.75;
 public var trotMaxAnimationSpeed : float = 1.0;
 public var runMaxAnimationSpeed : float = 1.0;
 public var jumpAnimationSpeed : float = 1.15;
 public var landAnimationSpeed : float = 1.0;
+public var attackAnimationSpeed : float = 1.0;
 
 private var _animation : Animation;
 
@@ -21,6 +23,7 @@ enum CharacterState {
 	Trotting = 2,
 	Running = 3,
 	Jumping = 4,
+	Attacking = 5,
 }
 
 private var _characterState : CharacterState;
@@ -293,7 +296,8 @@ function Update() {
 		Debug.Log("We are attacking");
 		transform.rotation = Camera.main.transform.rotation;
 		//moveDirection = Vector3.RotateTowards (Camera.main.transform.rotate, Camera.main.transform.position, 10, 0.0); //sCamera.main.transform.rotation;
-	}
+		animation.Play("Yellow_Rig|Yellow_Jump");	
+		}
 	
 	
 	if (!isControllable)
@@ -339,7 +343,12 @@ function Update() {
 			//	_animation.CrossFade(jumpPoseAnimation.name);				
 			//}
 		} 
-		else 
+		else if(_characterState == CharacterState.Attacking)
+		{
+			_animation[attackAnimation.name].speed = attackAnimationSpeed;
+			_animation.Play(attackAnimation.name);
+		}
+		else
 		{
 			if(controller.velocity.sqrMagnitude < 0.1) {
 				_animation.CrossFade(idleAnimation.name);
