@@ -92,25 +92,23 @@ public class PlayerAttack : MonoBehaviour {
 			}
 		}
 		if (smashing){
-			if (smashTimer == 0){
-				if (!animation.isPlaying){
-					/*if (attackSequence == 0){
-						animation.Play (returnSmashAnimation1.name);
-					}*/
-					if (attackSequence == 0){
-						animation.Play (returnSmashAnimation2.name);
-					}
-					else if (attackSequence == 1){
-						animation.Play (returnSmashAnimation3.name);
-					}
-					else if (attackSequence == 2){
-						animation.Play (returnSmashAnimation4.name);
-					}
-					smashing = false;
-					attacking = false;
-					attackSequence = 0;
-					//Debug.Log ("return animation. attacking = false and sequence reset");
+			if (!animation.isPlaying){
+				/*if (attackSequence == 0){
+					animation.Play (returnSmashAnimation1.name);
+				}*/
+				if (attackSequence == 0){
+					animation.Play (returnSmashAnimation2.name);
 				}
+				else if (attackSequence == 1){
+					animation.Play (returnSmashAnimation3.name);
+				}
+				else if (attackSequence == 2){
+					animation.Play (returnSmashAnimation4.name);
+				}
+				smashing = false;
+				attacking = false;
+				attackSequence = 0;
+				//Debug.Log ("return animation. attacking = false and sequence reset");
 			}
 			else {
 				//Debug.Log("Doing nothing bro");
@@ -125,9 +123,9 @@ public class PlayerAttack : MonoBehaviour {
 						attackTimer = smashCooldown;
 					}
 					else if (willAttack && attackSequence < 2){
-							attackSequence++;
-							Attack ();
-							attackTimer = cooldown;
+						attackSequence++;
+						Attack ();
+						attackTimer = cooldown;
 					}
 					else {
 						Debug.Log ("return animation. attacking = false and sequence reset: "+attackSequence);
@@ -214,6 +212,7 @@ public class PlayerAttack : MonoBehaviour {
 				eh.AdjustCurrentHealth(-35);
 			}
 		}
+		Debug.Log ("yo");
 	}
 	public void Defend () {
 		defending = true;
