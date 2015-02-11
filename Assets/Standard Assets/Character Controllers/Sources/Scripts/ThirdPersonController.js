@@ -275,6 +275,7 @@ function ApplyAttacking ()
 	if (IsGrounded() && !IsAttacking()) {
 		if (lastAttackButtonTime != -10){
 			transform.rotation = Camera.main.transform.rotation;
+			moveSpeed = 0;
 			SendMessage("DidAttack", SendMessageOptions.DontRequireReceiver);
 			//Debug.Log("attacking = "+attacking);
 		}
@@ -333,7 +334,7 @@ function DidAttack ()
 	lastAttackTime = Time.time;
 	lastAttackButtonTime = -10;
 	//var controller : CharacterController = GetComponent(CharacterController);
-	moveSpeed = 0;
+	//moveSpeed = 0;
 	//moveDirection = transform.TransformDirection(Vector3.forward);
 	
 	_characterState = CharacterState.Attacking;
