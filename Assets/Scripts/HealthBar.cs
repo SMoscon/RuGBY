@@ -23,15 +23,7 @@ public class HealthBar : MonoBehaviour {
 	}
 
 	public void AdjustCurrentHealth(int adj) {
-		// If taking damage, take into account shields
-		if (adj < 0) {
-			//adj -= def_shield;
-			curHealth += adj;
-		}
-		// If healing, ignore shields
-		if (adj >= 0) {
-			curHealth += adj;
-		}
+		curHealth += adj;
 
 		if (curHealth < 0)
 			curHealth = 0;
