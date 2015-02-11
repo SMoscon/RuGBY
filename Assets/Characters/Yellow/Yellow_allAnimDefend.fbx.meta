@@ -307,13 +307,13 @@ ModelImporter:
     7400014: Yellow_Rig|Yellow_Return2
     7400016: Yellow_Rig|Yellow_Return3
     7400018: Yellow_Rig|Yellow_ReturnDefend
-    7400020: Yellow_Rig|Yellow_ReturnSmash2
-    7400022: Yellow_Rig|Yellow_ReturnSmash3
-    7400024: Yellow_Rig|Yellow_ReturnSmash4
+    7400020: Yellow_Rig|Yellow_ReturnSmash1
+    7400022: Yellow_Rig|Yellow_ReturnSmash2
+    7400024: Yellow_Rig|Yellow_ReturnSmash3
     7400026: Yellow_Rig|Yellow_Run
-    7400028: Yellow_Rig|Yellow_Smash2
-    7400030: Yellow_Rig|Yellow_Smash3
-    7400032: Yellow_Rig|Yellow_Smash4
+    7400028: Yellow_Rig|Yellow_Smash1
+    7400030: Yellow_Rig|Yellow_Smash2
+    7400032: Yellow_Rig|Yellow_Smash3
     7400034: Yellow_Rig|Yellow_Walk
     9500000: //RootNode
     11100000: //RootNode
@@ -2187,7 +2187,7 @@ ModelImporter:
       name: Yellow_Rig|Yellow_Return1
       takeName: Yellow_Rig|Yellow_Return1
       firstFrame: 0
-      lastFrame: 21
+      lastFrame: 23
       wrapMode: 1
       orientationOffsetY: 0
       level: 0
@@ -3416,6 +3416,314 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
+      name: Yellow_Rig|Yellow_ReturnSmash1
+      takeName: Yellow_Rig|Yellow_ReturnSmash1
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Yellow_Body
+        weight: 1
+      - path: Yellow_Hair
+        weight: 1
+      - path: Yellow_Rig
+        weight: 1
+      - path: Yellow_Rig/Master
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Ball
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_L/Elbow_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_R/Elbow_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_L/Cheek_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_R/Cheek_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Jaw
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Jaw/Lip_D
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Jaw/Lip_D/Lip_D_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Lip_U
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Lip_U/Lip_U_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L/Index02_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L/Index02_L/Index03_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L/Index02_L/Index03_L/Index03_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L/Middle02_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L/Middle02_L/Middle03_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L/Middle02_L/Middle03_L/Middle03_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L/Pinky02_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L/Pinky02_L/Pinky03_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L/Pinky02_L/Pinky03_L/Pinky03_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L/Ring02_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L/Ring02_L/Ring03_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L/Ring02_L/Ring03_L/Ring03_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L/Thumb02_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L/Thumb02_L/Thumb03_L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L/Thumb02_L/Thumb03_L/Thumb03_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R/Index02_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R/Index02_R/Index03_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R/Index02_R/Index03_R/Index03_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R/Middle02_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R/Middle02_R/Middle03_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R/Middle02_R/Middle03_R/Middle03_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R/Pinky02_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R/Pinky02_R/Pinky03_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R/Pinky02_R/Pinky03_R/Pinky03_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R/Ring02_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R/Ring02_R/Ring03_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R/Ring02_R/Ring03_R/Ring03_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R/Thumb02_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R/Thumb02_R/Thumb03_R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R/Thumb02_R/Thumb03_R/Thumb03_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Yellow_Hilt
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Yellow_Hilt.001
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.01.L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.01.L/Wings.01.L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.02.L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.02.L/Wings.02.L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.03.L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.03.L/Wings.03.L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.04.L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.04.L/Wings.04.L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.05.L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.05.L/Wings.05.L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.06.L
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.06.L/Wings.06.L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.01.R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.01.R/Wings.01.R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.02.R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.02.R/Wings.02.R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.03.R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.03.R/Wings.03.R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.04.R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.04.R/Wings.04.R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.05.R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.05.R/Wings.05.R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.06.R
+        weight: 1
+      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.06.R/Wings.06.R_end
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/cRoll_L
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/cRoll_L/cRoll_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/hHeel_L
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/hHeel_L/hRoll_L
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/hHeel_L/hRoll_L/hLeg_L
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/hHeel_L/hRoll_L/hLeg_L/hLeg_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/Knee_L
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_L/Knee_L/Knee_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/cRoll_R
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/cRoll_R/cRoll_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/hHeel_R
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/hHeel_R/hRoll_R
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/hHeel_R/hRoll_R/hLeg_R
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/hHeel_R/hRoll_R/hLeg_R/hLeg_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/Knee_R
+        weight: 1
+      - path: Yellow_Rig/Master/cLeg_R/Knee_R/Knee_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Hip
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_L
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L/Foot_L
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L/Foot_L/Toe_L
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L/Foot_L/Toe_L/Toe_L_end
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_R
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R/Foot_R
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R/Foot_R/Toe_R
+        weight: 1
+      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R/Foot_R/Toe_R/Toe_R_end
+        weight: 1
+      - path: Yellow_Rig/Master/Palm_L.001
+        weight: 1
+      - path: Yellow_Rig/Master/Palm_L.001/Palm_L.001_end
+        weight: 1
+      - path: Yellow_Rig/Master/Palm_R.001
+        weight: 1
+      - path: Yellow_Rig/Master/Palm_R.001/Palm_R.001_end
+        weight: 1
+      - path: Yellow_Wings
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
       name: Yellow_Rig|Yellow_ReturnSmash2
       takeName: Yellow_Rig|Yellow_ReturnSmash2
       firstFrame: 0
@@ -3726,314 +4034,6 @@ ModelImporter:
     - serializedVersion: 16
       name: Yellow_Rig|Yellow_ReturnSmash3
       takeName: Yellow_Rig|Yellow_ReturnSmash3
-      firstFrame: 0
-      lastFrame: 40
-      wrapMode: 1
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Yellow_Body
-        weight: 1
-      - path: Yellow_Hair
-        weight: 1
-      - path: Yellow_Rig
-        weight: 1
-      - path: Yellow_Rig/Master
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Ball
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_L/Elbow_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Elbow_R/Elbow_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_L/Cheek_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Cheek_R/Cheek_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Jaw
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Jaw/Lip_D
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Jaw/Lip_D/Lip_D_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Lip_U
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Neck/Head/Lip_U/Lip_U_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L/Index02_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L/Index02_L/Index03_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Index01_L.001/Index01_L/Index02_L/Index03_L/Index03_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L/Middle02_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L/Middle02_L/Middle03_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Middle01_L.001/Middle01_L/Middle02_L/Middle03_L/Middle03_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L/Pinky02_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L/Pinky02_L/Pinky03_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Pinky01_L.001/Pinky01_L/Pinky02_L/Pinky03_L/Pinky03_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L/Ring02_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L/Ring02_L/Ring03_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Ring01_L.001/Ring01_L/Ring02_L/Ring03_L/Ring03_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L/Thumb02_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L/Thumb02_L/Thumb03_L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_L/Bicep_L/Arm_L/Palm_L/Thumb01_L/Thumb02_L/Thumb03_L/Thumb03_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R/Index02_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R/Index02_R/Index03_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Index01_R.001/Index01_R/Index02_R/Index03_R/Index03_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R/Middle02_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R/Middle02_R/Middle03_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Middle01_R.001/Middle01_R/Middle02_R/Middle03_R/Middle03_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R/Pinky02_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R/Pinky02_R/Pinky03_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Pinky01_R.001/Pinky01_R/Pinky02_R/Pinky03_R/Pinky03_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R/Ring02_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R/Ring02_R/Ring03_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Ring01_R.001/Ring01_R/Ring02_R/Ring03_R/Ring03_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R/Thumb02_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R/Thumb02_R/Thumb03_R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Thumb01_R/Thumb02_R/Thumb03_R/Thumb03_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Yellow_Hilt
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Shoulder_R/Bicep_R/Arm_R/Palm_R/Yellow_Hilt.001
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.01.L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.01.L/Wings.01.L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.02.L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.02.L/Wings.02.L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.03.L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.03.L/Wings.03.L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.04.L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.04.L/Wings.04.L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.05.L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.05.L/Wings.05.L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.06.L
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.L/Wings.06.L/Wings.06.L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.01.R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.01.R/Wings.01.R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.02.R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.02.R/Wings.02.R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.03.R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.03.R/Wings.03.R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.04.R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.04.R/Wings.04.R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.05.R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.05.R/Wings.05.R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.06.R
-        weight: 1
-      - path: Yellow_Rig/Master/Abdomen/Torso/Wings.R/Wings.06.R/Wings.06.R_end
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/cRoll_L
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/cRoll_L/cRoll_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/hHeel_L
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/hHeel_L/hRoll_L
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/hHeel_L/hRoll_L/hLeg_L
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/hHeel_L/hRoll_L/hLeg_L/hLeg_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/Knee_L
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_L/Knee_L/Knee_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/cRoll_R
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/cRoll_R/cRoll_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/hHeel_R
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/hHeel_R/hRoll_R
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/hHeel_R/hRoll_R/hLeg_R
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/hHeel_R/hRoll_R/hLeg_R/hLeg_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/Knee_R
-        weight: 1
-      - path: Yellow_Rig/Master/cLeg_R/Knee_R/Knee_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Hip
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_L
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L/Foot_L
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L/Foot_L/Toe_L
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_L/Femur_L/Foot_L/Toe_L/Toe_L_end
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_R
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R/Foot_R
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R/Foot_R/Toe_R
-        weight: 1
-      - path: Yellow_Rig/Master/Hip/Thigh_R/Femur_R/Foot_R/Toe_R/Toe_R_end
-        weight: 1
-      - path: Yellow_Rig/Master/Palm_L.001
-        weight: 1
-      - path: Yellow_Rig/Master/Palm_L.001/Palm_L.001_end
-        weight: 1
-      - path: Yellow_Rig/Master/Palm_R.001
-        weight: 1
-      - path: Yellow_Rig/Master/Palm_R.001/Palm_R.001_end
-        weight: 1
-      - path: Yellow_Wings
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: Yellow_Rig|Yellow_ReturnSmash4
-      takeName: Yellow_Rig|Yellow_ReturnSmash4
       firstFrame: 0
       lastFrame: 30
       wrapMode: 1
@@ -4648,8 +4648,8 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Yellow_Rig|Yellow_Smash2
-      takeName: Yellow_Rig|Yellow_Smash2
+      name: Yellow_Rig|Yellow_Smash1
+      takeName: Yellow_Rig|Yellow_Smash1
       firstFrame: 0
       lastFrame: 30
       wrapMode: 1
@@ -4956,8 +4956,8 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Yellow_Rig|Yellow_Smash3
-      takeName: Yellow_Rig|Yellow_Smash3
+      name: Yellow_Rig|Yellow_Smash2
+      takeName: Yellow_Rig|Yellow_Smash2
       firstFrame: 0
       lastFrame: 24
       wrapMode: 1
@@ -5264,8 +5264,8 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Yellow_Rig|Yellow_Smash4
-      takeName: Yellow_Rig|Yellow_Smash4
+      name: Yellow_Rig|Yellow_Smash3
+      takeName: Yellow_Rig|Yellow_Smash3
       firstFrame: 0
       lastFrame: 30
       wrapMode: 1
