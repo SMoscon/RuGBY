@@ -18,7 +18,7 @@ public class TP_Animator : MonoBehaviour {
 	public enum CharacterState
 	{
 		Idle, Walking, Running, WalkingBackwards, StrafingLeft, StrafingRight,
-		Jumping, Falling, Landing, Climbing, Sliding, Using,
+		Dodging, Falling, Landing, Climbing, Sliding, Attacking, Defending
 		Dead, ActionLocked
 	}
 	
@@ -35,9 +35,6 @@ public class TP_Animator : MonoBehaviour {
 
 	void Update()
 	{
-		DetermineCurrentState ();
-		ProcessCurrentState ();
-
 		Debug.Log("Current MoveState: " + MoveDirection.ToString());
 	}
 
@@ -119,17 +116,16 @@ public class TP_Animator : MonoBehaviour {
 		if (!TP_Controller.CharacterController.isGrounded) 
 		{
 			if  (State != CharacterState.Falling && 
-			    State != CharacterState.Landing && 
-			    State != CharacterState.Jumping)
+			    State != CharacterState.Landing)
 			{
 				// We should be falling here
 			}
 		}
 		if 	(State != CharacterState.Falling && 
-			State != CharacterState.Jumping &&
 			State != CharacterState.Landing &&
 			State != CharacterState.Climbing &&
-			State != CharacterState.Using &&
+			State != CharacterState.Attacking &&
+			State != CharacterState.Shielding &&
 			State != CharacterState.Sliding) 
 		{
 			switch (MoveDirection)
@@ -199,6 +195,11 @@ public class TP_Animator : MonoBehaviour {
 		animation.CrossFade(walkforwardAnimation.name);
 	}
 
+	void Running()
+	{
+	
+	}
+
 	void WalkingBackwards()
 	{
 		animation.CrossFade(walkbackwardsAnimation.name);
@@ -212,10 +213,5 @@ public class TP_Animator : MonoBehaviour {
 	void StrafingRight()
 	{
 		animation.CrossFade(straferightAnimation.name);
-	}
-
-	void Attacking()
-	{
-		
 	}
 }
