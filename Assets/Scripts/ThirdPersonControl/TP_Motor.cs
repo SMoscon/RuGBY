@@ -24,6 +24,7 @@ public class TP_Motor : MonoBehaviour
 	
 	public Vector3 MoveVector { get; set; }
 	public float VerticalVelocity {get; set;}
+	public bool IsSliding { get; set; }
 	
 	void Awake() 
 	{
@@ -89,9 +90,15 @@ public class TP_Motor : MonoBehaviour
 			// If the "terrain" is steep enough, create a slide direction from the normal
 			if (hitInfo.normal.y < SlideThreshold)
 			{
-				Debug.Log(hitInfo.normal.y);
 				slideDirection = new Vector3(hitInfo.normal.x, -hitInfo.normal.y, hitInfo.normal.z);
+				if (!IsSliding)
+				{
+					TP_Animator.Instance.Slide();
+				}
+				IsSliding = true;
 			}
+			else
+				IsSliding = false;
 		}
 		
 		// Check if the "terrain" is too step to be able to control the slide
@@ -158,7 +165,7 @@ public class TP_Motor : MonoBehaviour
 			
 		}
 		
-		if (slideDirection.magnitude > 0)
+		if (IsSliding)
 			moveSpeed = SlideSpeed;
 		
 		return moveSpeed;

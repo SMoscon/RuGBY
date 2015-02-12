@@ -53,7 +53,13 @@ public class PlayerAttack : MonoBehaviour {
 			attackTimer -= Time.deltaTime;
 		if (attackTimer < 0)
 			attackTimer = 0;
+<<<<<<< HEAD
 		if (Input.GetMouseButtonDown(0)){
+=======
+		if (Input.GetMouseButtonDown(0)) {
+			//TP_Animator.Instance.Attacking();
+			Debug.Log ("attacking = "+attacking);
+>>>>>>> 22bc7a25d2a5bf0cecac88aebcebfc3cdc584462
 			if (attackTimer == 0){
 				if (attacking){
 					if (attackSequence < 2){
