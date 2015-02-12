@@ -5,6 +5,7 @@ public class TP_Animator : MonoBehaviour {
 	
 	public AnimationClip idleAnimation;
 	public AnimationClip walkforwardAnimation;
+	public AnimationClip runAnimation;
 	public AnimationClip walkbackwardsAnimation;
 	public AnimationClip strafeleftAnimation;
 	public AnimationClip straferightAnimation;
@@ -18,7 +19,7 @@ public class TP_Animator : MonoBehaviour {
 	public enum CharacterState
 	{
 		Idle, Walking, Running, WalkingBackwards, StrafingLeft, StrafingRight,
-		Dodging, Falling, Landing, Climbing, Sliding, Attacking, Defending
+		Dodging, Falling, Landing, Climbing, Sliding, Attacking, Defending,
 		Dead, ActionLocked
 	}
 	
@@ -197,7 +198,7 @@ public class TP_Animator : MonoBehaviour {
 
 	void Running()
 	{
-	
+		animation.CrossFade(runAnimation.name);
 	}
 
 	void WalkingBackwards()
