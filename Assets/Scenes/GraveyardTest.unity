@@ -30465,6 +30465,8 @@ Transform:
   - {fileID: 1464167808}
   - {fileID: 2125415075}
   - {fileID: 1626873956}
+  - {fileID: 2060827410}
+  - {fileID: 525290368}
   - {fileID: 1047554252}
   - {fileID: 1294748259}
   - {fileID: 1902362152}
@@ -30742,8 +30744,6 @@ Transform:
   - {fileID: 348663017}
   - {fileID: 27047518}
   - {fileID: 1583432923}
-  - {fileID: 2060827410}
-  - {fileID: 525290368}
   - {fileID: 2060100710}
   - {fileID: 465932431}
   - {fileID: 1951674531}
@@ -91223,6 +91223,7 @@ GameObject:
   - 4: {fileID: 1749186030}
   - 33: {fileID: 1749186029}
   - 23: {fileID: 1749186028}
+  - 114: {fileID: 1749186031}
   m_Layer: 0
   m_Name: Coffin01
   m_TagString: Untagged
@@ -91271,6 +91272,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1749186031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1749186027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cfed2c725393444b7b7e096db6acf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  curHealth: 100
+  healthBarLength: 0
 --- !u!1 &1749822680
 GameObject:
   m_ObjectHideFlags: 0
@@ -100006,7 +100021,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1926469891}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a77e9e0c5cca9ed4a9b4322be0c0e7df, type: 3}
   m_Name: 
@@ -100037,7 +100052,7 @@ MonoBehaviour:
   defendAnimation: {fileID: 7400006, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   returnDefendAnimation: {fileID: 7400018, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
     type: 3}
-  attackParticleSystem: {fileID: 0}
+  attackParticleSystem: {fileID: 100000, guid: 3fef9e4f98e37a246bf9c16aaf8567aa, type: 2}
 --- !u!114 &1926469894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100140,12 +100155,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1926469891}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b4f8fa1c78874fa4b69109cf127a31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 1749186027}
   attackTimer: 0
   cooldown: 0
   smashCooldown: 0
@@ -100153,21 +100168,25 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   attackSpeed: 3
-  attackAnimation1: {fileID: 0}
-  attackAnimation2: {fileID: 0}
-  attackAnimation3: {fileID: 0}
-  smashAnimation1: {fileID: 0}
-  smashAnimation2: {fileID: 0}
-  smashAnimation3: {fileID: 0}
-  returnAnimation1: {fileID: 0}
-  returnAnimation2: {fileID: 0}
-  returnAnimation3: {fileID: 0}
-  returnSmashAnimation1: {fileID: 0}
-  returnSmashAnimation2: {fileID: 0}
-  returnSmashAnimation3: {fileID: 0}
-  defendAnimation: {fileID: 0}
-  returnDefendAnimation: {fileID: 0}
-  attackParticleSystem: {fileID: 0}
+  attackAnimation1: {fileID: 7400000, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  attackAnimation2: {fileID: 7400002, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  attackAnimation3: {fileID: 7400004, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  smashAnimation1: {fileID: 7400028, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  smashAnimation2: {fileID: 7400030, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  smashAnimation3: {fileID: 7400032, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  returnAnimation1: {fileID: 7400012, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  returnAnimation2: {fileID: 7400014, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  returnAnimation3: {fileID: 7400016, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  returnSmashAnimation1: {fileID: 7400020, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+    type: 3}
+  returnSmashAnimation2: {fileID: 7400022, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+    type: 3}
+  returnSmashAnimation3: {fileID: 7400024, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+    type: 3}
+  defendAnimation: {fileID: 7400006, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  returnDefendAnimation: {fileID: 7400018, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+    type: 3}
+  attackParticleSystem: {fileID: 100000, guid: 3fef9e4f98e37a246bf9c16aaf8567aa, type: 2}
 --- !u!114 &1926469899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100200,29 +100219,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idleAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
-<<<<<<< HEAD
   walkforwardAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
-    type: 3}
-  walkbackwardsAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
-    type: 3}
-  strafeleftAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
-  straferightAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
-    type: 3}
-=======
-  walkforwardAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
     type: 3}
   runAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   walkbackwardsAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
     type: 3}
-  strafeleftAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
-  straferightAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+  strafeleftAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  straferightAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
     type: 3}
   jumpAnimation: {fileID: 7400010, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   runlandingAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   usingAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   landingAnimation: {fileID: 7400022, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   fallingAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
->>>>>>> 22bc7a25d2a5bf0cecac88aebcebfc3cdc584462
 --- !u!1 &1927765534
 GameObject:
   m_ObjectHideFlags: 0
