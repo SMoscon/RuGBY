@@ -37,6 +37,9 @@ public class PlayerAttack : MonoBehaviour {
 
 	public GameObject attackParticleSystem;
 
+
+
+
 	// Use this for initialization
 	void Start () {
 		attackTimer = 0;
@@ -51,7 +54,6 @@ public class PlayerAttack : MonoBehaviour {
 		if (attackTimer < 0)
 			attackTimer = 0;
 		if (Input.GetMouseButtonDown(0)){
-			Debug.Log ("attacking = "+attacking);
 			if (attackTimer == 0){
 				if (attacking){
 					if (attackSequence < 2){
@@ -59,8 +61,13 @@ public class PlayerAttack : MonoBehaviour {
 					}
 				}
 				else{
-					Attack();
-					attackTimer = cooldown;
+					//if (TP_Animator.Instance.State != TP_Animator.CharacterState.Dodging){
+					//	if (TP_Animator.Instance.State == TP_Animator.CharacterState.Walking){
+					//		TP_Animator.Instance.State = TP_Animator.CharacterState.ActionLocked;
+							Attack();
+							attackTimer = cooldown;
+					//	}
+					//}
 				}
 			}
 		}
@@ -68,7 +75,6 @@ public class PlayerAttack : MonoBehaviour {
 			//Instantiate (attackParticleSystem, transform.position, transform.rotation);
 
 			if (attacking){
-				Debug.Log ("isplaying?");
 				if (attackTimer == 0)
 					willSmash = true;
 			}
@@ -88,10 +94,8 @@ public class PlayerAttack : MonoBehaviour {
 		}
 		if (Input.GetKeyDown("e")){
 			Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
-			Debug.Log ("hellopressing E");
 		}
 		if (smashing){
-			Debug.Log ("isplaying?");
 			if (!animation.isPlaying){
 				/*if (attackSequence == 0){
 					animation.Play (returnSmashAnimation1.name);
@@ -127,11 +131,8 @@ public class PlayerAttack : MonoBehaviour {
 		}
 
 		if (attacking){
-			Debug.Log ("isplaying?");
 			if (attackTimer == 0){
-					Debug.Log ("isplaying?");
 				if (!animation.isPlaying){
-					Debug.Log ("return animation. attacking = false and sequence reset: "+attackSequence);
 					if (willSmash){
 						willAttack = false;
 						SmashAttack ();
@@ -143,7 +144,6 @@ public class PlayerAttack : MonoBehaviour {
 						attackTimer = cooldown;
 					}
 					else {
-						Debug.Log ("return animation. attacking = false and sequence reset: "+attackSequence);
 						if (attackSequence == 0){
 							animation.Play (returnAnimation1.name);
 						}
@@ -163,6 +163,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
 
 	private void Attack() {
+
 		float distance = Vector3.Distance(target.transform.position, transform.position);
 		Vector3 dir = (target.transform.position - transform.position).normalized;
 		float direction = Vector3.Dot (dir, transform.forward);
@@ -201,7 +202,6 @@ public class PlayerAttack : MonoBehaviour {
 		Vector3 dir = (target.transform.position - transform.position).normalized;
 		float direction = Vector3.Dot (dir, transform.forward);
 
-		Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
 		attacking = true;
 		smashing = true;
 		willSmash = false;
@@ -224,6 +224,12 @@ public class PlayerAttack : MonoBehaviour {
 		else if (attackSequence == 2){
 			animation[smashAnimation3.name].speed = attackSpeed;
 			animation.Play(smashAnimation3.name);
+			float animRatio = animation[smashAnimation3.name].time/animation[smashAnimation3.name].length;
+			Debug.Log ("ratio = "+animRatio);
+			if (animRatio == 0.66f){
+				Debug.Log ("ratio");
+				Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
+			}
 			if (distance < 5f){
 				EnemyHealth eh = (EnemyHealth)target.GetComponent("EnemyHealth");
 				eh.AdjustCurrentHealth(-15);
