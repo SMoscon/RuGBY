@@ -30192,6 +30192,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2060827410}
   - {fileID: 1630763902}
   - {fileID: 2123904216}
   - {fileID: 1628917732}
@@ -30213,6 +30214,7 @@ Transform:
   - {fileID: 324347203}
   - {fileID: 1176813557}
   - {fileID: 2083626412}
+  - {fileID: 525290368}
   - {fileID: 1976337609}
   - {fileID: 291041566}
   - {fileID: 1058506291}
@@ -30465,8 +30467,6 @@ Transform:
   - {fileID: 1464167808}
   - {fileID: 2125415075}
   - {fileID: 1626873956}
-  - {fileID: 2060827410}
-  - {fileID: 525290368}
   - {fileID: 1047554252}
   - {fileID: 1294748259}
   - {fileID: 1902362152}
@@ -100186,7 +100186,12 @@ MonoBehaviour:
   defendAnimation: {fileID: 7400006, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   returnDefendAnimation: {fileID: 7400018, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
     type: 3}
-  attackParticleSystem: {fileID: 100000, guid: 3fef9e4f98e37a246bf9c16aaf8567aa, type: 2}
+  attackParticleSystem1: {fileID: 100000, guid: 23f83ea974eb9e942ab269f2047efbb8,
+    type: 2}
+  attackParticleSystem2: {fileID: 100000, guid: 1be877d8e13fcad43954da4e19710b5f,
+    type: 2}
+  attackParticleSystem3: {fileID: 100000, guid: 3fef9e4f98e37a246bf9c16aaf8567aa,
+    type: 2}
 --- !u!114 &1926469899
 MonoBehaviour:
   m_ObjectHideFlags: 0

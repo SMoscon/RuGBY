@@ -38,8 +38,10 @@ public class TP_Controller : MonoBehaviour
 	private int attackSequence = 0;
 	private bool willAttack = false;
 	private bool willSmash = false;
-	
-	public GameObject attackParticleSystem;
+
+	public GameObject attackParticleSystem1;
+	public GameObject attackParticleSystem2;
+	public GameObject attackParticleSystem3;
 
 	public bool ClimbEnabled { get; set; }
 	
@@ -65,6 +67,22 @@ public class TP_Controller : MonoBehaviour
 		HandleActionInput();
 		
 		TP_Motor.Instance.UpdateMotor();
+
+		//Smash Attack particles
+		var animRatio = animation[smashAnimation1.name].time % animation[smashAnimation1.name].length;
+		if (animRatio > 0.3f && animRatio < 0.31f){
+			Instantiate (attackParticleSystem1, transform.position + transform.up + transform.forward, Quaternion.identity);
+		}
+		animRatio = animation[smashAnimation2.name].time % animation[smashAnimation2.name].length;
+		if (animRatio > 0.6f && animRatio < 0.7f){
+			Instantiate (attackParticleSystem2, transform.position + transform.forward * 2, Quaternion.Euler(-90, 0, 0));
+		}
+		animRatio = animation[smashAnimation3.name].time % animation[smashAnimation3.name].length;
+		if (animRatio > 0.66f && animRatio < 0.8f){
+			Instantiate (attackParticleSystem3, transform.position + transform.up + transform.forward, Quaternion.identity);
+			Instantiate (attackParticleSystem1, transform.position + transform.up + transform.forward + Vector3.left, Quaternion.identity);
+			Instantiate (attackParticleSystem1, transform.position + transform.up + transform.forward + Vector3.right, Quaternion.identity);
+		}
 		
 	}
 	
@@ -111,13 +129,14 @@ public class TP_Controller : MonoBehaviour
 					}
 				}
 				else{
-					Attack();
-					attackTimer = cooldown;
+					if (!defending){
+						Attack();
+						attackTimer = cooldown;
+					}
 				}
 			}
 		}
 		if (Input.GetMouseButtonDown(1)){
-			//Instantiate (attackParticleSystem, transform.position, transform.rotation);
 			
 			if (attacking){
 				if (attackTimer == 0)
@@ -137,16 +156,8 @@ public class TP_Controller : MonoBehaviour
 				ReleaseDef();
 			}
 		}
-		if (Input.GetKeyDown("e")){
-			Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
-			Debug.Log ("hellopressing E");
-		}
 		if (smashing){
-			Debug.Log ("isplaying?");
 			if (!animation.isPlaying){
-				/*if (attackSequence == 0){
-					animation.Play (returnSmashAnimation1.name);
-				}*/
 				if (attackSequence == 0){
 					animation.CrossFade (returnSmashAnimation1.name);
 				}
@@ -173,15 +184,12 @@ public class TP_Controller : MonoBehaviour
 				smashing = false;
 				attacking = false;
 				attackSequence = 0;
-				//Debug.Log ("return animation. attacking = false and sequence reset");
 			}
 		}
 		
 		if (attacking){
-			Debug.Log ("isplaying?");
 			if (attackTimer == 0){
 				if (!animation.isPlaying){
-					Debug.Log ("return animation. attacking = false and sequence reset: "+attackSequence);
 					if (willSmash){
 						willAttack = false;
 						SmashAttack ();
@@ -193,7 +201,6 @@ public class TP_Controller : MonoBehaviour
 						attackTimer = cooldown;
 					}
 					else {
-						Debug.Log ("return animation. attacking = false and sequence reset: "+attackSequence);
 						if (attackSequence == 0){
 							animation.CrossFade (returnAnimation1.name);
 						}
@@ -205,7 +212,6 @@ public class TP_Controller : MonoBehaviour
 						}
 						attacking = false;
 						attackSequence = 0;
-						//Debug.Log ("return animation. attacking = false and sequence reset: "+attackSequence);
 					}
 				}
 			}
@@ -233,7 +239,6 @@ public class TP_Controller : MonoBehaviour
 		float distance = Vector3.Distance(target.transform.position, transform.position);
 		Vector3 dir = (target.transform.position - transform.position).normalized;
 		float direction = Vector3.Dot (dir, transform.forward);
-		//Debug.Log("boo");
 		
 		attacking = true;
 		willAttack = false;
@@ -241,7 +246,7 @@ public class TP_Controller : MonoBehaviour
 			animation[attackAnimation1.name].speed = attackSpeed;
 			animation.CrossFade(attackAnimation1.name);
 			
-			if (distance < 2.5f && direction > 0){
+			if (distance < 2.7f && direction > 0){
 				EnemyHealth eh = (EnemyHealth)target.GetComponent("EnemyHealth");
 				eh.AdjustCurrentHealth(-10);
 			}
@@ -268,16 +273,15 @@ public class TP_Controller : MonoBehaviour
 		Vector3 dir = (target.transform.position - transform.position).normalized;
 		float direction = Vector3.Dot (dir, transform.forward);
 		
-		Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
 		attacking = true;
 		smashing = true;
 		willSmash = false;
 		if (attackSequence == 0){
 			animation[smashAnimation1.name].speed = attackSpeed;
 			animation.CrossFade(smashAnimation1.name);
-			if (distance < 3f && direction > 0){
+			if (distance < 3.2f && direction > 0){
 				EnemyHealth eh = (EnemyHealth)target.GetComponent("EnemyHealth");
-				eh.AdjustCurrentHealth(-10);
+				eh.AdjustCurrentHealth(-12);
 			}
 		}
 		else if (attackSequence == 1){
@@ -291,13 +295,7 @@ public class TP_Controller : MonoBehaviour
 		else if (attackSequence == 2){
 			animation[smashAnimation3.name].speed = attackSpeed;
 			animation.CrossFade(smashAnimation3.name);
-			float animRatio = animation[smashAnimation3.name].time/animation[smashAnimation3.name].length;
-			Debug.Log ("ratio = "+animRatio);
-			if (animRatio == 0.66f){
-				Debug.Log ("ratio");
-				Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
-			}
-			if (distance < 5f){
+			if (distance < 4f && direction > 0){
 				EnemyHealth eh = (EnemyHealth)target.GetComponent("EnemyHealth");
 				eh.AdjustCurrentHealth(-30);
 			}
