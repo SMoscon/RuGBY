@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class TP_Animator : MonoBehaviour {
+public class TP_Animator : MonoBehaviour 
+{
 	
 	public AnimationClip idleAnimation;
 	public AnimationClip walkforwardAnimation;
@@ -9,6 +10,11 @@ public class TP_Animator : MonoBehaviour {
 	public AnimationClip walkbackwardsAnimation;
 	public AnimationClip strafeleftAnimation;
 	public AnimationClip straferightAnimation;
+	public AnimationClip jumpAnimation;
+	public AnimationClip runlandingAnimation;
+	public AnimationClip usingAnimation;
+	public AnimationClip landingAnimation;
+	public AnimationClip fallingAnimation;
 
 	public enum Direction
 	{
@@ -19,14 +25,19 @@ public class TP_Animator : MonoBehaviour {
 	public enum CharacterState
 	{
 		Idle, Walking, Running, WalkingBackwards, StrafingLeft, StrafingRight,
-		Dodging, Falling, Landing, Climbing, Sliding, Attacking, Defending,
-		Dead, ActionLocked
+		Dodging, Falling, Landing, Jumping, Attacking, Using, Defending,
+		Dead, Climbing, Sliding
 	}
 	
 	public static TP_Animator Instance;
-	
+
+	private CharacterState lastState;
+	private Transform climbPoint;
+
 	public Direction MoveDirection { get; set; }
 	public CharacterState State { get; set; }
+	public bool IsDead { get; set; }
+
 	
 
 	void Awake () 
@@ -36,7 +47,9 @@ public class TP_Animator : MonoBehaviour {
 
 	void Update()
 	{
-		Debug.Log("Current MoveState: " + MoveDirection.ToString());
+		DetermineCurrentState ();
+		ProcessCurrentState ();
+		Debug.Log("Current State: " + State.ToString());
 	}
 
 	
@@ -117,18 +130,20 @@ public class TP_Animator : MonoBehaviour {
 		if (!TP_Controller.CharacterController.isGrounded) 
 		{
 			if  (State != CharacterState.Falling && 
+			    State != CharacterState.Jumping &&
 			    State != CharacterState.Landing)
 			{
-				// We should be falling here
+				Fall();
 			}
 		}
 		if 	(State != CharacterState.Falling && 
 			State != CharacterState.Landing &&
+			State != CharacterState.Jumping &&
+			State != CharacterState.Using &&
 			State != CharacterState.Climbing &&
-			State != CharacterState.Attacking &&
-			State != CharacterState.Shielding &&
 			State != CharacterState.Sliding) 
 		{
+			Debug.Log("If statement marker");
 			switch (MoveDirection)
 			{
 				case Direction.Stationary:
@@ -169,6 +184,7 @@ public class TP_Animator : MonoBehaviour {
 		switch (State) 
 		{
 			case CharacterState.Idle:
+				Debug.Log ("IDLE happens");
 				Idle();
 				break;
 			case CharacterState.Walking:
@@ -183,8 +199,26 @@ public class TP_Animator : MonoBehaviour {
 			case CharacterState.StrafingRight:
 				StrafingRight();
 				break;
+			case CharacterState.Using:
+				Using();
+				break;
+			case CharacterState.Jumping:
+				Jumping();
+				break;
+			case CharacterState.Falling:
+				Falling();
+				break;
+			case CharacterState.Landing:
+				Landing();
+				break;
+			case CharacterState.Sliding:
+				Sliding();
+				break;
+
 		}
 	}
+
+	// Character State Methods below (called every update)
 
 	void Idle()
 	{
@@ -214,5 +248,125 @@ public class TP_Animator : MonoBehaviour {
 	void StrafingRight()
 	{
 		animation.CrossFade(straferightAnimation.name);
+	}
+
+	void Using()
+	{
+		if (!animation.isPlaying)
+		{
+			State = CharacterState.Idle;
+			animation.CrossFade(idleAnimation.name);
+		}
+	}
+
+	void Jumping()
+	{
+		if ((!animation.isPlaying && TP_Controller.CharacterController.isGrounded) ||
+			TP_Controller.CharacterController.isGrounded)
+		{
+			if (lastState == CharacterState.Running)
+				animation.CrossFade(runlandingAnimation.name);
+			else
+				animation.CrossFade(landingAnimation.name);
+			State = CharacterState.Landing;
+		}
+		else if (!animation.IsPlaying(jumpAnimation.name))
+		{
+			State = CharacterState.Falling;
+			animation.CrossFade(fallingAnimation.name);
+		}
+		else
+		{
+			State = CharacterState.Jumping;
+			//Help determine if we fell too far??
+		}
+	}
+
+	void Falling()
+	{
+		if (TP_Controller.CharacterController.isGrounded)
+		{
+			if (lastState == CharacterState.Running)
+				animation.CrossFade(runlandingAnimation.name);
+			else
+				animation.CrossFade(landingAnimation.name);
+			State = CharacterState.Landing;
+		}
+	}
+
+	void Landing()
+	{
+		if (lastState == CharacterState.Running)
+		{
+			if (!animation.IsPlaying(runlandingAnimation.name))
+			{
+				State = CharacterState.Running;
+				animation.Play(runAnimation.name);
+			}	
+		}
+		else
+		{
+			if (!animation.IsPlaying(landingAnimation.name))
+			{
+				State = CharacterState.Idle;
+				animation.Play(idleAnimation.name);
+			}
+		}
+	}
+
+	void Sliding()
+	{
+		if (!TP_Motor.Instance.IsSliding)
+		{
+			State = CharacterState.Idle;
+			animation.CrossFade(idleAnimation.name);
+		}
+	}
+
+	//'Start Action' methods below (called once per change of state)
+
+	public void Use()
+	{
+		State = CharacterState.Using;
+		animation.CrossFade(usingAnimation.name);
+	}
+
+	public void Jump()
+	{
+		if (!TP_Controller.CharacterController.isGrounded || IsDead || 
+			State == CharacterState.Jumping)
+			return;
+
+		lastState = State;
+		State = CharacterState.Jumping;
+		animation.CrossFade(jumpAnimation.name);
+	}
+
+	public void Fall()
+	{
+		if (IsDead)
+			return;
+
+		lastState = State;
+		State = CharacterState.Falling;
+		// if we are too high start a falling state immediately
+		animation.CrossFade(fallingAnimation.name);
+	}
+
+	public void Slide()
+	{
+		State = CharacterState.Sliding;
+		animation.CrossFade(fallingAnimation.name);
+	}
+
+	public void SetClimbPoint(Transform climbPoint)
+	{
+		this.climbPoint = climbPoint;
+		TP_Controller.Instance.ClimbEnabled = true;
+	}
+
+	public void ClearClimbPoint(Transform climbPoint)
+	{
+
 	}
 }

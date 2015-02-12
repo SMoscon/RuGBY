@@ -100335,7 +100335,7 @@ MonoBehaviour:
   defendAnimation: {fileID: 7400006, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   returnDefendAnimation: {fileID: 7400018, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
     type: 3}
-  attackParticleSystem: {fileID: 100000, guid: 3fef9e4f98e37a246bf9c16aaf8567aa, type: 2}
+  attackParticleSystem: {fileID: 0}
 --- !u!114 &1926469894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100443,6 +100443,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4f8fa1c78874fa4b69109cf127a31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  attackTimer: 0
+  cooldown: 0
+  smashCooldown: 0
+  speed: 6
+  jumpSpeed: 8
+  gravity: 20
+  attackSpeed: 3
+  attackAnimation1: {fileID: 0}
+  attackAnimation2: {fileID: 0}
+  attackAnimation3: {fileID: 0}
+  smashAnimation1: {fileID: 0}
+  smashAnimation2: {fileID: 0}
+  smashAnimation3: {fileID: 0}
+  returnAnimation1: {fileID: 0}
+  returnAnimation2: {fileID: 0}
+  returnAnimation3: {fileID: 0}
+  returnSmashAnimation1: {fileID: 0}
+  returnSmashAnimation2: {fileID: 0}
+  returnSmashAnimation3: {fileID: 0}
+  defendAnimation: {fileID: 0}
+  returnDefendAnimation: {fileID: 0}
+  attackParticleSystem: {fileID: 0}
 --- !u!114 &1926469899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100474,6 +100497,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddff45138f5146fc8b9b75a56e0b094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idleAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  walkforwardAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+    type: 3}
+  runAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  walkbackwardsAnimation: {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+    type: 3}
+  strafeleftAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  straferightAnimation: {fileID: 7400026, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
+    type: 3}
+  jumpAnimation: {fileID: 7400010, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  runlandingAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  usingAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  landingAnimation: {fileID: 7400022, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
+  fallingAnimation: {fileID: 7400008, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
 --- !u!1 &1927765534
 GameObject:
   m_ObjectHideFlags: 0

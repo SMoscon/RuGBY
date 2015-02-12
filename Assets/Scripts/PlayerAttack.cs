@@ -50,7 +50,8 @@ public class PlayerAttack : MonoBehaviour {
 			attackTimer -= Time.deltaTime;
 		if (attackTimer < 0)
 			attackTimer = 0;
-		if (Input.GetMouseButtonDown(0)){
+		if (Input.GetMouseButtonDown(0)) {
+			//TP_Animator.Instance.Attacking();
 			Debug.Log ("attacking = "+attacking);
 			if (attackTimer == 0){
 				if (attacking){
