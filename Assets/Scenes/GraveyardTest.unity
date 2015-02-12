@@ -100335,6 +100335,7 @@ MonoBehaviour:
   defendAnimation: {fileID: 7400006, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   returnDefendAnimation: {fileID: 7400018, guid: 50fbb8a6d5fb57b46a85b62d22f95da3,
     type: 3}
+  attackParticleSystem: {fileID: 100000, guid: 3fef9e4f98e37a246bf9c16aaf8567aa, type: 2}
 --- !u!114 &1926469894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100428,7 +100429,7 @@ Animation:
   - {fileID: 7400032, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   - {fileID: 7400034, guid: 50fbb8a6d5fb57b46a85b62d22f95da3, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
 --- !u!114 &1926469898

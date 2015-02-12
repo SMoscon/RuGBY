@@ -35,6 +35,8 @@ public class PlayerAttack : MonoBehaviour {
 	private bool willAttack = false;
 	private bool willSmash = false;
 
+	public GameObject attackParticleSystem;
+
 	// Use this for initialization
 	void Start () {
 		attackTimer = 0;
@@ -63,6 +65,8 @@ public class PlayerAttack : MonoBehaviour {
 			}
 		}
 		if (Input.GetMouseButtonDown(1)){
+			//Instantiate (attackParticleSystem, transform.position, transform.rotation);
+
 			if (attacking){
 				Debug.Log ("isplaying?");
 				if (attackTimer == 0)
@@ -81,6 +85,10 @@ public class PlayerAttack : MonoBehaviour {
 			if (defending){
 				ReleaseDef();
 			}
+		}
+		if (Input.GetKeyDown("e")){
+			Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
+			Debug.Log ("hellopressing E");
 		}
 		if (smashing){
 			Debug.Log ("isplaying?");
@@ -158,12 +166,14 @@ public class PlayerAttack : MonoBehaviour {
 		float distance = Vector3.Distance(target.transform.position, transform.position);
 		Vector3 dir = (target.transform.position - transform.position).normalized;
 		float direction = Vector3.Dot (dir, transform.forward);
-		Debug.Log("boo");
+		//Debug.Log("boo");
+
 		attacking = true;
 		willAttack = false;
 		if (attackSequence == 0){
 			animation[attackAnimation1.name].speed = attackSpeed;
 			animation.Play(attackAnimation1.name);
+
 			if (distance < 2.5f && direction > 0){
 				EnemyHealth eh = (EnemyHealth)target.GetComponent("EnemyHealth");
 				eh.AdjustCurrentHealth(-10);
@@ -190,7 +200,8 @@ public class PlayerAttack : MonoBehaviour {
 		float distance = Vector3.Distance(target.transform.position, transform.position);
 		Vector3 dir = (target.transform.position - transform.position).normalized;
 		float direction = Vector3.Dot (dir, transform.forward);
-		
+
+		Instantiate (attackParticleSystem, transform.position + transform.up + transform.forward, transform.rotation);
 		attacking = true;
 		smashing = true;
 		willSmash = false;
