@@ -44,13 +44,13 @@ public class TP_Controller : MonoBehaviour
 	
 	void HandleActionInput()
 	{
-		//if (Input.GetButton("Jump"))
-		//{
-		//	if (ClimbEnabled)
-		//		Climb();
-		//	else
-		//		Jump();
-		//}
+		if (Input.GetButton("Jump"))
+		{
+			//if (ClimbEnabled)
+			//	Climb();
+			//else
+				Jump();
+		}
 
 		if (Input.GetKeyDown(KeyCode.E))
 		{
@@ -69,12 +69,21 @@ public class TP_Controller : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(0))
 		{
+			transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
 			Attack();
 		}
 
 		if (Input.GetMouseButtonDown(1))
 		{
-			SmashAttack();
+			if (TP_Animator.Instance.State == TP_Animator.CharacterState.Attacking)
+				SmashAttack();
+			else
+				Defend();
+		}
+
+		if (Input.GetMouseButtonUp (1) && TP_Animator.Instance.IsDefending) 
+		{
+			TP_Animator.Instance.IsDefending = false;
 		}
 
 	}
@@ -129,5 +138,10 @@ public class TP_Controller : MonoBehaviour
 			TP_Animator.Instance.SmashAttack();
 			Debug.Log("Smash Occured");
 		}
+	}
+
+	void Defend()
+	{
+		TP_Animator.Instance.Defend();
 	}
 }

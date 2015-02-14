@@ -15,8 +15,8 @@ public class TP_Motor : MonoBehaviour
 	public float BackwardSpeed = 2f;
 	public float StrafingSpeed = 5f;
 	public float SlideSpeed = 10f;
-	public float JumpSpeed = 6f;
-	public float Gravity = 21f;
+	public float JumpSpeed = 12f;
+	public float Gravity = 10f;
 	public float TerminalVelocity = 20f;
 	public float SlideThreshold = 0.6f;
 	public float MaxControllableSlideMagnitude = 0.4f;
@@ -34,15 +34,16 @@ public class TP_Motor : MonoBehaviour
 	
 	public void UpdateMotor() 
 	{
-		SnapAlignCharacterWithCamera();
 		ProcessMotion();
+		UpdateRotation ();
 	}
 	
 	void ProcessMotion()
 	{
 		// Transform MoveVector to World Space
-		MoveVector = transform.TransformDirection(MoveVector);
-		
+		MoveVector = transform.forward;
+		MoveVector = new Vector3 (MoveVector.x, 0, MoveVector.z);
+		Debug.Log (MoveVector.ToString ());
 		// Normalize MoveVector if Magnitude > 1
 		if (MoveVector.magnitude > 1)
 			MoveVector = Vector3.Normalize(MoveVector);
@@ -54,11 +55,12 @@ public class TP_Motor : MonoBehaviour
 		// Multiply MoveVector by MoveSpeed
 		MoveVector *= MoveSpeed();
 		
-		// reapply verticalvelocity to movevecter.y
+		// reapply verticalvelocity to movevector.y
 		MoveVector = new Vector3(MoveVector.x, VerticalVelocity , MoveVector.z);
 		
 		//Apply gravity
 		ApplyGravity();
+
 		
 		// Move the Character in World Space
 		TP_Controller.CharacterController.Move(MoveVector * Time.deltaTime);
@@ -116,58 +118,91 @@ public class TP_Motor : MonoBehaviour
 	
 	public void Jump()
 	{
-		if (TP_Controller.CharacterController.isGrounded)
+		if (TP_Controller.CharacterController.isGrounded && TP_Animator.Instance.State != TP_Animator.CharacterState.Landing)
 		{
-			VerticalVelocity = JumpSpeed;	
+			VerticalVelocity = JumpSpeed;
 		}
 	}
 	
-	void SnapAlignCharacterWithCamera()
+	public void UpdateRotation()
 	{
-		if (MoveVector.x != 0 || MoveVector.z != 0) 
+		switch (TP_Animator.Instance.MoveDirection) 
 		{
-			transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
-			                                      Camera.main.transform.eulerAngles.y,
-			                                      transform.eulerAngles.z);
+			case TP_Animator.Direction.Forward:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
+				break;
+			case TP_Animator.Direction.Backward:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y - 180, transform.eulerAngles.z);
+				break;
+			case TP_Animator.Direction.Left:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y - 90, transform.eulerAngles.z);
+				break;
+			case TP_Animator.Direction.Right:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y + 90, transform.eulerAngles.z);
+				break;
+			case TP_Animator.Direction.LeftForward:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y - 45, transform.eulerAngles.z);
+				break;
+			case TP_Animator.Direction.RightForward:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y + 45, transform.eulerAngles.z);
+				break;
+			case TP_Animator.Direction.LeftBackward:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y - 135, transform.eulerAngles.z);
+				break;
+			case TP_Animator.Direction.RightBackward:
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y + 135, transform.eulerAngles.z);
+				break;	
 		}
+
+		//if ((MoveVector.x != 0 || MoveVector.z != 0 || TP_Animator.Instance.State == TP_Animator.CharacterState.Attacking) && TP_Animator.Instance.MoveDirection != TP_Animator.Direction.Backward) 
+		//{
+		//	transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
+		//	                                      Camera.main.transform.eulerAngles.y,
+		//	                                      transform.eulerAngles.z);
+		//}
 	}
-	
+
 	float MoveSpeed()
 	{
 		var moveSpeed = 0f;
-		
-		switch (TP_Animator.Instance.MoveDirection)
-		{
-		case TP_Animator.Direction.Stationary:
-			moveSpeed = 0;
-			break;
-		case TP_Animator.Direction.Forward:
-			moveSpeed = ForwardSpeed;
-			break;
-		case TP_Animator.Direction.Backward:
-			moveSpeed = BackwardSpeed;
-			break;
-		case TP_Animator.Direction.Left:
-			moveSpeed = StrafingSpeed;
-			break;
-		case TP_Animator.Direction.Right:
-			moveSpeed = StrafingSpeed;
-			break;
-		case TP_Animator.Direction.LeftForward:
-			moveSpeed = ForwardSpeed;
-			break;
-		case TP_Animator.Direction.RightForward:
-			moveSpeed = ForwardSpeed;
-			break;
-		case TP_Animator.Direction.LeftBackward:
-			moveSpeed = BackwardSpeed;
-			break;
-		case TP_Animator.Direction.RightBackward:
-			moveSpeed = BackwardSpeed;
-			break;
-		case TP_Animator.Direction.RunForward:
+
+		if (TP_Animator.Instance.State == TP_Animator.CharacterState.Running)
 			moveSpeed = RunSpeed;
-			break;
+		else
+		{
+			switch (TP_Animator.Instance.MoveDirection)
+			{
+			case TP_Animator.Direction.Stationary:
+				moveSpeed = 0;
+				break;
+			case TP_Animator.Direction.Forward:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.Backward:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.Left:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.Right:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.LeftForward:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.RightForward:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.LeftBackward:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.RightBackward:
+				moveSpeed = ForwardSpeed;
+				break;
+			case TP_Animator.Direction.RunForward:
+				moveSpeed = RunSpeed;
+				break;
+			}
 		}
 		
 		//if (IsSliding)

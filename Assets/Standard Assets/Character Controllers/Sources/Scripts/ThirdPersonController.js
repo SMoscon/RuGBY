@@ -6,14 +6,12 @@ public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
 public var runAnimation : AnimationClip;
 public var jumpPoseAnimation : AnimationClip;
-public var attackAnimation : AnimationClip;
 
 public var walkMaxAnimationSpeed : float = 0.75;
 public var trotMaxAnimationSpeed : float = 1.0;
 public var runMaxAnimationSpeed : float = 1.0;
 public var jumpAnimationSpeed : float = 1.15;
 public var landAnimationSpeed : float = 1.0;
-public var attackAnimationSpeed : float = 1.0;
 
 private var _animation : Animation;
 
@@ -23,7 +21,6 @@ enum CharacterState {
 	Trotting = 2,
 	Running = 3,
 	Jumping = 4,
-	Attacking = 5,
 }
 
 private var _characterState : CharacterState;
@@ -49,11 +46,9 @@ var trotAfterSeconds = 3.0;
 
 var canJump = true;
 
-private var jumpRepeatTime = 0.1;
+private var jumpRepeatTime = 0.05;
 private var jumpTimeout = 0.15;
 private var groundedTimeout = 0.25;
-
-//private var attackComboTime = 0.3;
 
 // The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
 private var lockCameraTimer = 0.0;
@@ -72,9 +67,6 @@ private var collisionFlags : CollisionFlags;
 private var jumping = false;
 private var jumpingReachedApex = false;
 
-// Are we attacking?
-private var attacking = false;
-
 // Are we moving backwards (This locks the camera to not do a 180 degree spin)
 private var movingBack = false;
 // Is the user pressing any keys?
@@ -86,13 +78,6 @@ private var lastJumpButtonTime = -10.0;
 // Last time we performed a jump
 private var lastJumpTime = -1.0;
 
-
-// Last time the attack button was clicked down
-private var lastAttackButtonTime = -10.0;
-// Last time we performed an attack
-private var lastAttackTime = -1.0;
-// Attack length
-private var attackLength = 0.0;
 
 // the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 private var lastJumpStartHeight = 0.0;
@@ -135,10 +120,6 @@ public var jumpPoseAnimation : AnimationClip;
 		_animation = null;
 		Debug.Log("No jump animation found and the character has canJump enabled. Turning off animations.");
 	}
-	if(!attackAnimation) {
-		_animation = null;
-		Debug.Log("No attack animation found and the character has canJump enabled. Turning off animations.");
-	}
 			
 }
 
@@ -173,7 +154,7 @@ function UpdateSmoothedMovementDirection ()
 	var targetDirection = h * right + v * forward;
 	
 	// Grounded controls
-	if (grounded && !attacking)
+	if (grounded)
 	{
 		// Lock camera for short period when transitioning moving & standing still
 		lockCameraTimer += Time.deltaTime;
@@ -264,28 +245,6 @@ function ApplyJumping ()
 	}
 }
 
-function ApplyAttacking ()
-{
-	// Prevent jumping too fast after each other
-	//if (attackComboTime > Time.time){
-		//Debug.log("Combo next attack okay");
-	//	return;
-	//}
-
-	if (IsGrounded() && !IsAttacking()) {
-		if (lastAttackButtonTime != -10){
-			transform.rotation = Camera.main.transform.rotation;
-			SendMessage("DidAttack", SendMessageOptions.DontRequireReceiver);
-			//Debug.Log("attacking = "+attacking);
-		}
-		// Attack
-		// - With a timeout so you can press the button slightly before landing		
-		//transform.rotation = Camera.main.transform.rotation;
-		//SendMessage("DidAttack", SendMessageOptions.DontRequireReceiver);
-		//Debug.log("Attack Applied = "+attacking);
-	}
-}
-
 
 function ApplyGravity ()
 {
@@ -327,25 +286,7 @@ function DidJump ()
 	_characterState = CharacterState.Jumping;
 }
 
-function DidAttack ()
-{
-	attacking = true;
-	lastAttackTime = Time.time;
-	lastAttackButtonTime = -10;
-	//var controller : CharacterController = GetComponent(CharacterController);
-	moveSpeed = 0;
-	//moveDirection = transform.TransformDirection(Vector3.forward);
-	
-	_characterState = CharacterState.Attacking;
-}
-
 function Update() {
-
-	if (Input.GetMouseButtonDown(0))
-	{
-		//Debug.Log("We are attacking = "+attacking);
-		lastAttackButtonTime = Time.time;
-	}
 	
 	if (!isControllable)
 	{
@@ -368,9 +309,6 @@ function Update() {
 	// Apply jumping logic
 	ApplyJumping ();
 	
-	// Apply attacking logic
-	ApplyAttacking ();
-	
 	// Calculate actual motion
 	var movement = moveDirection * moveSpeed + Vector3 (0, verticalSpeed, 0) + inAirVelocity;
 	movement *= Time.deltaTime;
@@ -387,19 +325,13 @@ function Update() {
 				_animation[jumpPoseAnimation.name].speed = jumpAnimationSpeed;
 				_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever;
 				_animation.CrossFade(jumpPoseAnimation.name);
-			}// else {
-			//	_animation[jumpPoseAnimation.name].speed = -landAnimationSpeed;
-			//	_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever;
-			//	_animation.CrossFade(jumpPoseAnimation.name);				
-			//}
+			} else {
+				_animation[jumpPoseAnimation.name].speed = -landAnimationSpeed;
+				_animation[jumpPoseAnimation.name].wrapMode = WrapMode.ClampForever;
+				_animation.CrossFade(jumpPoseAnimation.name);				
+			}
 		} 
-		else if(_characterState == CharacterState.Attacking)
-		{
-			//_animation[attackAnimation.name].speed = attackAnimationSpeed;
-			//_animation[attackAnimation.name].wrapMode = WrapMode.ClampForever;
-			//_animation.CrossFade(attackAnimation.name);
-		}
-		else
+		else 
 		{
 			if(controller.velocity.sqrMagnitude < 0.1) {
 				_animation.CrossFade(idleAnimation.name);
@@ -428,7 +360,7 @@ function Update() {
 	if (IsGrounded())
 	{
 		
-		//transform.rotation = Quaternion.LookRotation(moveDirection);
+		transform.rotation = Quaternion.LookRotation(moveDirection);
 			
 	}	
 	else
@@ -452,13 +384,6 @@ function Update() {
 			SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
 		}
 	}
-	if (attacking){
-		if (!_animation.isPlaying){
-			//haha carl you'll never understand this
-			attacking = false;
-			SendMessage("DidEndAttack", SendMessageOptions.DontRequireReceiver);
-		}
-	}
 }
 
 function OnControllerColliderHit (hit : ControllerColliderHit )
@@ -478,10 +403,6 @@ function IsJumping () {
 
 function IsGrounded () {
 	return (collisionFlags & CollisionFlags.CollidedBelow) != 0;
-}
-
-function IsAttacking() {
-	return attacking;
 }
 
 function GetDirection () {

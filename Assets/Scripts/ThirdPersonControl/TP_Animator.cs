@@ -3,21 +3,19 @@ using System.Collections;
 
 public class TP_Animator : MonoBehaviour 
 {
-	
 	public AnimationClip idleAnimation;
 	public AnimationClip walkAnimation;
-	public AnimationClip walkforwardAnimation;
 	public AnimationClip runAnimation;
-	public AnimationClip walkbackwardsAnimation;
-	public AnimationClip strafeleftAnimation;
-	public AnimationClip straferightAnimation;
-	public AnimationClip jumpAnimation;
-	public AnimationClip runlandingAnimation;
 	public AnimationClip usingAnimation;
+	public AnimationClip jumpAnimation;
+	public AnimationClip hardlandAnimation;
+	public AnimationClip runlandingAnimation;
 	public AnimationClip landingAnimation;
 	public AnimationClip fallingAnimation;
-	public AnimationClip climbingAnimation;
+	//public AnimationClip climbingAnimation;
 
+	public AnimationClip defendAnimation;
+	public AnimationClip defendreturnAnimation;
 	public AnimationClip firstattackAnimation;
 	public AnimationClip secondattackAnimation;
 	public AnimationClip thirdattackAnimation;
@@ -40,8 +38,7 @@ public class TP_Animator : MonoBehaviour
 
 	public enum CharacterState
 	{
-		Idle, Walking, Running, WalkingBackwards, StrafingLeft, StrafingRight, 
-		Dodging, Falling, Landing, Jumping, Attacking, 
+		Idle, Walking, Running, Dodging, Falling, Landing, Jumping, Attacking, 
 		Using, Defending, Dead, Climbing, Sliding
 	}
 	
@@ -62,6 +59,7 @@ public class TP_Animator : MonoBehaviour
 	private Quaternion initialRotation = Quaternion.identity;
 
 
+	public Direction PreviousDirection { get; set; }
 	public Direction MoveDirection { get; set; }
 	public CharacterState State { get; set; }
 	public bool IsDead { get; set; }
@@ -70,6 +68,7 @@ public class TP_Animator : MonoBehaviour
 	public bool IsSmashing { get; set; }
 	public bool IsAttacking { get; set; }
 	public bool EndAttack { get; set; }
+	public bool IsDefending { get; set; }
 	
 
 	void Awake() 
@@ -77,6 +76,9 @@ public class TP_Animator : MonoBehaviour
 		Instance = this;
 		initialPosition = transform.position;
 		initialRotation = transform.rotation;
+		IsDefending = false;
+		IsAttacking = false;
+		IsSmashing = false;
 		ComboCounter = 0;
 		EndAttack = false;
 	}
@@ -91,14 +93,12 @@ public class TP_Animator : MonoBehaviour
 	
 	public void DetermineCurrentMoveDirection()
 	{
-		if (MoveDirection == Direction.RunForward)
-			return;
-
 		var forward = false;
 		var backward = false;
 		var right = false;
 		var left = false;
-		
+
+		PreviousDirection = MoveDirection;
 		
 		if (TP_Motor.Instance.MoveVector.z > 0) 
 		{
@@ -159,6 +159,9 @@ public class TP_Animator : MonoBehaviour
 		{
 			MoveDirection = Direction.Stationary;	
 		}
+
+		if (MoveDirection != PreviousDirection)
+			TP_Motor.Instance.UpdateRotation();
 	}
 
 	//what is our state currently?
@@ -172,11 +175,11 @@ public class TP_Animator : MonoBehaviour
 			    State != CharacterState.Jumping &&
 			    State != CharacterState.Landing)
 			{
-				//Fall();
+				Fall();
 			}
 		}
 		if 	(State != CharacterState.Falling && 
-			//State != CharacterState.Landing &&
+			State != CharacterState.Landing &&
 			State != CharacterState.Jumping &&
 			State != CharacterState.Using &&
 		    State != CharacterState.Running &&
@@ -194,13 +197,13 @@ public class TP_Animator : MonoBehaviour
 					State = CharacterState.Walking;
 					break;
 				case Direction.Backward:
-					State = CharacterState.WalkingBackwards;
+					State = CharacterState.Walking;
 					break;
 				case Direction.Left:
-					State = CharacterState.StrafingLeft;
+					State = CharacterState.Walking;
 					break;
 				case Direction.Right:
-					State = CharacterState.StrafingRight;
+					State = CharacterState.Walking;
 					break;
 				case Direction.LeftForward:
 					State = CharacterState.Walking;
@@ -209,10 +212,10 @@ public class TP_Animator : MonoBehaviour
 					State = CharacterState.Walking;
 					break;
 				case Direction.LeftBackward:
-					State = CharacterState.WalkingBackwards;
+					State = CharacterState.Walking;
 					break;
 				case Direction.RightBackward:
-					State = CharacterState.WalkingBackwards;
+					State = CharacterState.Walking;
 					break;
 			}
 		}
@@ -230,27 +233,18 @@ public class TP_Animator : MonoBehaviour
 			case CharacterState.Walking:
 				Walking();
 				break;
-			case CharacterState.WalkingBackwards:
-				WalkingBackwards();
-				break;
-			case CharacterState.StrafingLeft:
-				StrafingLeft();
-				break;
-			case CharacterState.StrafingRight:
-				StrafingRight();
-				break;
 			case CharacterState.Using:
 				Using();
 				break;
 			case CharacterState.Jumping:
 				Jumping();
 				break;
-			//case CharacterState.Falling:
-			//	Falling();
-			//	break;
-			//case CharacterState.Landing:
-			//	Landing();
-			//	break;
+			case CharacterState.Falling:
+				Falling();
+				break;
+			case CharacterState.Landing:
+				Landing();
+				break;
 			//case CharacterState.Sliding:
 			//	Sliding();
 			//	break;
@@ -262,7 +256,9 @@ public class TP_Animator : MonoBehaviour
 			case CharacterState.Attacking:
 				Attacking();
 				break;
-
+			case CharacterState.Defending:
+				Defending();
+				break;
 		}
 	}
 
@@ -275,27 +271,12 @@ public class TP_Animator : MonoBehaviour
 
 	void Walking()
 	{
-		animation.CrossFade(walkforwardAnimation.name);
+		animation.CrossFade(walkAnimation.name);
 	}
 
 	void Running()
 	{
 		animation.CrossFade(runAnimation.name);
-	}
-
-	void WalkingBackwards()
-	{
-		animation.CrossFade(walkbackwardsAnimation.name);
-	}
-
-	void StrafingLeft()
-	{
-		animation.CrossFade(strafeleftAnimation.name);
-	}
-
-	void StrafingRight()
-	{
-		animation.CrossFade(straferightAnimation.name);
 	}
 
 	void Using()
@@ -312,16 +293,15 @@ public class TP_Animator : MonoBehaviour
 		if ((!animation.isPlaying && TP_Controller.CharacterController.isGrounded) ||
 			TP_Controller.CharacterController.isGrounded)
 		{
-			if (lastState == CharacterState.Running)
+			if (lastState == CharacterState.Running || lastState == CharacterState.Walking)
 				animation.CrossFade(runlandingAnimation.name);
 			else
 				animation.CrossFade(landingAnimation.name);
-			//State = CharacterState.Landing;
+			State = CharacterState.Landing;
 		}
 		else if (!animation.IsPlaying(jumpAnimation.name))
 		{
-			//State = CharacterState.Falling;
-			//animation.CrossFade(fallingAnimation.name);
+			Fall();
 		}
 		else
 		{
@@ -330,37 +310,39 @@ public class TP_Animator : MonoBehaviour
 		}
 	}
 
-	//void Falling()
-	//{
-	//	if (TP_Controller.CharacterController.isGrounded)
-	//	{
-	//		if (lastState == CharacterState.Running)
-	//			animation.CrossFade(runlandingAnimation.name);
-	//		else
-	//			animation.CrossFade(landingAnimation.name);
-	//		State = CharacterState.Landing;
-	//	}
-	//}
+	void Falling()
+	{
+		if (TP_Controller.CharacterController.isGrounded)
+		{
+			if (lastState == CharacterState.Running || lastState == CharacterState.Walking)
+				animation.CrossFade(runlandingAnimation.name);
+			else if (lastState == CharacterState.Falling)
+				animation.CrossFade(hardlandAnimation.name);
+			else
+				animation.CrossFade(landingAnimation.name);
+			State = CharacterState.Landing;
+		}
+	}
 
-	//void Landing()
-	//{
-	//	if (lastState == CharacterState.Running)
-	//	{
-	//		if (!animation.IsPlaying(runlandingAnimation.name))
-	//		{
-	//			State = CharacterState.Running;
-	//			animation.Play(runAnimation.name);
-	//		}	
-	//	}
-	//	else
-	//	{
-	//		if (!animation.IsPlaying(landingAnimation.name))
-	//		{
-	//			State = CharacterState.Idle;
-	//			animation.Play(idleAnimation.name);
-	//		}
-	//	}
-	//}
+	void Landing()
+	{
+		if (lastState == CharacterState.Running)
+		{
+			if (!animation.IsPlaying(runlandingAnimation.name))
+			{
+				State = CharacterState.Running;
+				animation.CrossFade(runAnimation.name);
+			}	
+		}
+		else
+		{
+			if (!animation.IsPlaying(landingAnimation.name))
+			{
+				State = CharacterState.Idle;
+				animation.CrossFade(idleAnimation.name);
+			}
+		}
+	}
 
 	//void Sliding()
 	//{
@@ -447,11 +429,11 @@ public class TP_Animator : MonoBehaviour
 		}
 		else if (!animation.isPlaying && EndAttack)
 		{
-			State = CharacterState.Idle;
-			animation.CrossFade(idleAnimation.name);
 			EndAttack = false;
 			ComboCounter = 0;
 			IsSmashing = false;
+			State = CharacterState.Idle;
+			animation.CrossFade(idleAnimation.name);
 		}
 		
 	}
@@ -485,6 +467,22 @@ public class TP_Animator : MonoBehaviour
 	//	}
 	//}
 
+	void Defending()
+	{
+		if (IsDefending && animation.isPlaying) 
+		{
+			animation.CrossFade(defendAnimation.name);
+		}
+		else if (!IsDefending)
+		{
+			animation.CrossFade(defendreturnAnimation.name);
+		}
+		else if (!IsDefending && !animation.isPlaying)
+		{
+
+		}
+	}
+
 	//'Start Action' methods below (called once per change of state)
 
 	public void Use()
@@ -496,7 +494,6 @@ public class TP_Animator : MonoBehaviour
 	public void Run()
 	{
 		State = CharacterState.Running;
-		MoveDirection = Direction.RunForward;
 		animation.CrossFade(runAnimation.name);
 	}
 
@@ -510,7 +507,7 @@ public class TP_Animator : MonoBehaviour
 	public void Jump()
 	{
 		if (!TP_Controller.CharacterController.isGrounded || IsDead || State == CharacterState.Jumping || 
-		    State == CharacterState.Attacking)
+		    State == CharacterState.Attacking || State == CharacterState.Landing)
 			return;
 
 		lastState = State;
@@ -518,16 +515,19 @@ public class TP_Animator : MonoBehaviour
 		animation.CrossFade(jumpAnimation.name);
 	}
 
-	//public void Fall()
-	//{
-	//	if (IsDead)
-	//		return;
-	//
-	//	lastState = State;
-	//	State = CharacterState.Falling;
-	//	// if we are too high start a falling state immediately
-	//	animation.CrossFade(fallingAnimation.name);
-	//}
+	public void Fall()
+	{
+		if (IsDead)
+			return;
+	
+		if (transform.position.y > 5)
+			lastState = CharacterState.Falling;
+		else
+			lastState = State;
+		State = CharacterState.Falling;
+		// if we are too high start a falling state immediately
+		animation.CrossFade(fallingAnimation.name);
+	}
 
 	//public void Slide()
 	//{
@@ -549,6 +549,13 @@ public class TP_Animator : MonoBehaviour
 	{
 		IsAttacking = true;
 		IsSmashing = true;
+	}
+
+	public void Defend()
+	{
+		State = CharacterState.Defending;
+		animation.CrossFade(defendAnimation.name);
+		IsDefending = true;
 	}
 
 	//public void Climb()
