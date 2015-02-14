@@ -11,6 +11,7 @@ public class TP_Motor : MonoBehaviour
 	public static TP_Motor Instance;
 	
 	public float ForwardSpeed = 10f;
+	public float RunSpeed = 15f;
 	public float BackwardSpeed = 2f;
 	public float StrafingSpeed = 5f;
 	public float SlideSpeed = 10f;
@@ -20,11 +21,11 @@ public class TP_Motor : MonoBehaviour
 	public float SlideThreshold = 0.6f;
 	public float MaxControllableSlideMagnitude = 0.4f;
 	
-	private Vector3 slideDirection;
+	//private Vector3 slideDirection;
 	
 	public Vector3 MoveVector { get; set; }
 	public float VerticalVelocity {get; set;}
-	public bool IsSliding { get; set; }
+	//public bool IsSliding { get; set; }
 	
 	void Awake() 
 	{
@@ -47,7 +48,7 @@ public class TP_Motor : MonoBehaviour
 			MoveVector = Vector3.Normalize(MoveVector);
 		
 		// Apply sliding if applicable
-		ApplySlide();
+		//ApplySlide();
 		
 		
 		// Multiply MoveVector by MoveSpeed
@@ -63,7 +64,8 @@ public class TP_Motor : MonoBehaviour
 		TP_Controller.CharacterController.Move(MoveVector * Time.deltaTime);
 	}
 	
-	void ApplyGravity(){
+	void ApplyGravity()
+	{
 		if (MoveVector.y > -TerminalVelocity)
 		{
 			MoveVector = new Vector3(MoveVector.x, MoveVector.y - Gravity * Time.deltaTime , MoveVector.z);	
@@ -76,41 +78,41 @@ public class TP_Motor : MonoBehaviour
 		
 	}
 	
-	void ApplySlide()
-	{
-		if (!TP_Controller.CharacterController.isGrounded)
-			return;
-		
-		slideDirection = Vector3.zero;
-		
-		RaycastHit hitInfo;
-		
-		if (Physics.Raycast(transform.position, Vector3.down, out hitInfo))
-		{
-			// If the "terrain" is steep enough, create a slide direction from the normal
-			if (hitInfo.normal.y < SlideThreshold)
-			{
-				slideDirection = new Vector3(hitInfo.normal.x, -hitInfo.normal.y, hitInfo.normal.z);
-				if (!IsSliding)
-				{
-					TP_Animator.Instance.Slide();
-				}
-				IsSliding = true;
-			}
-			else
-				IsSliding = false;
-		}
-		
-		// Check if the "terrain" is too step to be able to control the slide
-		if (slideDirection.magnitude < MaxControllableSlideMagnitude)
-		{
-			MoveVector += slideDirection;
-		}
-		else
-		{
-			MoveVector = slideDirection;
-		}
-	}
+	//void ApplySlide()
+	//{
+	//	if (!TP_Controller.CharacterController.isGrounded)
+	//		return;
+	//	
+	//	slideDirection = Vector3.zero;
+	//	
+	//	RaycastHit hitInfo;
+	//	
+	//	if (Physics.Raycast(transform.position, Vector3.down, out hitInfo))
+	//	{
+	//		// If the "terrain" is steep enough, create a slide direction from the normal
+	//		if (hitInfo.normal.y < SlideThreshold)
+	//		{
+	//			slideDirection = new Vector3(hitInfo.normal.x, -hitInfo.normal.y, hitInfo.normal.z);
+	//			if (!IsSliding)
+	//			{
+	//				TP_Animator.Instance.Slide();
+	//			}
+	//			IsSliding = true;
+	//		}
+	//		else
+	//			IsSliding = false;
+	//	}
+	//	
+	//	// Check if the "terrain" is too step to be able to control the slide
+	//	if (slideDirection.magnitude < MaxControllableSlideMagnitude)
+	//	{
+	//		MoveVector += slideDirection;
+	//	}
+	//	else
+	//	{
+	//		MoveVector = slideDirection;
+	//	}
+	//}
 	
 	public void Jump()
 	{
@@ -130,7 +132,8 @@ public class TP_Motor : MonoBehaviour
 		}
 	}
 	
-	float MoveSpeed(){
+	float MoveSpeed()
+	{
 		var moveSpeed = 0f;
 		
 		switch (TP_Animator.Instance.MoveDirection)
@@ -162,11 +165,13 @@ public class TP_Motor : MonoBehaviour
 		case TP_Animator.Direction.RightBackward:
 			moveSpeed = BackwardSpeed;
 			break;
-			
+		case TP_Animator.Direction.RunForward:
+			moveSpeed = RunSpeed;
+			break;
 		}
 		
-		if (IsSliding)
-			moveSpeed = SlideSpeed;
+		//if (IsSliding)
+		//	moveSpeed = SlideSpeed;
 		
 		return moveSpeed;
 	}

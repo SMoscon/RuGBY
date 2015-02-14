@@ -5,6 +5,7 @@ public class TP_Animator : MonoBehaviour
 {
 	
 	public AnimationClip idleAnimation;
+	public AnimationClip walkAnimation;
 	public AnimationClip walkforwardAnimation;
 	public AnimationClip runAnimation;
 	public AnimationClip walkbackwardsAnimation;
@@ -15,46 +16,84 @@ public class TP_Animator : MonoBehaviour
 	public AnimationClip usingAnimation;
 	public AnimationClip landingAnimation;
 	public AnimationClip fallingAnimation;
+	public AnimationClip climbingAnimation;
+
+	public AnimationClip firstattackAnimation;
+	public AnimationClip secondattackAnimation;
+	public AnimationClip thirdattackAnimation;
+	public AnimationClip firstsmashAnimation;
+	public AnimationClip secondsmashAnimation;
+	public AnimationClip thirdsmashAnimation;
+	public AnimationClip firstsmashreturnAnimation;
+	public AnimationClip secondsmashreturnAnimation;
+	public AnimationClip thirdsmashreturnAnimation;
+	public AnimationClip firstattackreturnAnimation;
+	public AnimationClip secondattackreturnAnimation;
+	public AnimationClip thirdattackreturnAnimation;
 
 	public enum Direction
 	{
 		Stationary, Forward, Backward, Left, Right, 
-		LeftForward, RightForward, LeftBackward, RightBackward
+		LeftForward, RightForward, LeftBackward, RightBackward,
+		RunForward
 	}
 
 	public enum CharacterState
 	{
-		Idle, Walking, Running, WalkingBackwards, StrafingLeft, StrafingRight,
-		Dodging, Falling, Landing, Jumping, Attacking, Using, Defending,
-		Dead, Climbing, Sliding
+		Idle, Walking, Running, WalkingBackwards, StrafingLeft, StrafingRight, 
+		Dodging, Falling, Landing, Jumping, Attacking, 
+		Using, Defending, Dead, Climbing, Sliding
 	}
 	
 	public static TP_Animator Instance;
 
 	private CharacterState lastState;
-	private Transform climbPoint;
+	//private Transform climbPoint;
+
+	//public Vector3 ClimbOffset = Vector3.zero;
+	//public Vector3 PostClimbOffset = Vector3.zero;
+	// when the character actually starts jumping
+	//public float ClimbJumpStartTime = 0f;
+	//public float ClimbAnchorTime = 0.6f; // in seconds
+
+	//private Transform abdomen;
+
+	private Vector3 initialPosition = Vector3.zero;
+	private Quaternion initialRotation = Quaternion.identity;
+
 
 	public Direction MoveDirection { get; set; }
 	public CharacterState State { get; set; }
 	public bool IsDead { get; set; }
 
+	public int ComboCounter { get; set; }
+	public bool IsSmashing { get; set; }
+	public bool IsAttacking { get; set; }
+	public bool EndAttack { get; set; }
 	
 
-	void Awake () 
+	void Awake() 
 	{
 		Instance = this;
+		initialPosition = transform.position;
+		initialRotation = transform.rotation;
+		ComboCounter = 0;
+		EndAttack = false;
 	}
 
 	void Update()
 	{
-		DetermineCurrentState ();
-		ProcessCurrentState ();
-		Debug.Log("Current State: " + State.ToString());
+		DetermineCurrentState();
+		ProcessCurrentState();
+		//Debug.Log("Current State: " + State.ToString());
 	}
 
 	
 	public void DetermineCurrentMoveDirection()
 	{
+		if (MoveDirection == Direction.RunForward)
+			return;
+
 		var forward = false;
 		var backward = false;
 		var right = false;
@@ -133,17 +172,19 @@ public class TP_Animator : MonoBehaviour
 			    State != CharacterState.Jumping &&
 			    State != CharacterState.Landing)
 			{
-				Fall();
+				//Fall();
 			}
 		}
 		if 	(State != CharacterState.Falling && 
-			State != CharacterState.Landing &&
+			//State != CharacterState.Landing &&
 			State != CharacterState.Jumping &&
 			State != CharacterState.Using &&
+		    State != CharacterState.Running &&
 			State != CharacterState.Climbing &&
+			State != CharacterState.Attacking &&
+			State != CharacterState.Defending &&
 			State != CharacterState.Sliding) 
 		{
-			Debug.Log("If statement marker");
 			switch (MoveDirection)
 			{
 				case Direction.Stationary:
@@ -172,7 +213,7 @@ public class TP_Animator : MonoBehaviour
 					break;
 				case Direction.RightBackward:
 					State = CharacterState.WalkingBackwards;
-				break;
+					break;
 			}
 		}
 
@@ -184,7 +225,6 @@ public class TP_Animator : MonoBehaviour
 		switch (State) 
 		{
 			case CharacterState.Idle:
-				Debug.Log ("IDLE happens");
 				Idle();
 				break;
 			case CharacterState.Walking:
@@ -205,14 +245,22 @@ public class TP_Animator : MonoBehaviour
 			case CharacterState.Jumping:
 				Jumping();
 				break;
-			case CharacterState.Falling:
-				Falling();
+			//case CharacterState.Falling:
+			//	Falling();
+			//	break;
+			//case CharacterState.Landing:
+			//	Landing();
+			//	break;
+			//case CharacterState.Sliding:
+			//	Sliding();
+			//	break;
+			//case CharacterState.Climbing:
+			//	Climbing();
+			//	break;
+			case CharacterState.Dead:
 				break;
-			case CharacterState.Landing:
-				Landing();
-				break;
-			case CharacterState.Sliding:
-				Sliding();
+			case CharacterState.Attacking:
+				Attacking();
 				break;
 
 		}
@@ -268,12 +316,12 @@ public class TP_Animator : MonoBehaviour
 				animation.CrossFade(runlandingAnimation.name);
 			else
 				animation.CrossFade(landingAnimation.name);
-			State = CharacterState.Landing;
+			//State = CharacterState.Landing;
 		}
 		else if (!animation.IsPlaying(jumpAnimation.name))
 		{
-			State = CharacterState.Falling;
-			animation.CrossFade(fallingAnimation.name);
+			//State = CharacterState.Falling;
+			//animation.CrossFade(fallingAnimation.name);
 		}
 		else
 		{
@@ -282,46 +330,160 @@ public class TP_Animator : MonoBehaviour
 		}
 	}
 
-	void Falling()
-	{
-		if (TP_Controller.CharacterController.isGrounded)
-		{
-			if (lastState == CharacterState.Running)
-				animation.CrossFade(runlandingAnimation.name);
-			else
-				animation.CrossFade(landingAnimation.name);
-			State = CharacterState.Landing;
-		}
-	}
+	//void Falling()
+	//{
+	//	if (TP_Controller.CharacterController.isGrounded)
+	//	{
+	//		if (lastState == CharacterState.Running)
+	//			animation.CrossFade(runlandingAnimation.name);
+	//		else
+	//			animation.CrossFade(landingAnimation.name);
+	//		State = CharacterState.Landing;
+	//	}
+	//}
 
-	void Landing()
+	//void Landing()
+	//{
+	//	if (lastState == CharacterState.Running)
+	//	{
+	//		if (!animation.IsPlaying(runlandingAnimation.name))
+	//		{
+	//			State = CharacterState.Running;
+	//			animation.Play(runAnimation.name);
+	//		}	
+	//	}
+	//	else
+	//	{
+	//		if (!animation.IsPlaying(landingAnimation.name))
+	//		{
+	//			State = CharacterState.Idle;
+	//			animation.Play(idleAnimation.name);
+	//		}
+	//	}
+	//}
+
+	//void Sliding()
+	//{
+	//	if (!TP_Motor.Instance.IsSliding)
+	//	{
+	//		State = CharacterState.Idle;
+	//		animation.CrossFade(idleAnimation.name);
+	//	}
+	//}
+
+	// is an animation playing? if not determine what animation should be playing or if we should end
+	void Attacking()
 	{
-		if (lastState == CharacterState.Running)
+		if (!animation.isPlaying && IsAttacking && !EndAttack)
 		{
-			if (!animation.IsPlaying(runlandingAnimation.name))
+			if (IsSmashing)
 			{
-				State = CharacterState.Running;
-				animation.Play(runAnimation.name);
-			}	
-		}
-		else
-		{
-			if (!animation.IsPlaying(landingAnimation.name))
+				IsAttacking = false;
+				switch (ComboCounter)
+				{
+					case 1:
+						animation.Play(firstsmashAnimation.name);
+				  		break;
+					case 2:
+						animation.Play(secondsmashAnimation.name);
+						break;
+					case 3:
+						animation.Play(thirdsmashAnimation.name);
+						break;
+				}
+			}
+			else
 			{
-				State = CharacterState.Idle;
-				animation.Play(idleAnimation.name);
+				IsAttacking = false;
+				ComboCounter++;
+				switch (ComboCounter)
+				{
+					case 1:
+						animation.Play(firstattackAnimation.name);
+						break;
+					case 2:
+						animation.Play(secondattackAnimation.name);
+						break;
+					case 3:
+						animation.Play(thirdattackAnimation.name);
+						break;
+				}
 			}
 		}
-	}
-
-	void Sliding()
-	{
-		if (!TP_Motor.Instance.IsSliding)
+		else if (!animation.isPlaying && !IsAttacking && !EndAttack)
+		{
+			if (IsSmashing)
+			{	
+				switch (ComboCounter)
+				{
+					case 1:
+						animation.Play(firstsmashreturnAnimation.name);
+						break;
+					case 2:
+						animation.Play(secondsmashreturnAnimation.name);
+						break;
+					case 3:
+						animation.Play(thirdsmashreturnAnimation.name);
+						break;
+				}
+				EndAttack = true;
+			}
+			else
+			{
+				switch (ComboCounter)
+				{
+					case 1:
+						animation.Play(firstattackreturnAnimation.name);				
+						break;
+					case 2:
+						animation.Play(secondattackreturnAnimation.name);
+						break;
+					case 3:
+						animation.Play(thirdattackreturnAnimation.name);
+						break;
+				}
+				EndAttack = true;
+			}
+		}
+		else if (!animation.isPlaying && EndAttack)
 		{
 			State = CharacterState.Idle;
 			animation.CrossFade(idleAnimation.name);
+			EndAttack = false;
+			ComboCounter = 0;
+			IsSmashing = false;
 		}
+		
 	}
+
+	//void Climbing()
+	//{
+	//	if (animation.isPlaying)
+	//	{
+	//		var time = animation[climbingAnimation.name].time;
+	//		if (time > ClimbJumpStartTime && time < ClimbAnchorTime)
+	//		{
+	//			transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
+	//									    Mathf.Lerp(transform.rotation.eulerAngles.y, climbPoint.rotation.eulerAngles.y, 
+	//											   (time - ClimbJumpStartTime) / (ClimbAnchorTime - ClimbJumpStartTime)), 
+	//									    transform.rotation.eulerAngles.z);
+	//			// fine tune where we end up after jump
+	//			var climbOffset = transform.TransformDirection(ClimbOffset);
+	//			
+	//			transform.position = Vector3.Lerp(transform.position, 
+	//									new Vector3(climbPoint.position.x, transform.position.y, climbPoint.position.z) + ClimbOffset),
+	//									(time - ClimbJumpStartTime) / (ClimbAnchorTime - ClimbJumpStartTime);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		State = CharacterState.Idle;
+	//		animation.Play(idleAnimation.name);
+	//		// put our charactercontroller back with the character after the animation
+	//		var postClimbOffset = transform.TransformDirection(PostClimbOffset);
+	//		transform.position = new Vector3(abdomen.position.x, climbPoint.position.y + climbPoint.localScale.y / 2, abdomen.position.z) + postClimbOffset;
+	//	}
+	//}
 
 	//'Start Action' methods below (called once per change of state)
 
@@ -331,10 +493,24 @@ public class TP_Animator : MonoBehaviour
 		animation.CrossFade(usingAnimation.name);
 	}
 
+	public void Run()
+	{
+		State = CharacterState.Running;
+		MoveDirection = Direction.RunForward;
+		animation.CrossFade(runAnimation.name);
+	}
+
+	public void Walk()
+	{
+		State = CharacterState.Walking;
+		MoveDirection = Direction.Forward;
+		animation.CrossFade(walkAnimation.name);
+	}
+
 	public void Jump()
 	{
-		if (!TP_Controller.CharacterController.isGrounded || IsDead || 
-			State == CharacterState.Jumping)
+		if (!TP_Controller.CharacterController.isGrounded || IsDead || State == CharacterState.Jumping || 
+		    State == CharacterState.Attacking)
 			return;
 
 		lastState = State;
@@ -342,31 +518,71 @@ public class TP_Animator : MonoBehaviour
 		animation.CrossFade(jumpAnimation.name);
 	}
 
-	public void Fall()
-	{
-		if (IsDead)
-			return;
+	//public void Fall()
+	//{
+	//	if (IsDead)
+	//		return;
+	//
+	//	lastState = State;
+	//	State = CharacterState.Falling;
+	//	// if we are too high start a falling state immediately
+	//	animation.CrossFade(fallingAnimation.name);
+	//}
 
-		lastState = State;
-		State = CharacterState.Falling;
-		// if we are too high start a falling state immediately
-		animation.CrossFade(fallingAnimation.name);
+	//public void Slide()
+	//{
+		//State = CharacterState.Sliding;
+		//animation.CrossFade(fallingAnimation.name);
+	//}
+
+	public void Attack()
+	{
+		if (State == CharacterState.Attacking && !EndAttack && !IsSmashing)
+		{
+			IsAttacking = true;
+		}
+		else
+			State = CharacterState.Attacking;
 	}
 
-	public void Slide()
+	public void SmashAttack()
 	{
-		State = CharacterState.Sliding;
-		animation.CrossFade(fallingAnimation.name);
+		IsAttacking = true;
+		IsSmashing = true;
 	}
 
-	public void SetClimbPoint(Transform climbPoint)
-	{
-		this.climbPoint = climbPoint;
-		TP_Controller.Instance.ClimbEnabled = true;
-	}
+	//public void Climb()
+	//{
+	//	if (!TP_Controller.CharacterController.IsGrounded || IsDead || climbPoint == null)
+	//		return;
+	//	// Check your rotation in respect to the climbingvolume, if not proper rotation just jump
+	//	if (Mathf.Abs(climbPoint.transform.rotation.eulerAngles.y - transform.rotation.eulerAngles.y) > 60)
+	//	{
+	//		TP_Controller.Instance.Jump();
+	//	}
+	//
+	//	State = CharacterState.Climbing;
+	//	animation.CrossFade(climbingAnimation.name);
+	//}
 
-	public void ClearClimbPoint(Transform climbPoint)
-	{
+	//public void SetClimbPoint(Transform climbPoint)
+	//{
+	//	this.climbPoint = climbPoint;
+	//	TP_Controller.Instance.ClimbEnabled = true;
+	//}
 
+	//public void ClearClimbPoint(Transform climbPoint)
+	//{
+	//	if (this.climbPoint == climbPoint)
+	//	{
+	//		this.climbPoint = null;
+	//		TP_Controller.Instance.ClimbEnabled = false;
+	//	}
+	//}
+
+	public void Reset()
+	{
+		transform.position = initialPosition;
+		transform.rotation = initialRotation;
 	}
 }
