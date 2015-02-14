@@ -17,14 +17,13 @@ private var y = 0.0;
 @script AddComponentMenu("Camera-Control/Mouse Orbit")
  
 function Start () {
-	if(networkView.isMine){
     var angles = transform.eulerAngles;
     x = angles.y;
     y = angles.x;
  
 	// Make the rigid body not change rotation
    	if (rigidbody)
-		rigidbody.freezeRotation = true;}
+		rigidbody.freezeRotation = true;
 		
 }
  

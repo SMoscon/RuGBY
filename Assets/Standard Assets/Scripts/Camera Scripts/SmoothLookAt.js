@@ -5,7 +5,6 @@ var smooth = true;
 @script AddComponentMenu("Camera-Control/Smooth Look At")
 
 function LateUpdate () {
-if(networkView.isMine){
 	if (target) {
 		if (smooth)
 		{
@@ -18,12 +17,11 @@ if(networkView.isMine){
 			// Just lookat
 		    transform.LookAt(target);
 		}
-	}}
+	}
 }
 
 function Start () {
-if(networkView.isMine){
 	// Make the rigid body not change rotation
    	if (GetComponent.<Rigidbody>())
-		GetComponent.<Rigidbody>().freezeRotation = true;}
+		GetComponent.<Rigidbody>().freezeRotation = true;
 }
