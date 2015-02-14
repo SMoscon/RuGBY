@@ -73,14 +73,16 @@ public class TP_Animator : MonoBehaviour
 
 	void Awake() 
 	{
-		Instance = this;
-		initialPosition = transform.position;
-		initialRotation = transform.rotation;
-		IsDefending = false;
-		IsAttacking = false;
-		IsSmashing = false;
-		ComboCounter = 0;
-		EndAttack = false;
+		if (networkView.isMine) {
+			Instance = this;
+			initialPosition = transform.position;
+			initialRotation = transform.rotation;
+			IsDefending = false;
+			IsAttacking = false;
+			IsSmashing = false;
+			ComboCounter = 0;
+			EndAttack = false;
+		}
 	}
 
 	void Update()

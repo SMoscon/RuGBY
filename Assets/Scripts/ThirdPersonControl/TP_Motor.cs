@@ -26,10 +26,28 @@ public class TP_Motor : MonoBehaviour
 	public Vector3 MoveVector { get; set; }
 	public float VerticalVelocity {get; set;}
 	//public bool IsSliding { get; set; }
-	
+
+	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	{
+		Vector3 syncPosition = Vector3.zero;
+		if (stream.isWriting)
+		{
+			syncPosition = transform.position;
+			stream.Serialize(ref syncPosition);
+		}
+		else
+		{
+			stream.Serialize(ref syncPosition);
+			transform.position = syncPosition;
+		}
+	}
+
+
 	void Awake() 
 	{
-		Instance = this; 
+		if (networkView.isMine) {
+						Instance = this;
+		}
 	}
 	
 	public void UpdateMotor() 
@@ -210,4 +228,5 @@ public class TP_Motor : MonoBehaviour
 		
 		return moveSpeed;
 	}
+
 }
