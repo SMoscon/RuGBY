@@ -27,6 +27,7 @@ public class TP_Motor : MonoBehaviour
 	public float VerticalVelocity {get; set;}
 	//public bool IsSliding { get; set; }
 
+	/*
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
 		Vector3 syncPosition = Vector3.zero;
@@ -40,7 +41,7 @@ public class TP_Motor : MonoBehaviour
 			stream.Serialize(ref syncPosition);
 			transform.position = syncPosition;
 		}
-	}
+	}*/
 
 
 	void Awake() 
