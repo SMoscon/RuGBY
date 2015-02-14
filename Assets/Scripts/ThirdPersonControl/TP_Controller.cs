@@ -17,6 +17,7 @@ public class TP_Controller : MonoBehaviour
 	
 	void Update() 
 	{
+		//Messenger<int, int>.Broadcast("Player health changed", 80, 100); 
 		if (networkView.isMine){
 		if (Camera.main == null)
 			return;
