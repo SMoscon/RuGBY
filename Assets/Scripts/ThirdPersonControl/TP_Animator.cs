@@ -75,11 +75,12 @@ public class TP_Animator : MonoBehaviour
 	void Awake() 
 	{
 		if(networkView.isMine){
-		Instance = this;
-		initialPosition = transform.position;
-		initialRotation = transform.rotation;
-		ComboCounter = 0;
-		EndAttack = false;}
+			Instance = this;
+			initialPosition = transform.position;
+			initialRotation = transform.rotation;
+			ComboCounter = 0;
+		EndAttack = false;
+		}
 	}
 
 	void Update()
@@ -269,9 +270,16 @@ public class TP_Animator : MonoBehaviour
 
 	// Character State Methods below (called every update)
 
+	
+	[RPC] void PlayAnimationFade(string animationName)
+	{
+		//animation.CrossFade(idleAnimation.name);
+	}
+
 	void Idle()
 	{
-		animation.CrossFade(idleAnimation.name);
+		//networkView.RPC("PlayAnimationFade",RPCMode.All, idleAnimation.name);
+		//animation.CrossFade(idleAnimation.name);
 	}
 
 	void Walking()
@@ -373,6 +381,12 @@ public class TP_Animator : MonoBehaviour
 	//}
 
 	// is an animation playing? if not determine what animation should be playing or if we should end
+
+	
+	[RPC] void PlayAnimation(string animationName)
+	{
+		animation.Play(animationName);
+	}
 	void Attacking()
 	{
 		if (!animation.isPlaying && IsAttacking && !EndAttack)
@@ -383,13 +397,16 @@ public class TP_Animator : MonoBehaviour
 				switch (ComboCounter)
 				{
 					case 1:
-						animation.Play(firstsmashAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, firstsmashAnimation.name);
+						//animation.Play(firstsmashAnimation.name);
 				  		break;
 					case 2:
-						animation.Play(secondsmashAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, secondsmashAnimation.name);
+						//animation.Play(secondsmashAnimation.name);
 						break;
 					case 3:
-						animation.Play(thirdsmashAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, thirdsmashAnimation.name);
+						//animation.Play(thirdsmashAnimation.name);
 						break;
 				}
 			}
@@ -400,13 +417,16 @@ public class TP_Animator : MonoBehaviour
 				switch (ComboCounter)
 				{
 					case 1:
-						animation.Play(firstattackAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, firstattackAnimation.name);
+						//animation.Play(firstattackAnimation.name);
 						break;
 					case 2:
-						animation.Play(secondattackAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, secondattackAnimation.name);
+						//animation.Play(secondattackAnimation.name);
 						break;
 					case 3:
-						animation.Play(thirdattackAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, thirdattackAnimation.name);
+						//animation.Play(thirdattackAnimation.name);
 						break;
 				}
 			}
@@ -418,13 +438,16 @@ public class TP_Animator : MonoBehaviour
 				switch (ComboCounter)
 				{
 					case 1:
-						animation.Play(firstsmashreturnAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, firstsmashreturnAnimation.name);
+						//animation.Play(firstsmashreturnAnimation.name);
 						break;
 					case 2:
-						animation.Play(secondsmashreturnAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, secondsmashreturnAnimation.name);
+						//animation.Play(secondsmashreturnAnimation.name);
 						break;
 					case 3:
-						animation.Play(thirdsmashreturnAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, thirdsmashreturnAnimation.name);
+						//animation.Play(thirdsmashreturnAnimation.name);
 						break;
 				}
 				EndAttack = true;
@@ -434,13 +457,16 @@ public class TP_Animator : MonoBehaviour
 				switch (ComboCounter)
 				{
 					case 1:
-						animation.Play(firstattackreturnAnimation.name);				
+						networkView.RPC("PlayAnimation",RPCMode.All, firstattackreturnAnimation.name);
+						//animation.Play(firstattackreturnAnimation.name);				
 						break;
 					case 2:
-						animation.Play(secondattackreturnAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, secondattackreturnAnimation.name);
+						//animation.Play(secondattackreturnAnimation.name);
 						break;
 					case 3:
-						animation.Play(thirdattackreturnAnimation.name);
+						networkView.RPC("PlayAnimation",RPCMode.All, thirdattackreturnAnimation.name);
+						//animation.Play(thirdattackreturnAnimation.name);
 						break;
 				}
 				EndAttack = true;
@@ -449,7 +475,7 @@ public class TP_Animator : MonoBehaviour
 		else if (!animation.isPlaying && EndAttack)
 		{
 			State = CharacterState.Idle;
-			animation.CrossFade(idleAnimation.name);
+			//animation.CrossFade(idleAnimation.name);
 			EndAttack = false;
 			ComboCounter = 0;
 			IsSmashing = false;
@@ -487,6 +513,7 @@ public class TP_Animator : MonoBehaviour
 	//}
 
 	//'Start Action' methods below (called once per change of state)
+
 
 	public void Use()
 	{
@@ -586,4 +613,5 @@ public class TP_Animator : MonoBehaviour
 		transform.position = initialPosition;
 		transform.rotation = initialRotation;
 	}
+	
 }
