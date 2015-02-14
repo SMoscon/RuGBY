@@ -24,7 +24,9 @@ var rotationDamping = 3.0;
 
 
 function LateUpdate () {
+	if(networkView.isMine){
 	// Early out if we don't have a target
+	
 	if (!target)
 		return;
 	
@@ -53,5 +55,5 @@ function LateUpdate () {
 	transform.position.y = currentHeight;
 	
 	// Always look at the target
-	transform.LookAt (target);
+	transform.LookAt (target);}
 }

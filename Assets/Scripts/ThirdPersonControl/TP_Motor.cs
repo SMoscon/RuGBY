@@ -29,7 +29,9 @@ public class TP_Motor : MonoBehaviour
 	
 	void Awake() 
 	{
-		Instance = this; 
+		if (networkView.isMine) {
+						Instance = this;
+		}
 	}
 	
 	public void UpdateMotor() 

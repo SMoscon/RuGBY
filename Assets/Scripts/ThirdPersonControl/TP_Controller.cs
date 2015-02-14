@@ -10,19 +10,21 @@ public class TP_Controller : MonoBehaviour
 
 	void Awake() 
 	{
-		CharacterController = GetComponent("CharacterController") as CharacterController;
+		if(networkView.isMine){
+		CharacterController = GetComponent("CharacterController") as CharacterController;}
 		Instance = this;
 	}
 	
 	void Update() 
 	{
+		if (networkView.isMine){
 		if (Camera.main == null)
 			return;
 		
 		GetLocomotionInput();
 		HandleActionInput();
 		
-		TP_Motor.Instance.UpdateMotor();
+		TP_Motor.Instance.UpdateMotor();}
 		
 	}
 	
@@ -130,4 +132,5 @@ public class TP_Controller : MonoBehaviour
 			Debug.Log("Smash Occured");
 		}
 	}
+
 }

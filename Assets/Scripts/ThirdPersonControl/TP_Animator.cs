@@ -74,11 +74,12 @@ public class TP_Animator : MonoBehaviour
 
 	void Awake() 
 	{
+		if(networkView.isMine){
 		Instance = this;
 		initialPosition = transform.position;
 		initialRotation = transform.rotation;
 		ComboCounter = 0;
-		EndAttack = false;
+		EndAttack = false;}
 	}
 
 	void Update()
