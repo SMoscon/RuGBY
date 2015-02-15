@@ -10,21 +10,25 @@ public class TP_Controller : MonoBehaviour
 
 	void Awake() 
 	{
-		if(networkView.isMine){
-			CharacterController = GetComponent("CharacterController") as CharacterController;}
+		if (networkView.isMine)
+		{
+			CharacterController = GetComponent("CharacterController") as CharacterController;
+		}
 		Instance = this;
 	}
 	
 	void Update() 
 	{
-		if (networkView.isMine){
+		if (networkView.isMine)
+		{
 			if (Camera.main == null)
 				return;
 			
 			GetLocomotionInput();
 			HandleActionInput();
 			
-			TP_Motor.Instance.UpdateMotor();}
+			TP_Motor.Instance.UpdateMotor();
+		}
 		
 	}
 
@@ -86,7 +90,17 @@ public class TP_Controller : MonoBehaviour
 
 		if (Input.GetMouseButtonUp (1) && TP_Animator.Instance.IsDefending) 
 		{
-			TP_Animator.Instance.IsDefending = false;
+			EndDefend();
+		}
+
+		if (Input.GetKeyDown(KeyCode.F1)) 
+		{
+			Reset();
+		}
+
+		if (Input.GetKeyDown (KeyCode.F2)) 
+		{
+			Die();
 		}
 
 	}
@@ -120,8 +134,8 @@ public class TP_Controller : MonoBehaviour
 	void Attack()
 	{
 		Debug.Log ("Made it to attack statement");
-		if (TP_Animator.Instance.State != TP_Animator.CharacterState.Attacking)
-			animation.Stop();
+		if (TP_Animator.Instance.ComboCounter >= 3)
+			return;
 		if (!TP_Animator.Instance.EndAttack && !TP_Animator.Instance.IsSmashing) 
 		{
 			TP_Animator.Instance.IsAttacking = true;
@@ -146,5 +160,20 @@ public class TP_Controller : MonoBehaviour
 	void Defend()
 	{
 		TP_Animator.Instance.Defend();
+	}
+
+	void EndDefend()
+	{
+		TP_Animator.Instance.EndDefend();
+	}
+
+	void Reset()
+	{
+		TP_Animator.Instance.Reset();
+	}
+
+	void Die()
+	{
+		TP_Animator.Instance.Die();
 	}
 }

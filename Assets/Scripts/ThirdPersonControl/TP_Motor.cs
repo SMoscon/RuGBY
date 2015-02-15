@@ -13,8 +13,6 @@ public class TP_Motor : MonoBehaviour
 	public float ForwardSpeed = 10f;
 	public float RunSpeed = 15f;
 	public float BackwardSpeed = 2f;
-	public float StrafingSpeed = 5f;
-	public float SlideSpeed = 10f;
 	public float JumpSpeed = 12f;
 	public float Gravity = 10f;
 	public float TerminalVelocity = 20f;
@@ -24,7 +22,7 @@ public class TP_Motor : MonoBehaviour
 	//private Vector3 slideDirection;
 	
 	public Vector3 MoveVector { get; set; }
-	public float VerticalVelocity {get; set;}
+	public float VerticalVelocity {get; set; }
 	//public bool IsSliding { get; set; }
 
 	/*
@@ -46,8 +44,9 @@ public class TP_Motor : MonoBehaviour
 
 	void Awake() 
 	{
-		if (networkView.isMine) {
-						Instance = this;
+		if (networkView.isMine) 
+		{
+			Instance = this;
 		}
 	}
 	
@@ -62,7 +61,7 @@ public class TP_Motor : MonoBehaviour
 		// Transform MoveVector to World Space
 		MoveVector = transform.forward;
 		MoveVector = new Vector3 (MoveVector.x, 0, MoveVector.z);
-		Debug.Log (MoveVector.ToString ());
+		//Debug.Log (MoveVector.ToString ());
 		// Normalize MoveVector if Magnitude > 1
 		if (MoveVector.magnitude > 1)
 			MoveVector = Vector3.Normalize(MoveVector);
@@ -183,51 +182,13 @@ public class TP_Motor : MonoBehaviour
 
 	float MoveSpeed()
 	{
-		var moveSpeed = 0f;
-
 		if (TP_Animator.Instance.State == TP_Animator.CharacterState.Running)
-			moveSpeed = RunSpeed;
+			return RunSpeed;
+		else if (TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Stationary)
+			return 0f;
+		//else if (IsSliding)
+		//	return SlideSpeed;
 		else
-		{
-			switch (TP_Animator.Instance.MoveDirection)
-			{
-			case TP_Animator.Direction.Stationary:
-				moveSpeed = 0;
-				break;
-			case TP_Animator.Direction.Forward:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.Backward:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.Left:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.Right:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.LeftForward:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.RightForward:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.LeftBackward:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.RightBackward:
-				moveSpeed = ForwardSpeed;
-				break;
-			case TP_Animator.Direction.RunForward:
-				moveSpeed = RunSpeed;
-				break;
-			}
-		}
-		
-		//if (IsSliding)
-		//	moveSpeed = SlideSpeed;
-		
-		return moveSpeed;
+			return ForwardSpeed;
 	}
-
 }
