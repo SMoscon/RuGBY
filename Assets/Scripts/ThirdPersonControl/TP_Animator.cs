@@ -28,6 +28,7 @@ public class TP_Animator : MonoBehaviour
 	// public AnimationClip firstattackreturnAnimation;
 	// public AnimationClip secondattackreturnAnimation;
 	// public AnimationClip thirdattackreturnAnimation;
+	public bool AttackAnimationStarted = false;
 	public int FallingBuffer = 25;
 	private int FallingCounter = 0;
 	public bool TurnAttack = false;
@@ -95,7 +96,6 @@ public class TP_Animator : MonoBehaviour
 		ProcessCurrentState();
 		Debug.Log("Direction: " + MoveDirection.ToString());
 		TP_Motor.Instance.AttackRotation();
-		transform.Rotate(Vector3.up, Time.deltaTime);
 	}
 
 	
@@ -328,7 +328,7 @@ public class TP_Animator : MonoBehaviour
 	{
 		if (lastState == CharacterState.Running || lastState == CharacterState.Walking && !animation.isPlaying)
 		{
-			animation.CrossFade("Yellow_Rig|Yellow_Run");
+			State = lastState;
 		}
 		else if (lastState == CharacterState.Falling && !animation.IsPlaying("Yellow_Rig|Yellow_Falling_Land"))
 		{
@@ -348,11 +348,20 @@ public class TP_Animator : MonoBehaviour
 	// is an animation playing? if not determine what animation should be playing or if we should end
 	void Attacking()
 	{
+		if (!animation.IsPlaying("Yellow_Rig|Yellow_Smash1") ||
+			!animation.IsPlaying("Yellow_Rig|Yellow_Smash2") ||
+			!animation.IsPlaying("Yellow_Rig|Yellow_Smash3") ||
+			!animation.IsPlaying("Yellow_Rig|Yellow_Attack1") ||
+			!animation.IsPlaying("Yellow_Rig|Yellow_Attack2") ||
+			!animation.IsPlaying("Yellow_Rig|Yellow_Attack3"))
+			AttackAnimationStarted = false;
+
 		if (!animation.isPlaying && IsAttacking && !EndAttack)
 		{
+			transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
+			AttackAnimationStarted = true;
 			if (IsSmashing)
 			{
-				IsAttacking = false;
 				switch (ComboCounter)
 				{
 					case 1:
@@ -365,25 +374,24 @@ public class TP_Animator : MonoBehaviour
 						animation.CrossFade("Yellow_Rig|Yellow_Smash3");
 						break;
 				}
+				IsAttacking = false;
 			}
 			else
 			{
-				TP_Motor.Instance.StartingRotation = transform.eulerAngles.y;
-				TP_Motor.Instance.EndingRotation = Camera.main.transform.eulerAngles.y;
-				IsAttacking = false;
 				ComboCounter++;
 				switch (ComboCounter)
 				{
 					case 1:
 						animation.Play("Yellow_Rig|Yellow_Attack1");
 						break;
-					case 2:
+				case 2:
 						animation.CrossFade("Yellow_Rig|Yellow_Attack2");
 						break;
 					case 3:
 						animation.CrossFade("Yellow_Rig|Yellow_Attack3");
 						break;
 				}
+				IsAttacking = false;
 			}
 		}
 		else if (!animation.isPlaying && !IsAttacking && !EndAttack)
@@ -587,9 +595,9 @@ public class TP_Animator : MonoBehaviour
 
 	public void Die()
 	{
+		State = CharacterState.Dead;
 		MoveDirection = Direction.Locked;
 		IsDead = true;
-		State = CharacterState.Dead;
 		animation.Stop();
 		animation.Play("Yellow_Rig|Yellow_Dead");
 	}

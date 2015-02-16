@@ -21,11 +21,14 @@ public class TP_Motor : MonoBehaviour
 	public float RotationSpeed = 0.2f;
 	public float StartingRotation;
 	public float EndingRotation;
+	public float AttackMoveSpeed = 2f;
+	public Vector3 StartPosition;
+	public Vector3 AttackDirection;
 	
 	//private Vector3 slideDirection;
 	
 	public Vector3 MoveVector { get; set; }
-	public float VerticalVelocity {get; set; }
+	public float VerticalVelocity { get; set; }
 	//public bool IsSliding { get; set; }
 
 	/*
@@ -61,6 +64,13 @@ public class TP_Motor : MonoBehaviour
 	
 	void ProcessMotion()
 	{
+		if (TP_Animator.Instance.AttackAnimationStarted) 
+		{
+			AttackDirection = transform.forward;
+			StartPosition = transform.position;
+			AttackRotation();
+			AttackTranslation();
+		}
 		// Transform MoveVector to World Space
 		MoveVector = transform.forward;
 		MoveVector = new Vector3 (MoveVector.x, 0, MoveVector.z);
@@ -148,6 +158,11 @@ public class TP_Motor : MonoBehaviour
 		{
 			VerticalVelocity = JumpSpeed;
 		}
+	}
+
+	public void AttackTranslation()
+	{
+		transform.Translate(Vector3.forward*Time.deltaTime*AttackMoveSpeed);
 	}
 
 	public void AttackRotation()

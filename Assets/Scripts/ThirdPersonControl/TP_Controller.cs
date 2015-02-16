@@ -178,7 +178,7 @@ public class TP_Controller : MonoBehaviour
 		TP_Animator.Instance.Reset();
 	}
 
-	void Die()
+	public void Die()
 	{
 		TP_Animator.Instance.Die();
 	}
