@@ -349,9 +349,11 @@ public class TP_Animator : MonoBehaviour
 			if (IsSmashing)
 			{
 				IsAttacking = false;
+				TP_Motor.Instance.AttackRotation();
 				switch (ComboCounter)
 				{
 					case 1:
+						transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
 						animation.Play("Yellow_Rig|Yellow_Smash1");
 				  		break;
 					case 2:
@@ -366,6 +368,7 @@ public class TP_Animator : MonoBehaviour
 			{
 				IsAttacking = false;
 				ComboCounter++;
+				TP_Motor.Instance.AttackRotation();
 				switch (ComboCounter)
 				{
 					case 1:
@@ -560,6 +563,7 @@ public class TP_Animator : MonoBehaviour
 
 	public void EndDefend()
 	{
+		animation.Stop();
 		IsDefending = false;
 	}
 

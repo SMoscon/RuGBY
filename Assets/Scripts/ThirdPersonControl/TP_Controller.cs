@@ -76,7 +76,6 @@ public class TP_Controller : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(0))
 		{
-			transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
 			Attack();
 		}
 
@@ -84,21 +83,21 @@ public class TP_Controller : MonoBehaviour
 		{
 			if (TP_Animator.Instance.State == TP_Animator.CharacterState.Attacking)
 				SmashAttack();
-			else
+			else if (TP_Animator.Instance.State != TP_Animator.CharacterState.Defending)
 				Defend();
 		}
 
 		if (Input.GetMouseButtonUp (1) && TP_Animator.Instance.IsDefending) 
 		{
 			EndDefend();
-		}
+		} 
 
 		if (Input.GetKeyDown(KeyCode.F1)) 
 		{
 			Reset();
 		}
 
-		if (Input.GetKeyDown (KeyCode.F2)) 
+		if (Input.GetKeyDown(KeyCode.F2)) 
 		{
 			Die();
 		}

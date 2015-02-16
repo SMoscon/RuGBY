@@ -141,6 +141,11 @@ public class TP_Motor : MonoBehaviour
 			VerticalVelocity = JumpSpeed;
 		}
 	}
+
+	public void AttackRotation()
+	{
+		transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
+	}
 	
 	public void UpdateRotation()
 	{
