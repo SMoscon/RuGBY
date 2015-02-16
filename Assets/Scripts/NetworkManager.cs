@@ -82,7 +82,7 @@ public class NetworkManager : MonoBehaviour
 		DestroyImmediate(Camera.main.gameObject);
 
 
-		GameObject.FindWithTag ("MainCamera").GetComponent<SmoothLookAt> ().target = temp.GetComponentInChildren<Transform>().Find("Head_Target");
+		GameObject.FindWithTag("MainCamera").GetComponent<SmoothLookAt>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target");
 		GameObject.FindWithTag("MainCamera").GetComponent<MouseOrbitImproved>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target");; 
 		GameObject.FindWithTag("MainCamera").GetComponent<SmoothFollow>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target"); 
 	}

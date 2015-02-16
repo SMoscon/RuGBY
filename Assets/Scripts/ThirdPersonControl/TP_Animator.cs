@@ -28,12 +28,15 @@ public class TP_Animator : MonoBehaviour
 	// public AnimationClip firstattackreturnAnimation;
 	// public AnimationClip secondattackreturnAnimation;
 	// public AnimationClip thirdattackreturnAnimation;
+	public int FallingBuffer = 25;
+	private int FallingCounter = 0;
+	public bool TurnAttack = false;
 
 	public enum Direction
 	{
 		Stationary, Forward, Backward, Left, Right, 
 		LeftForward, RightForward, LeftBackward, RightBackward,
-		RunForward
+		RunForward, Locked
 	}
 
 	public enum CharacterState
@@ -90,12 +93,17 @@ public class TP_Animator : MonoBehaviour
 	{
 		DetermineCurrentState();
 		ProcessCurrentState();
-		Debug.Log("Current State: " + State.ToString());
+		Debug.Log("Direction: " + MoveDirection.ToString());
+		TP_Motor.Instance.AttackRotation();
+		transform.Rotate(Vector3.up, Time.deltaTime);
 	}
 
 	
 	public void DetermineCurrentMoveDirection()
 	{
+		if (MoveDirection == Direction.Locked)
+			return;
+
 		var forward = false;
 		var backward = false;
 		var right = false;
@@ -178,9 +186,16 @@ public class TP_Animator : MonoBehaviour
 			    State != CharacterState.Jumping &&
 			    State != CharacterState.Landing)
 			{
-				Fall();
+				FallingCounter++;
+				if (FallingCounter > FallingBuffer)
+				{
+					Fall();
+					FallingCounter = 0;
+				}
 			}
 		}
+		if (TP_Controller.CharacterController.isGrounded)
+			FallingCounter = 0;
 		if 	(State != CharacterState.Falling && 
 			State != CharacterState.Landing &&
 			State != CharacterState.Jumping &&
@@ -253,8 +268,7 @@ public class TP_Animator : MonoBehaviour
 
 	void Idle()
 	{
-		if (!animation.isPlaying)
-			animation.CrossFade("Yellow_Rig|Yellow_Idle");
+		animation.CrossFade("Yellow_Rig|Yellow_Idle");
 	}
 
 	void Walking()
@@ -302,33 +316,23 @@ public class TP_Animator : MonoBehaviour
 	{
 		if (TP_Controller.CharacterController.isGrounded)
 		{
-			if (lastState == CharacterState.Running || lastState == CharacterState.Walking)
-				animation.CrossFade("Yellow_Rig|Yellow_Run_Land");
-			else if (lastState == CharacterState.Falling)
-				animation.CrossFade("Yellow_Rig|Yellow_Falling_Land");
-			else
-				animation.CrossFade("Yellow_Rig|Yellow_Jump_Land");
+			animation.Stop();
+			MoveDirection = Direction.Locked;
+			animation.Play("Yellow_Rig|Yellow_Falling_Land");
+			lastState = CharacterState.Falling;
 			State = CharacterState.Landing;
 		}
 	}
 
 	void Landing()
 	{
-		if (lastState == CharacterState.Running)
+		if (lastState == CharacterState.Running || lastState == CharacterState.Walking && !animation.isPlaying)
 		{
-			if (!animation.IsPlaying("Yellow_Rig|Yellow_Run_Land"))
-			{
-				State = CharacterState.Running;
-				animation.CrossFade("Yellow_Rig|Yellow_Run");
-			}	
+			animation.CrossFade("Yellow_Rig|Yellow_Run");
 		}
-		else
+		else if (lastState == CharacterState.Falling && !animation.IsPlaying("Yellow_Rig|Yellow_Falling_Land"))
 		{
-			if (!animation.IsPlaying("Yellow_Rig|Yellow_Jump_Land"))
-			{
-				State = CharacterState.Idle;
-				animation.CrossFade("Yellow_Rig|Yellow_Idle");
-			}
+			StartIdle();
 		}
 	}
 
@@ -349,36 +353,35 @@ public class TP_Animator : MonoBehaviour
 			if (IsSmashing)
 			{
 				IsAttacking = false;
-				TP_Motor.Instance.AttackRotation();
 				switch (ComboCounter)
 				{
 					case 1:
-						transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
-						animation.Play("Yellow_Rig|Yellow_Smash1");
+						animation.CrossFade("Yellow_Rig|Yellow_Smash1");
 				  		break;
 					case 2:
-						animation.Play("Yellow_Rig|Yellow_Smash2");
+						animation.CrossFade("Yellow_Rig|Yellow_Smash2");
 						break;
 					case 3:
-						animation.Play("Yellow_Rig|Yellow_Smash3");
+						animation.CrossFade("Yellow_Rig|Yellow_Smash3");
 						break;
 				}
 			}
 			else
 			{
+				TP_Motor.Instance.StartingRotation = transform.eulerAngles.y;
+				TP_Motor.Instance.EndingRotation = Camera.main.transform.eulerAngles.y;
 				IsAttacking = false;
 				ComboCounter++;
-				TP_Motor.Instance.AttackRotation();
 				switch (ComboCounter)
 				{
 					case 1:
 						animation.Play("Yellow_Rig|Yellow_Attack1");
 						break;
 					case 2:
-						animation.Play("Yellow_Rig|Yellow_Attack2");
+						animation.CrossFade("Yellow_Rig|Yellow_Attack2");
 						break;
 					case 3:
-						animation.Play("Yellow_Rig|Yellow_Attack3");
+						animation.CrossFade("Yellow_Rig|Yellow_Attack3");
 						break;
 				}
 			}
@@ -390,13 +393,13 @@ public class TP_Animator : MonoBehaviour
 				switch (ComboCounter)
 				{
 					case 1:
-						animation.Play("Yellow_Rig|Yellow_ReturnSmash1");
+						animation.CrossFade("Yellow_Rig|Yellow_ReturnSmash1");
 						break;
 					case 2:
-						animation.Play("Yellow_Rig|Yellow_ReturnSmash2");
+						animation.CrossFade("Yellow_Rig|Yellow_ReturnSmash2");
 						break;
 					case 3:
-						animation.Play("Yellow_Rig|Yellow_ReturnSmash3");
+						animation.CrossFade("Yellow_Rig|Yellow_ReturnSmash3");
 						break;
 				}
 				EndAttack = true;
@@ -406,24 +409,25 @@ public class TP_Animator : MonoBehaviour
 				switch (ComboCounter)
 				{
 					case 1:
-						animation.Play("Yellow_Rig|Yellow_Return1");				
+						animation.CrossFade("Yellow_Rig|Yellow_Return1");				
 						break;
 					case 2:
-						animation.Play("Yellow_Rig|Yellow_Return2");
+						animation.CrossFade("Yellow_Rig|Yellow_Return2");
 						break;
 					case 3:
-						animation.Play("Yellow_Rig|Yellow_Return3");
+						animation.CrossFade("Yellow_Rig|Yellow_Return3");
 						break;
 				}
 				EndAttack = true;
 			}
-		}
-		else if (!animation.isPlaying && EndAttack)
-		{
-			State = CharacterState.Idle;
+			animation.PlayQueued("Yellow_Rig|Yellow_Idle");
 			EndAttack = false;
 			ComboCounter = 0;
 			IsSmashing = false;
+		}
+		else if (animation.IsPlaying("Yellow_Rig|Yellow_Idle"))
+		{
+			StartIdle();
 		}
 		
 	}
@@ -463,14 +467,15 @@ public class TP_Animator : MonoBehaviour
 		{
 			animation.CrossFade("Yellow_Rig|Yellow_Defend");
 		}
-		else if (!IsDefending && animation.isPlaying)
+		else if (!IsDefending)
 		{
-			animation.Stop();
-			animation.Play("Yellow_Rig|Yellow_ReturnDefend");
+			animation.CrossFade("Yellow_Rig|Yellow_ReturnDefend");
+			animation.PlayQueued("Yellow_Rig|Yellow_Idle");
+			StartIdle();
 		}
 		else if (!IsDefending && !animation.isPlaying)
 		{
-			State = CharacterState.Idle;
+			StartIdle();
 		}
 	}
 
@@ -481,8 +486,15 @@ public class TP_Animator : MonoBehaviour
 
 	//'Start Action' methods below (called once per change of state)
 
+	public void StartIdle()
+	{
+		State = CharacterState.Idle;
+		MoveDirection = Direction.Stationary;
+	}
+
 	public void Use()
 	{
+		MoveDirection = Direction.Locked;
 		lastState = State;
 		State = CharacterState.Using;
 		//animation.CrossFade();
@@ -490,21 +502,29 @@ public class TP_Animator : MonoBehaviour
 
 	public void Run()
 	{
+		if (MoveDirection == Direction.Locked)
+			return;
 		lastState = State;
 		State = CharacterState.Running;
+		MoveDirection = Direction.Forward;
 		animation.CrossFade("Yellow_Rig|Yellow_Run");
 	}
 
 	public void Walk()
 	{
+		if (MoveDirection == Direction.Locked)
+			return;
 		lastState = State;
-		State = CharacterState.Walking;
+		animation.Stop();
+		animation.Play("Yellow_Rig|Yellow_Walk");
 		MoveDirection = Direction.Forward;
-		animation.CrossFade("Yellow_Rig|Yellow_Walk");
+		State = CharacterState.Walking;
 	}
 
 	public void Jump()
 	{
+		if (MoveDirection == Direction.Locked)
+			return;
 		if (!TP_Controller.CharacterController.isGrounded || IsDead || State == CharacterState.Jumping || 
 		    State == CharacterState.Attacking || State == CharacterState.Landing)
 			return;
@@ -518,11 +538,7 @@ public class TP_Animator : MonoBehaviour
 	{
 		if (IsDead)
 			return;
-	
-		if (transform.position.y > 4)
-			lastState = CharacterState.Falling;
-		else
-			lastState = State;
+		lastState = State;
 		State = CharacterState.Falling;
 		// if we are too high start a falling state immediately
 		animation.CrossFade("Yellow_Rig|Yellow_Falling");
@@ -536,6 +552,7 @@ public class TP_Animator : MonoBehaviour
 
 	public void Attack()
 	{
+		MoveDirection = Direction.Locked;
 		if (State == CharacterState.Attacking && !EndAttack && !IsSmashing)
 		{
 			IsAttacking = true;
@@ -555,6 +572,7 @@ public class TP_Animator : MonoBehaviour
 
 	public void Defend()
 	{
+		MoveDirection = Direction.Locked;
 		lastState = State;
 		State = CharacterState.Defending;
 		animation.CrossFade("Yellow_Rig|Yellow_Defend");
@@ -569,10 +587,11 @@ public class TP_Animator : MonoBehaviour
 
 	public void Die()
 	{
-		animation.Stop();
-		State = CharacterState.Dead;
-		animation.CrossFade("Yellow_Rig|Yellow_Dead");
+		MoveDirection = Direction.Locked;
 		IsDead = true;
+		State = CharacterState.Dead;
+		animation.Stop();
+		animation.Play("Yellow_Rig|Yellow_Dead");
 	}
 
 	//public void Climb()
@@ -610,6 +629,6 @@ public class TP_Animator : MonoBehaviour
 		transform.position = initialPosition;
 		transform.rotation = initialRotation;
 		IsDead = false;
-		State = CharacterState.Idle;
+		StartIdle();
 	}
 }

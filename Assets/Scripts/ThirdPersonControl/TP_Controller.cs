@@ -35,6 +35,8 @@ public class TP_Controller : MonoBehaviour
 	
 	void GetLocomotionInput()
 	{
+		if (TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Locked)
+			return;
 		var deadzone = 0.1f;
 		
 		TP_Motor.Instance.VerticalVelocity = TP_Motor.Instance.MoveVector.y;
@@ -122,6 +124,9 @@ public class TP_Controller : MonoBehaviour
 
 	void Run()
 	{
+		if (TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Stationary ||
+			TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Locked)
+			return;
 		TP_Animator.Instance.Run();
 	}
 
@@ -133,7 +138,7 @@ public class TP_Controller : MonoBehaviour
 	void Attack()
 	{
 		Debug.Log ("Made it to attack statement");
-		if (TP_Animator.Instance.ComboCounter >= 3)
+		if (TP_Animator.Instance.ComboCounter >= 3 || !CharacterController.isGrounded)
 			return;
 		if (!TP_Animator.Instance.EndAttack && !TP_Animator.Instance.IsSmashing) 
 		{
@@ -158,6 +163,8 @@ public class TP_Controller : MonoBehaviour
 
 	void Defend()
 	{
+		if (!CharacterController.isGrounded)
+			return;
 		TP_Animator.Instance.Defend();
 	}
 

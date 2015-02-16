@@ -18,6 +18,9 @@ public class TP_Motor : MonoBehaviour
 	public float TerminalVelocity = 20f;
 	public float SlideThreshold = 0.6f;
 	public float MaxControllableSlideMagnitude = 0.4f;
+	public float RotationSpeed = 0.2f;
+	public float StartingRotation;
+	public float EndingRotation;
 	
 	//private Vector3 slideDirection;
 	
@@ -53,7 +56,7 @@ public class TP_Motor : MonoBehaviour
 	public void UpdateMotor() 
 	{
 		ProcessMotion();
-		UpdateRotation ();
+		UpdateRotation();
 	}
 	
 	void ProcessMotion()
@@ -81,7 +84,12 @@ public class TP_Motor : MonoBehaviour
 
 		
 		// Move the Character in World Space
-		TP_Controller.CharacterController.Move(MoveVector * Time.deltaTime);
+		if (TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Locked) 
+		{
+			MoveVector = new Vector3(0, MoveVector.y, 0);
+		}
+		else
+			TP_Controller.CharacterController.Move(MoveVector * Time.deltaTime);
 	}
 	
 	void ApplyGravity()
@@ -144,11 +152,23 @@ public class TP_Motor : MonoBehaviour
 
 	public void AttackRotation()
 	{
-		transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
+		//Debug.Log (transform.eulerAngles.y == Camera.main.transform.eulerAngles.y);
+		if (!TP_Animator.Instance.TurnAttack)
+			return;
+		if (transform.eulerAngles.y == EndingRotation) 
+		{
+			TP_Animator.Instance.TurnAttack = false;
+			return;
+		}
+		transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 
+		                                      Mathf.Lerp(EndingRotation, StartingRotation, (RotationSpeed - Time.deltaTime) / RotationSpeed),
+		                                      transform.eulerAngles.z);
 	}
 	
 	public void UpdateRotation()
 	{
+		if (TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Locked)
+			return;
 		switch (TP_Animator.Instance.MoveDirection) 
 		{
 			case TP_Animator.Direction.Forward:
@@ -174,7 +194,7 @@ public class TP_Motor : MonoBehaviour
 				break;
 			case TP_Animator.Direction.RightBackward:
 				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y + 135, transform.eulerAngles.z);
-				break;	
+				break;
 		}
 
 		//if ((MoveVector.x != 0 || MoveVector.z != 0 || TP_Animator.Instance.State == TP_Animator.CharacterState.Attacking) && TP_Animator.Instance.MoveDirection != TP_Animator.Direction.Backward) 
@@ -189,7 +209,7 @@ public class TP_Motor : MonoBehaviour
 	{
 		if (TP_Animator.Instance.State == TP_Animator.CharacterState.Running)
 			return RunSpeed;
-		else if (TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Stationary)
+		else if (TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Stationary || TP_Animator.Instance.MoveDirection == TP_Animator.Direction.Locked)
 			return 0f;
 		//else if (IsSliding)
 		//	return SlideSpeed;

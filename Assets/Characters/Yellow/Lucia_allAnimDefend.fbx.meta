@@ -352,7 +352,7 @@ ModelImporter:
       name: Yellow_Rig|Yellow_Attack1
       takeName: Yellow_Rig|Yellow_Attack1
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 12
       wrapMode: 1
       orientationOffsetY: 0
       level: 0
@@ -660,7 +660,7 @@ ModelImporter:
       name: Yellow_Rig|Yellow_Attack2
       takeName: Yellow_Rig|Yellow_Attack2
       firstFrame: 0
-      lastFrame: 25
+      lastFrame: 13
       wrapMode: 1
       orientationOffsetY: 0
       level: 0
@@ -968,7 +968,7 @@ ModelImporter:
       name: Yellow_Rig|Yellow_Attack3
       takeName: Yellow_Rig|Yellow_Attack3
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 15
       wrapMode: 1
       orientationOffsetY: 0
       level: 0
@@ -7744,7 +7744,7 @@ ModelImporter:
       name: Yellow_Rig|Yellow_Smash1
       takeName: Yellow_Rig|Yellow_Smash1
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 20
       wrapMode: 1
       orientationOffsetY: 0
       level: 0
