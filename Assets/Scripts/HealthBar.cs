@@ -11,7 +11,10 @@ public class HealthBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		healthBarLength = Screen.width / 2;
-		Instance = this;
+		if (networkView.isMine) 
+		{
+			Instance = this;
+		}
 	}
 	
 	// Update is called once per frame
