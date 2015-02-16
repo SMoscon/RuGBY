@@ -90,6 +90,8 @@ GameObject:
   - 114: {fileID: 11418970}
   - 114: {fileID: 11418966}
   - 148: {fileID: 14875166}
+  - 136: {fileID: 13600000}
+  - 114: {fileID: 0}
   m_Layer: 0
   m_Name: Player_Lucia
   m_TagString: Untagged
@@ -1599,6 +1601,8 @@ GameObject:
   - 4: {fileID: 418902}
   - 33: {fileID: 3318972}
   - 23: {fileID: 2318972}
+  - 65: {fileID: 6500000}
+  - 54: {fileID: 5400000}
   m_Layer: 0
   m_Name: Yellow_Hilt.001
   m_TagString: Untagged
@@ -3966,6 +3970,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130228}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5400000
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118902}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118902}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: .0927899629, y: .0955720395, z: .899999976}
+  m_Center: {x: -.0028877852, y: .0179326776, z: .899999976}
 --- !u!65 &6530228
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4033,40 +4064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddff45138f5146fc8b9b75a56e0b094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleAnimation: {fileID: 7400022, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  walkAnimation: {fileID: 7400058, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  runAnimation: {fileID: 7400042, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  usingAnimation: {fileID: 7400022, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  jumpAnimation: {fileID: 7400024, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  hardlandAnimation: {fileID: 7400018, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  runlandingAnimation: {fileID: 7400046, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  landingAnimation: {fileID: 7400026, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  fallingAnimation: {fileID: 7400016, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  defendAnimation: {fileID: 7400008, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  defendreturnAnimation: {fileID: 7400034, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  firstattackAnimation: {fileID: 7400000, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  secondattackAnimation: {fileID: 7400002, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  thirdattackAnimation: {fileID: 7400004, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  firstsmashAnimation: {fileID: 7400048, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  secondsmashAnimation: {fileID: 7400050, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  thirdsmashAnimation: {fileID: 7400052, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
-  firstsmashreturnAnimation: {fileID: 7400036, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  secondsmashreturnAnimation: {fileID: 7400038, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  thirdsmashreturnAnimation: {fileID: 7400040, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  firstattackreturnAnimation: {fileID: 7400028, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  secondattackreturnAnimation: {fileID: 7400030, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
-  thirdattackreturnAnimation: {fileID: 7400032, guid: 439dcc94416414b71b8e22b45bde871c,
-    type: 3}
 --- !u!114 &11418968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4081,10 +4078,8 @@ MonoBehaviour:
   ForwardSpeed: 10
   RunSpeed: 15
   BackwardSpeed: 2
-  StrafingSpeed: 5
-  SlideSpeed: 10
   JumpSpeed: 6
-  Gravity: 1
+  Gravity: 10
   TerminalVelocity: 20
   SlideThreshold: .600000024
   MaxControllableSlideMagnitude: .400000006
@@ -4113,6 +4108,19 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 100
   healthBarLength: 0
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118702}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .300000012
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: .800000012, z: 0}
 --- !u!137 &13718968
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
