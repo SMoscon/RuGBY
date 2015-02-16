@@ -10,8 +10,10 @@ public class HitCollision : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (HealthBar.Instance.curHealth==0){
-			TP_Animator.Instance.Die();
+		if (networkView.isMine){
+			if (HealthBar.Instance.curHealth==0){
+				TP_Animator.Instance.Die();
+			}
 		}
 	}
 
@@ -19,8 +21,12 @@ public class HitCollision : MonoBehaviour {
 	{
 		Debug.Log("I have collided!");
 		Debug.Log ("networkView: "+networkView);
-		if (!networkView.isMine)
+		if (!this.networkView.isMine)
 		{
+			Debug.Log ("this: " + this);
+			Debug.Log ("NetworkPlayer : "+Network.player.ToString());
+			//var temp = gameObject.GetComponent().owner;
+			Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
 			HealthBar.Instance.AdjustCurrentHealth(-15);
 		}
 	}

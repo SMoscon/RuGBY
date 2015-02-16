@@ -94,7 +94,7 @@ public class TP_Animator : MonoBehaviour
 	{
 		DetermineCurrentState();
 		ProcessCurrentState();
-		Debug.Log("Direction: " + MoveDirection.ToString());
+		//Debug.Log("Direction: " + MoveDirection.ToString());
 		TP_Motor.Instance.AttackRotation();
 	}
 
@@ -348,9 +348,9 @@ public class TP_Animator : MonoBehaviour
 	// is an animation playing? if not determine what animation should be playing or if we should end
 	void Attacking()
 	{
-		if (!animation.IsPlaying("Yellow_Rig|Yellow_Smash1") &&
-			!animation.IsPlaying("Yellow_Rig|Yellow_Smash2") &&
-			!animation.IsPlaying("Yellow_Rig|Yellow_Smash3") &&
+		if (//!animation.IsPlaying("Yellow_Rig|Yellow_Smash1") &&
+			//!animation.IsPlaying("Yellow_Rig|Yellow_Smash2") &&
+			//!animation.IsPlaying("Yellow_Rig|Yellow_Smash3") &&
 			!animation.IsPlaying("Yellow_Rig|Yellow_Attack1") &&
 			!animation.IsPlaying("Yellow_Rig|Yellow_Attack2") &&
 			!animation.IsPlaying("Yellow_Rig|Yellow_Attack3"))
@@ -478,6 +478,7 @@ public class TP_Animator : MonoBehaviour
 		if (IsDefending && animation.isPlaying)
 		{
 			animation.CrossFade("Yellow_Rig|Yellow_Defend");
+			Debug.Log ("attackcounter = "+ComboCounter);
 		}
 		else if (!IsDefending && !animation.isPlaying)
 		{
@@ -494,6 +495,7 @@ public class TP_Animator : MonoBehaviour
 
 	public void StartIdle()
 	{
+		ComboCounter = 0;
 		State = CharacterState.Idle;
 		MoveDirection = Direction.Stationary;
 	}
@@ -589,8 +591,12 @@ public class TP_Animator : MonoBehaviour
 	{
 		animation.CrossFade("Yellow_Rig|Yellow_ReturnDefend");
 		IsDefending = false;
-		if (!animation.IsPlaying("Yellow_Rig|Yellow_ReturnDefend"))
+		animation.PlayQueued("Yellow_Rig|Yellow_Idle");
+		if (animation.IsPlaying("Yellow_Rig|Yellow_Idle"))
+		{
 			StartIdle();
+		}
+
 	}
 
 	public void Die()

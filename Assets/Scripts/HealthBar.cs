@@ -23,24 +23,31 @@ public class HealthBar : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.Box(new Rect(10, 10,healthBarLength, 20), curHealth + "/" + maxHealth);
+		if (networkView.isMine)
+		{
+			GUI.Box(new Rect(10, 10,healthBarLength, 20), curHealth + "/" + maxHealth);
+		}
 	}
 
 	public void AdjustCurrentHealth(int adj) {
-		curHealth += adj;
+		if (networkView.isMine){
+			curHealth += adj;
 
-		if (curHealth < 0)
-			curHealth = 0;
-		if (curHealth > maxHealth)
-			curHealth = maxHealth;
-		if (maxHealth < 1)
-			maxHealth = 1;
+			if (curHealth < 0)
+				curHealth = 0;
+			if (curHealth > maxHealth)
+				curHealth = maxHealth;
+			if (maxHealth < 1)
+				maxHealth = 1;
 
-		healthBarLength = (Screen.width / 2) * (curHealth / (float)maxHealth);
+			healthBarLength = (Screen.width / 2) * (curHealth / (float)maxHealth);
+		}
 	}
 
 	public void ResetHealth() {
-		curHealth = maxHealth;
-		healthBarLength = (Screen.width / 2) * (curHealth / (float)maxHealth);
+		if (networkView.isMine){
+			curHealth = maxHealth;
+			healthBarLength = (Screen.width / 2) * (curHealth / (float)maxHealth);
+		}
 	}
 }
