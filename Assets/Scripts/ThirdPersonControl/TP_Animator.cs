@@ -348,17 +348,21 @@ public class TP_Animator : MonoBehaviour
 	// is an animation playing? if not determine what animation should be playing or if we should end
 	void Attacking()
 	{
-		if (!animation.IsPlaying("Yellow_Rig|Yellow_Smash1") ||
-			!animation.IsPlaying("Yellow_Rig|Yellow_Smash2") ||
-			!animation.IsPlaying("Yellow_Rig|Yellow_Smash3") ||
-			!animation.IsPlaying("Yellow_Rig|Yellow_Attack1") ||
-			!animation.IsPlaying("Yellow_Rig|Yellow_Attack2") ||
+		if (!animation.IsPlaying("Yellow_Rig|Yellow_Smash1") &&
+			!animation.IsPlaying("Yellow_Rig|Yellow_Smash2") &&
+			!animation.IsPlaying("Yellow_Rig|Yellow_Smash3") &&
+			!animation.IsPlaying("Yellow_Rig|Yellow_Attack1") &&
+			!animation.IsPlaying("Yellow_Rig|Yellow_Attack2") &&
 			!animation.IsPlaying("Yellow_Rig|Yellow_Attack3"))
+		{
 			AttackAnimationStarted = false;
+			//Debug.Log ("set to false");
+		}
 
 		if (!animation.isPlaying && IsAttacking && !EndAttack)
 		{
 			transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
+			//Debug.Log ("set to true");
 			AttackAnimationStarted = true;
 			if (IsSmashing)
 			{
@@ -471,15 +475,9 @@ public class TP_Animator : MonoBehaviour
 
 	void Defending()
 	{
-		if (IsDefending && animation.isPlaying) 
+		if (IsDefending && animation.isPlaying)
 		{
 			animation.CrossFade("Yellow_Rig|Yellow_Defend");
-		}
-		else if (!IsDefending)
-		{
-			animation.CrossFade("Yellow_Rig|Yellow_ReturnDefend");
-			animation.PlayQueued("Yellow_Rig|Yellow_Idle");
-			StartIdle();
 		}
 		else if (!IsDefending && !animation.isPlaying)
 		{
@@ -589,8 +587,10 @@ public class TP_Animator : MonoBehaviour
 
 	public void EndDefend()
 	{
-		animation.Stop();
+		animation.CrossFade("Yellow_Rig|Yellow_ReturnDefend");
 		IsDefending = false;
+		if (!animation.IsPlaying("Yellow_Rig|Yellow_ReturnDefend"))
+			StartIdle();
 	}
 
 	public void Die()

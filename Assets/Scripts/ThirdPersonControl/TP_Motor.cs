@@ -66,6 +66,7 @@ public class TP_Motor : MonoBehaviour
 	{
 		if (TP_Animator.Instance.AttackAnimationStarted) 
 		{
+			//Debug.Log ("processmotion called");
 			AttackDirection = transform.forward;
 			StartPosition = transform.position;
 			AttackRotation();
@@ -163,6 +164,7 @@ public class TP_Motor : MonoBehaviour
 	public void AttackTranslation()
 	{
 		transform.Translate(Vector3.forward*Time.deltaTime*AttackMoveSpeed);
+		//Debug.Log("frame TRANSLATING");
 	}
 
 	public void AttackRotation()
