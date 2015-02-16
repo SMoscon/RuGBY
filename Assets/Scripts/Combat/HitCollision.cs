@@ -18,6 +18,8 @@ public class HitCollision : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("I have collided!");
-		HealthBar.Instance.AdjustCurrentHealth(-15);
+		if (networkView.isMine){
+			HealthBar.Instance.AdjustCurrentHealth(-15);
+		}
 	}
 }

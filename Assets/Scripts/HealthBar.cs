@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		healthBarLength = Screen.width / 2;
-		if (networkView.isMine) 
+		if (networkView.isMine)
 		{
 			Instance = this;
 		}

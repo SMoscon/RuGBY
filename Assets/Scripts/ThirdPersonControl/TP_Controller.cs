@@ -166,7 +166,7 @@ public class TP_Controller : MonoBehaviour
 		TP_Animator.Instance.EndDefend();
 	}
 
-	void Reset()
+	public void Reset()
 	{
 		TP_Animator.Instance.Reset();
 	}

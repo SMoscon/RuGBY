@@ -606,6 +606,7 @@ public class TP_Animator : MonoBehaviour
 
 	public void Reset()
 	{
+		HealthBar.Instance.ResetHealth();
 		transform.position = initialPosition;
 		transform.rotation = initialRotation;
 		IsDead = false;
