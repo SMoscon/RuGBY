@@ -28,7 +28,7 @@ public class HitCollision : MonoBehaviour {
 			Debug.Log (other.collider.transform.parent.gameObject);
 			Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
 			string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
-			if(player.Equals("1")){
+			if(!player.Equals(Network.player.ToString())){
 				HealthBar.Instance.AdjustCurrentHealth(-15);
 			}
 
