@@ -21,13 +21,17 @@ public class HitCollision : MonoBehaviour {
 	{
 		Debug.Log("I have collided!");
 		Debug.Log ("networkView: "+networkView);
-		if (!this.networkView.isMine)
+		if (this.networkView.isMine)
 		{
 			Debug.Log ("this: " + this);
 			Debug.Log ("NetworkPlayer : "+Network.player.ToString());
-			//var temp = gameObject.GetComponent().owner;
+			Debug.Log (other.collider.transform.parent.gameObject);
 			Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
-			HealthBar.Instance.AdjustCurrentHealth(-15);
+			string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
+			if(player.Equals("1")){
+				HealthBar.Instance.AdjustCurrentHealth(-15);
+			}
+
 		}
 	}
 }
