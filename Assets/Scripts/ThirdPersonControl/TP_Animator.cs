@@ -13,7 +13,7 @@ public class TP_Animator : MonoBehaviour
 	// public AnimationClip landingAnimation;
 	// public AnimationClip fallingAnimation;
 	// public AnimationClip climbingAnimation;
-
+	
 	// public AnimationClip defendAnimation;
 	// public AnimationClip defendreturnAnimation;
 	// public AnimationClip firstattackAnimation;
@@ -32,14 +32,14 @@ public class TP_Animator : MonoBehaviour
 	public int FallingBuffer = 25;
 	private int FallingCounter = 0;
 	public bool TurnAttack = false;
-
+	
 	public enum Direction
 	{
 		Stationary, Forward, Backward, Left, Right, 
 		LeftForward, RightForward, LeftBackward, RightBackward,
 		RunForward, Locked
 	}
-
+	
 	public enum CharacterState
 	{
 		Idle, Walking, Running, Dodging, Falling, Landing, Jumping, Attacking, 
@@ -47,34 +47,34 @@ public class TP_Animator : MonoBehaviour
 	}
 	
 	public static TP_Animator Instance;
-
+	
 	private CharacterState lastState;
 	//private Transform climbPoint;
-
+	
 	//public Vector3 ClimbOffset = Vector3.zero;
 	//public Vector3 PostClimbOffset = Vector3.zero;
 	// when the character actually starts jumping
 	//public float ClimbJumpStartTime = 0f;
 	//public float ClimbAnchorTime = 0.6f; // in seconds
-
+	
 	//private Transform abdomen;
-
+	
 	private Vector3 initialPosition = Vector3.zero;
 	private Quaternion initialRotation = Quaternion.identity;
-
-
+	
+	
 	public Direction PreviousDirection { get; set; }
 	public Direction MoveDirection { get; set; }
 	public CharacterState State { get; set; }
 	public bool IsDead { get; set; }
-
+	
 	public int ComboCounter { get; set; }
 	public bool IsSmashing { get; set; }
 	public bool IsAttacking { get; set; }
 	public bool EndAttack { get; set; }
 	public bool IsDefending { get; set; }
 	
-
+	
 	void Awake() 
 	{
 		if (networkView.isMine) 
@@ -89,7 +89,7 @@ public class TP_Animator : MonoBehaviour
 			EndAttack = false;
 		}
 	}
-
+	
 	void Update()
 	{
 		DetermineCurrentState();
@@ -97,18 +97,18 @@ public class TP_Animator : MonoBehaviour
 		//Debug.Log("Direction: " + MoveDirection.ToString());
 		TP_Motor.Instance.AttackRotation();
 	}
-
+	
 	
 	public void DetermineCurrentMoveDirection()
 	{
 		if (MoveDirection == Direction.Locked)
 			return;
-
+		
 		var forward = false;
 		var backward = false;
 		var right = false;
 		var left = false;
-
+		
 		PreviousDirection = MoveDirection;
 		
 		if (TP_Motor.Instance.MoveVector.z > 0) 
@@ -170,11 +170,11 @@ public class TP_Animator : MonoBehaviour
 		{
 			MoveDirection = Direction.Stationary;	
 		}
-
+		
 		if (MoveDirection != PreviousDirection)
 			TP_Motor.Instance.UpdateRotation();
 	}
-
+	
 	//what is our state currently?
 	void DetermineCurrentState()
 	{
@@ -183,8 +183,8 @@ public class TP_Animator : MonoBehaviour
 		if (!TP_Controller.CharacterController.isGrounded) 
 		{
 			if  (State != CharacterState.Falling && 
-			    State != CharacterState.Jumping &&
-			    State != CharacterState.Landing)
+			     State != CharacterState.Jumping &&
+			     State != CharacterState.Landing)
 			{
 				FallingCounter++;
 				if (FallingCounter > FallingBuffer)
@@ -197,15 +197,15 @@ public class TP_Animator : MonoBehaviour
 		if (TP_Controller.CharacterController.isGrounded)
 			FallingCounter = 0;
 		if 	(State != CharacterState.Falling && 
-			State != CharacterState.Landing &&
-			State != CharacterState.Jumping &&
-			State != CharacterState.Using &&
-		    State != CharacterState.Running &&
-			State != CharacterState.Climbing &&
-			State != CharacterState.Attacking &&
-			State != CharacterState.Defending &&
-			State != CharacterState.Sliding &&
-		    State != CharacterState.Dead) 
+		     State != CharacterState.Landing &&
+		     State != CharacterState.Jumping &&
+		     State != CharacterState.Using &&
+		     State != CharacterState.Running &&
+		     State != CharacterState.Climbing &&
+		     State != CharacterState.Attacking &&
+		     State != CharacterState.Defending &&
+		     State != CharacterState.Sliding &&
+		     State != CharacterState.Dead) 
 		{
 			if (MoveDirection == Direction.Stationary)
 			{
@@ -220,85 +220,92 @@ public class TP_Animator : MonoBehaviour
 				State = CharacterState.Walking;
 			}
 		}
-
+		
 	}
-
+	
 	//determine state and act on it
 	void ProcessCurrentState()
 	{
 		switch (State) 
 		{
-			case CharacterState.Idle:
-				Idle();
-				break;
-			case CharacterState.Walking:
-				Walking();
-				break;
-			case CharacterState.Using:
-				Using();
-				break;
-			case CharacterState.Jumping:
-				Jumping();
-				break;
-			case CharacterState.Falling:
-				Falling();
-				break;
-			case CharacterState.Landing:
-				Landing();
-				break;
+		case CharacterState.Idle:
+			Idle();
+			break;
+		case CharacterState.Walking:
+			Walking();
+			break;
+		case CharacterState.Using:
+			Using();
+			break;
+		case CharacterState.Jumping:
+			Jumping();
+			break;
+		case CharacterState.Falling:
+			Falling();
+			break;
+		case CharacterState.Landing:
+			Landing();
+			break;
 			//case CharacterState.Sliding:
 			//	Sliding();
 			//	break;
 			//case CharacterState.Climbing:
 			//	Climbing();
 			//	break;
-			case CharacterState.Dead:
-				Dead();
-				break;
-			case CharacterState.Attacking:
-				Attacking();
-				break;
-			case CharacterState.Defending:
-				Defending();
-				break;
+		case CharacterState.Dead:
+			Dead();
+			break;
+		case CharacterState.Attacking:
+			Attacking();
+			break;
+		case CharacterState.Defending:
+			Defending();
+			break;
 		}
 	}
-
+	
 	// Character State Methods below (called every update)
-
+	
+	[RPC] void PlayCrossFade(string animationName)
+	{
+		animation.CrossFade(animationName);
+	}
+	
 	void Idle()
 	{
-		animation.CrossFade("Yellow_Rig|Yellow_Idle");
+		//networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Idle");
+		
+		//animation.CrossFade("Yellow_Rig|Yellow_Idle");
 	}
-
+	
 	void Walking()
 	{
-		animation.CrossFade("Yellow_Rig|Yellow_Walk");
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Walk");
 	}
-
+	
 	void Running()
 	{
-		animation.CrossFade("Yellow_Rig|Yellow_Run");
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Run");
 	}
-
+	
 	void Using()
 	{
 		if (!animation.isPlaying)
 		{
 			State = CharacterState.Idle;
-			animation.CrossFade("Yellow_Rig|Yellow_Idle");
+			networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Idle");
 		}
 	}
-
+	
 	void Jumping()
 	{
 		if ((!animation.isPlaying && TP_Controller.CharacterController.isGrounded) ||
-			TP_Controller.CharacterController.isGrounded)
+		    TP_Controller.CharacterController.isGrounded)
 		{
 			if (lastState == CharacterState.Running || lastState == CharacterState.Walking)
-				animation.CrossFade("Yellow_Rig|Yellow_Run_Land");
+				networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Run_Land");
 			else
-				animation.CrossFade("Yellow_Rig|Yellow_Jump_Land");
+				networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Jump_Land");
 			State = CharacterState.Landing;
 		}
 		else if (!animation.IsPlaying("Yellow_Rig|Yellow_Jump"))
@@ -311,19 +318,19 @@ public class TP_Animator : MonoBehaviour
 			//Help determine if we fell too far??
 		}
 	}
-
+	
 	void Falling()
 	{
 		if (TP_Controller.CharacterController.isGrounded)
 		{
 			animation.Stop();
 			MoveDirection = Direction.Locked;
-			animation.Play("Yellow_Rig|Yellow_Falling_Land");
+			networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Falling_Land");
 			lastState = CharacterState.Falling;
 			State = CharacterState.Landing;
 		}
 	}
-
+	
 	void Landing()
 	{
 		if (lastState == CharacterState.Running || lastState == CharacterState.Walking && !animation.isPlaying)
@@ -335,7 +342,7 @@ public class TP_Animator : MonoBehaviour
 			StartIdle();
 		}
 	}
-
+	
 	//void Sliding()
 	//{
 	//	if (!TP_Motor.Instance.IsSliding)
@@ -344,21 +351,35 @@ public class TP_Animator : MonoBehaviour
 	//		animation.CrossFade("Yellow_Rig|Yellow_Idle");
 	//	}
 	//}
-
+	
+	
+	
+	[RPC] void PlayAnimation(string animationName)
+	{
+		animation.Play(animationName);
+	}
+	
+	[RPC] void PlayQueuedAnimation(string animationName)
+	{
+		animation.PlayQueued(animationName);
+	}
+	
+	
+	
 	// is an animation playing? if not determine what animation should be playing or if we should end
 	void Attacking()
 	{
 		if (//!animation.IsPlaying("Yellow_Rig|Yellow_Smash1") &&
-			//!animation.IsPlaying("Yellow_Rig|Yellow_Smash2") &&
-			//!animation.IsPlaying("Yellow_Rig|Yellow_Smash3") &&
-			!animation.IsPlaying("Yellow_Rig|Yellow_Attack1") &&
-			!animation.IsPlaying("Yellow_Rig|Yellow_Attack2") &&
-			!animation.IsPlaying("Yellow_Rig|Yellow_Attack3"))
+		    //!animation.IsPlaying("Yellow_Rig|Yellow_Smash2") &&
+		    //!animation.IsPlaying("Yellow_Rig|Yellow_Smash3") &&
+		    !animation.IsPlaying("Yellow_Rig|Yellow_Attack1") &&
+		    !animation.IsPlaying("Yellow_Rig|Yellow_Attack2") &&
+		    !animation.IsPlaying("Yellow_Rig|Yellow_Attack3"))
 		{
 			AttackAnimationStarted = false;
 			//Debug.Log ("set to false");
 		}
-
+		
 		if (!animation.isPlaying && IsAttacking && !EndAttack)
 		{
 			transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
@@ -368,15 +389,15 @@ public class TP_Animator : MonoBehaviour
 			{
 				switch (ComboCounter)
 				{
-					case 1:
-						animation.CrossFade("Yellow_Rig|Yellow_Smash1");
-				  		break;
-					case 2:
-						animation.CrossFade("Yellow_Rig|Yellow_Smash2");
-						break;
-					case 3:
-						animation.CrossFade("Yellow_Rig|Yellow_Smash3");
-						break;
+				case 1:
+					networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Smash1");
+					break;
+				case 2:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Smash2");
+					break;
+				case 3:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Smash3");
+					break;
 				}
 				IsAttacking = false;
 			}
@@ -385,15 +406,15 @@ public class TP_Animator : MonoBehaviour
 				ComboCounter++;
 				switch (ComboCounter)
 				{
-					case 1:
-						animation.Play("Yellow_Rig|Yellow_Attack1");
-						break;
+				case 1:
+					networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Attack1");
+					break;
 				case 2:
-						animation.CrossFade("Yellow_Rig|Yellow_Attack2");
-						break;
-					case 3:
-						animation.CrossFade("Yellow_Rig|Yellow_Attack3");
-						break;
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Attack2");
+					break;
+				case 3:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Attack3");
+					break;
 				}
 				IsAttacking = false;
 			}
@@ -404,15 +425,15 @@ public class TP_Animator : MonoBehaviour
 			{	
 				switch (ComboCounter)
 				{
-					case 1:
-						animation.CrossFade("Yellow_Rig|Yellow_ReturnSmash1");
-						break;
-					case 2:
-						animation.CrossFade("Yellow_Rig|Yellow_ReturnSmash2");
-						break;
-					case 3:
-						animation.CrossFade("Yellow_Rig|Yellow_ReturnSmash3");
-						break;
+				case 1:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_ReturnSmash1");
+					break;
+				case 2:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_ReturnSmash2");
+					break;
+				case 3:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_ReturnSmash3");
+					break;
 				}
 				EndAttack = true;
 			}
@@ -420,19 +441,19 @@ public class TP_Animator : MonoBehaviour
 			{
 				switch (ComboCounter)
 				{
-					case 1:
-						animation.CrossFade("Yellow_Rig|Yellow_Return1");				
-						break;
-					case 2:
-						animation.CrossFade("Yellow_Rig|Yellow_Return2");
-						break;
-					case 3:
-						animation.CrossFade("Yellow_Rig|Yellow_Return3");
-						break;
+				case 1:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Return1");			
+					break;
+				case 2:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Return2");	
+					break;
+				case 3:
+					networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Return3");	
+					break;
 				}
 				EndAttack = true;
 			}
-			animation.PlayQueued("Yellow_Rig|Yellow_Idle");
+			networkView.RPC("PlayQueuedAnimation", RPCMode.All, "Yellow_Rig|Yellow_Idle");
 			EndAttack = false;
 			ComboCounter = 0;
 			IsSmashing = false;
@@ -443,7 +464,7 @@ public class TP_Animator : MonoBehaviour
 		}
 		
 	}
-
+	
 	//void Climbing()
 	//{
 	//	if (animation.isPlaying)
@@ -472,12 +493,12 @@ public class TP_Animator : MonoBehaviour
 	//		transform.position = new Vector3(abdomen.position.x, climbPoint.position.y + climbPoint.localScale.y / 2, abdomen.position.z) + postClimbOffset;
 	//	}
 	//}
-
+	
 	void Defending()
 	{
 		if (IsDefending && animation.isPlaying)
 		{
-			animation.CrossFade("Yellow_Rig|Yellow_Defend");
+			networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Defend");	
 			Debug.Log ("attackcounter = "+ComboCounter);
 		}
 		else if (!IsDefending && !animation.isPlaying)
@@ -485,21 +506,21 @@ public class TP_Animator : MonoBehaviour
 			StartIdle();
 		}
 	}
-
+	
 	void Dead()
 	{
-
+		
 	}
-
+	
 	//'Start Action' methods below (called once per change of state)
-
+	
 	public void StartIdle()
 	{
 		ComboCounter = 0;
 		State = CharacterState.Idle;
 		MoveDirection = Direction.Stationary;
 	}
-
+	
 	public void Use()
 	{
 		MoveDirection = Direction.Locked;
@@ -507,7 +528,7 @@ public class TP_Animator : MonoBehaviour
 		State = CharacterState.Using;
 		//animation.CrossFade();
 	}
-
+	
 	public void Run()
 	{
 		if (MoveDirection == Direction.Locked)
@@ -515,20 +536,20 @@ public class TP_Animator : MonoBehaviour
 		lastState = State;
 		State = CharacterState.Running;
 		MoveDirection = Direction.Forward;
-		animation.CrossFade("Yellow_Rig|Yellow_Run");
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Run");	
 	}
-
+	
 	public void Walk()
 	{
 		if (MoveDirection == Direction.Locked)
 			return;
 		lastState = State;
 		animation.Stop();
-		animation.Play("Yellow_Rig|Yellow_Walk");
+		networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Walk");
 		MoveDirection = Direction.Forward;
 		State = CharacterState.Walking;
 	}
-
+	
 	public void Jump()
 	{
 		if (MoveDirection == Direction.Locked)
@@ -536,12 +557,12 @@ public class TP_Animator : MonoBehaviour
 		if (!TP_Controller.CharacterController.isGrounded || IsDead || State == CharacterState.Jumping || 
 		    State == CharacterState.Attacking || State == CharacterState.Landing)
 			return;
-
+		
 		lastState = State;
 		State = CharacterState.Jumping;
-		animation.CrossFade("Yellow_Rig|Yellow_Jump");
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Jump");	
 	}
-
+	
 	public void Fall()
 	{
 		if (IsDead)
@@ -549,15 +570,15 @@ public class TP_Animator : MonoBehaviour
 		lastState = State;
 		State = CharacterState.Falling;
 		// if we are too high start a falling state immediately
-		animation.CrossFade("Yellow_Rig|Yellow_Falling");
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Falling");	
 	}
-
+	
 	//public void Slide()
 	//{
-		//State = CharacterState.Sliding;
-		//animation.CrossFade("Yellow_Rig|Yellow_Falling");
+	//State = CharacterState.Sliding;
+	//animation.CrossFade("Yellow_Rig|Yellow_Falling");
 	//}
-
+	
 	public void Attack()
 	{
 		MoveDirection = Direction.Locked;
@@ -571,43 +592,43 @@ public class TP_Animator : MonoBehaviour
 			State = CharacterState.Attacking;
 		}
 	}
-
+	
 	public void SmashAttack()
 	{
 		IsAttacking = true;
 		IsSmashing = true;
 	}
-
+	
 	public void Defend()
 	{
 		MoveDirection = Direction.Locked;
 		lastState = State;
 		State = CharacterState.Defending;
-		animation.CrossFade("Yellow_Rig|Yellow_Defend");
-		IsDefending = true;
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Defend");
 	}
-
+	
 	public void EndDefend()
 	{
-		animation.CrossFade("Yellow_Rig|Yellow_ReturnDefend");
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_ReturnDefend");
 		IsDefending = false;
-		animation.PlayQueued("Yellow_Rig|Yellow_Idle");
+		
+		networkView.RPC("PlayQueuedAnimation", RPCMode.All, "Yellow_Rig|Yellow_Idle");
 		if (animation.IsPlaying("Yellow_Rig|Yellow_Idle"))
 		{
 			StartIdle();
 		}
-
+		
 	}
-
+	
 	public void Die()
 	{
 		State = CharacterState.Dead;
 		MoveDirection = Direction.Locked;
 		IsDead = true;
 		animation.Stop();
-		animation.Play("Yellow_Rig|Yellow_Dead");
+		networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Dead");
 	}
-
+	
 	//public void Climb()
 	//{
 	//	if (!TP_Controller.CharacterController.IsGrounded || IsDead || climbPoint == null)
@@ -621,13 +642,13 @@ public class TP_Animator : MonoBehaviour
 	//	State = CharacterState.Climbing;
 	//	animation.CrossFade(climbingAnimation.name);
 	//}
-
+	
 	//public void SetClimbPoint(Transform climbPoint)
 	//{
 	//	this.climbPoint = climbPoint;
 	//	TP_Controller.Instance.ClimbEnabled = true;
 	//}
-
+	
 	//public void ClearClimbPoint(Transform climbPoint)
 	//{
 	//	if (this.climbPoint == climbPoint)
@@ -636,7 +657,7 @@ public class TP_Animator : MonoBehaviour
 	//		TP_Controller.Instance.ClimbEnabled = false;
 	//	}
 	//}
-
+	
 	public void Reset()
 	{
 		HealthBar.Instance.ResetHealth();
