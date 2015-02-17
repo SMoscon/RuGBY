@@ -270,6 +270,11 @@ public class TP_Animator : MonoBehaviour
 	{
 		animation.CrossFade(animationName);
 	}
+
+	[RPC] void StopAnimation()
+	{
+		animation.Stop();
+	}
 	
 	void Idle()
 	{
@@ -323,7 +328,7 @@ public class TP_Animator : MonoBehaviour
 	{
 		if (TP_Controller.CharacterController.isGrounded)
 		{
-			animation.Stop();
+			networkView.RPC("StopAnimation", RPCMode.All);
 			MoveDirection = Direction.Locked;
 			networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Falling_Land");
 			lastState = CharacterState.Falling;
@@ -544,7 +549,7 @@ public class TP_Animator : MonoBehaviour
 		if (MoveDirection == Direction.Locked)
 			return;
 		lastState = State;
-		animation.Stop();
+		networkView.RPC("StopAnimation", RPCMode.All);
 		networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Walk");
 		MoveDirection = Direction.Forward;
 		State = CharacterState.Walking;
@@ -588,7 +593,7 @@ public class TP_Animator : MonoBehaviour
 		}
 		else if (State != CharacterState.Attacking)
 		{
-			animation.Stop();
+			networkView.RPC("StopAnimation", RPCMode.All);
 			State = CharacterState.Attacking;
 		}
 	}
@@ -625,7 +630,7 @@ public class TP_Animator : MonoBehaviour
 		State = CharacterState.Dead;
 		MoveDirection = Direction.Locked;
 		IsDead = true;
-		animation.Stop();
+		networkView.RPC("StopAnimation", RPCMode.All);
 		networkView.RPC("PlayAnimation", RPCMode.All, "Yellow_Rig|Yellow_Dead");
 	}
 	
