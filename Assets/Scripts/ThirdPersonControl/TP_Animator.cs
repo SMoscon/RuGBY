@@ -281,7 +281,7 @@ public class TP_Animator : MonoBehaviour
 	
 	void Idle()
 	{
-		//networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Idle");
+		networkView.RPC("PlayCrossFade", RPCMode.All, "Yellow_Rig|Yellow_Idle");
 		
 		//animation.CrossFade("Yellow_Rig|Yellow_Idle");
 	}
