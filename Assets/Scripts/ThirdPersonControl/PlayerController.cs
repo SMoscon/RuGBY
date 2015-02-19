@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	private int jumpBool;
 	private int defendBool;
 	private int runningBool;
+	private int MotionLockedTag;
 
 	public float turnSmoothing = 15f;
 	public float walkDampTime = 5f;
@@ -38,8 +39,10 @@ public class PlayerController : MonoBehaviour
 		float h = Input.GetAxis("Horizontal");
 		float v = Input.GetAxis("Vertical");
 		bool run = Input.GetButton("Run");
-		
-		MovementManagement(h, v, run);
+
+		// Do not process movement and rotation if you are in motionlocked.
+		if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("MotionLocked"))
+			MovementManagement(h, v, run);
 	}
 	
 	
