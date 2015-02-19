@@ -92,10 +92,13 @@ public class TP_Animator : MonoBehaviour
 	
 	void Update()
 	{
-		DetermineCurrentState();
-		ProcessCurrentState();
-		//Debug.Log("Direction: " + MoveDirection.ToString());
-		TP_Motor.Instance.AttackRotation();
+		if (networkView.isMine) 
+		{
+			DetermineCurrentState();
+			ProcessCurrentState();
+			//Debug.Log("Direction: " + MoveDirection.ToString());
+			TP_Motor.Instance.AttackRotation();
+		}
 	}
 	
 	
