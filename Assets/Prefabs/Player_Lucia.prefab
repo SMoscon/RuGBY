@@ -4241,14 +4241,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f09471e7fdd242a98a9886d6eb46b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedFloat: 0
-  attackBool: 0
-  smashBool: 0
-  jumpBool: 0
-  defendBool: 0
-  runningBool: 0
   turnSmoothing: 15
-  speedDampTime: .100000001
+  walkDampTime: 5
+  runDampTime: 10
+  characterSpeed: 0
+  topRunSpeed: 6
+  topWalkSpeed: 3
+  terminalVelocity: 10
+  fallingSpeed: 0
+  gravity: .200000003
+  targetDirection: {x: 0, y: 0, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -4257,7 +4259,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 118702}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .300000012
   m_Height: 1.5
   m_Direction: 1
@@ -4660,7 +4662,7 @@ NetworkView:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118702}
-  m_Enabled: 0
+  m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 418702}
   m_ViewID:

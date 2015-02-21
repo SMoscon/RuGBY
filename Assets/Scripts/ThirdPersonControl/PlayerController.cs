@@ -35,34 +35,41 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		animator = GetComponent<Animator>();
-		controller = GetComponent<CharacterController>();
-		idleState = Animator.StringToHash("Base Layer.Idle");
-		dyingState = Animator.StringToHash("Base Layer.Dying");
-		locomotionState = Animator.StringToHash("Base Layer.Locomotion");
-		jumpingState = Animator.StringToHash("Base Layer.Jumping");
-		attackingState = Animator.StringToHash("Base Layer.Attacking");
-		
-		attackingBool = Animator.StringToHash("Attacking");
-		smashingBool = Animator.StringToHash("Smashing");
-		runningBool = Animator.StringToHash("Running");
-		defendingBool = Animator.StringToHash("Defending");
-		jumpingBool = Animator.StringToHash("Jumping");
-		
-		speedFloat = Animator.StringToHash("Speed");
-		
-		MotionLockedHash = Animator.StringToHash("MotionLocked");
+		if (networkView.isMine) 
+		{
+			animator = GetComponent<Animator>();
+			controller = GetComponent<CharacterController>();
+			idleState = Animator.StringToHash("Base Layer.Idle");
+			dyingState = Animator.StringToHash("Base Layer.Dying");
+			locomotionState = Animator.StringToHash("Base Layer.Locomotion");
+			jumpingState = Animator.StringToHash("Base Layer.Jumping");
+			attackingState = Animator.StringToHash("Base Layer.Attacking");
+			
+			attackingBool = Animator.StringToHash("Attacking");
+			smashingBool = Animator.StringToHash("Smashing");
+			runningBool = Animator.StringToHash("Running");
+			defendingBool = Animator.StringToHash("Defending");
+			jumpingBool = Animator.StringToHash("Jumping");
+			
+			speedFloat = Animator.StringToHash("Speed");
+			
+			MotionLockedHash = Animator.StringToHash("MotionLocked");	
+		}
 	}
 	
 	void FixedUpdate()
 	{
-		float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
-		bool run = Input.GetButton("Run");
+		if (networkView.isMine) 
+		{
+			float h = Input.GetAxis("Horizontal");
+			float v = Input.GetAxis("Vertical");
+			bool run = Input.GetButton("Run");
+			
+			// Do not process movement and rotation if you are in motionlocked.
+			if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("MotionLocked"))
+				MovementManagement(h, v, run);
+		}
 
-		// Do not process movement and rotation if you are in motionlocked.
-		if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("MotionLocked"))
-			MovementManagement(h, v, run);
 	}
 	
 	void MovementManagement(float horizontal, float vertical, bool running)
