@@ -5,11 +5,13 @@ public class TP_Controller : MonoBehaviour
 {
 	public static CharacterController CharacterController;
 	public static TP_Controller Instance;
+	public static Animator animator; 
 
 	//public bool ClimbEnabled { get; set; }
 
 	void Awake() 
 	{
+		animator = GetComponent<Animator>();
 		if (networkView.isMine)
 		{
 			CharacterController = GetComponent("CharacterController") as CharacterController;

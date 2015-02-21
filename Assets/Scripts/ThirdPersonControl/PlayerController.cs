@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	public float terminalVelocity = 10f;
 	public float fallingSpeed;
 	public float gravity = 0.2f;
+	public Vector3 targetDirection;
 
 	private int idleState;
 	private int dyingState;
@@ -111,7 +112,10 @@ public class PlayerController : MonoBehaviour
 	
 	void Rotating(float horizontal, float vertical)
 	{
-		Vector3 targetDirection = new Vector3(horizontal, 0f, vertical);
+		if (vertical >= 0)
+			targetDirection = new Vector3(horizontal*Camera.main.transform.forward.x, 0f, vertical*Camera.main.transform.forward.z);
+		else
+			targetDirection = new Vector3(-horizontal*Camera.main.transform.forward.x, 0f, vertical*Camera.main.transform.forward.z);
 		Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 		Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 		transform.rotation = newRotation;

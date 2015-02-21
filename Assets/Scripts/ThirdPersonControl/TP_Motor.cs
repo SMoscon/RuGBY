@@ -9,6 +9,7 @@ using System.Collections;
 public class TP_Motor : MonoBehaviour
 {
 	public static TP_Motor Instance;
+	public static Animator animator;
 	
 	public float ForwardSpeed = 10f;
 	public float RunSpeed = 15f;
@@ -19,11 +20,12 @@ public class TP_Motor : MonoBehaviour
 	public float SlideThreshold = 0.6f;
 	public float MaxControllableSlideMagnitude = 0.4f;
 	public float RotationSpeed = 0.2f;
-	public float StartingRotation;
-	public float EndingRotation;
+	public Vector3 StartingRotation;
+	public Vector3 EndingRotation;
 	public float AttackMoveSpeed = 2f;
 	public Vector3 StartPosition;
 	public Vector3 AttackDirection;
+	public float StartTime;
 	
 	//private Vector3 slideDirection;
 	
@@ -54,12 +56,14 @@ public class TP_Motor : MonoBehaviour
 		{
 			Instance = this;
 		}
+		animator = GetComponent<Animator>();
 	}
 	
 	public void UpdateMotor() 
 	{
 		ProcessMotion();
 		UpdateRotation();
+		animator.SetFloat("Speed" , MoveSpeed());
 	}
 	
 	void ProcessMotion()
@@ -67,8 +71,12 @@ public class TP_Motor : MonoBehaviour
 		if (TP_Animator.Instance.AttackAnimationStarted) 
 		{
 			//Debug.Log ("processmotion called");
+			StartTime = Time.time;
 			AttackDirection = transform.forward;
 			StartPosition = transform.position;
+			//StartingRotation = new Vector3 (transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+			//EndingRotation = new Vector3 (transform.rotation.eulerAngles.x, Camera.main.transform.eulerAngles.y ,transform.rotation.eulerAngles.z);
+
 			AttackRotation();
 			AttackTranslation();
 		}
@@ -170,16 +178,8 @@ public class TP_Motor : MonoBehaviour
 	public void AttackRotation()
 	{
 		//Debug.Log (transform.eulerAngles.y == Camera.main.transform.eulerAngles.y);
-		if (!TP_Animator.Instance.TurnAttack)
-			return;
-		if (transform.eulerAngles.y == EndingRotation) 
-		{
-			TP_Animator.Instance.TurnAttack = false;
-			return;
-		}
-		transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 
-		                                      Mathf.Lerp(EndingRotation, StartingRotation, (RotationSpeed - Time.deltaTime) / RotationSpeed),
-		                                      transform.eulerAngles.z);
+		//var YRotation = Vector3.Lerp(StartingRotation, EndingRotation, (1/18)*(Mathf.Log(Time.time - StartTime)+4));
+		//transform.rotation = Quaternion.Euler(YRotation);
 	}
 	
 	public void UpdateRotation()

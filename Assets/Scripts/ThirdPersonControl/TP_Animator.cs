@@ -363,7 +363,6 @@ public class TP_Animator : MonoBehaviour
 		{
 			transform.rotation = Quaternion.Euler(transform.eulerAngles.x,Camera.main.transform.eulerAngles.y,transform.eulerAngles.z);
 			//Debug.Log ("set to true");
-			AttackAnimationStarted = true;
 			if (IsSmashing)
 			{
 				switch (ComboCounter)
