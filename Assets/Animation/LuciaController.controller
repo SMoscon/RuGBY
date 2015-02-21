@@ -337,7 +337,7 @@ BlendTree:
   m_PrefabInternal: {fileID: 0}
   m_Name: Locomotion
   m_Childs:
-  - m_Motion: {fileID: 7400058, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
+  - m_Motion: {fileID: 7400022, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1009,8 +1009,8 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110227480}
   m_DstState: {fileID: 110286148}
-  m_TransitionDuration: .305478811
-  m_TransitionOffset: 0
+  m_TransitionDuration: .191616327
+  m_TransitionOffset: .0103511438
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: Speed
