@@ -91,6 +91,8 @@ GameObject:
   - 95: {fileID: 9527392}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11418972}
+  - 114: {fileID: 11415192}
+  - 114: {fileID: 11401930}
   m_Layer: 0
   m_Name: Player_Lucia
   m_TagString: Player
@@ -845,6 +847,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 418802}
   - 137: {fileID: 13718970}
+  - 114: {fileID: 11416442}
   m_Layer: 0
   m_Name: Yellow_Body
   m_TagString: Untagged
@@ -2152,6 +2155,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &190644
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490644}
+  - 108: {fileID: 10890644}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &190646
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490646}
+  - 108: {fileID: 10890646}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &418690
 Transform:
   m_ObjectHideFlags: 1
@@ -2230,7 +2265,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.968999982, y: .216000006, z: -4.36199999}
+  m_LocalPosition: {x: -.744999766, y: 1.4763863e-05, z: -24.5667439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418802}
@@ -2535,6 +2570,7 @@ Transform:
   - {fileID: 418864}
   - {fileID: 418946}
   - {fileID: 418808}
+  - {fileID: 490646}
   m_Father: {fileID: 418900}
   m_RootOrder: 6
 --- !u!4 &418750
@@ -3868,6 +3904,7 @@ Transform:
   - {fileID: 418968}
   - {fileID: 418794}
   - {fileID: 418932}
+  - {fileID: 490644}
   m_Father: {fileID: 418900}
   m_RootOrder: 5
 --- !u!4 &418956
@@ -3997,6 +4034,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 418702}
   m_RootOrder: 4
+--- !u!4 &490644
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190644}
+  m_LocalRotation: {x: .378833503, y: -.523715973, z: -.475101799, w: .59706378}
+  m_LocalPosition: {x: -.0160000008, y: .43599999, z: -.179000005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418954}
+  m_RootOrder: 6
+--- !u!4 &490646
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190646}
+  m_LocalRotation: {x: .378833681, y: .523715854, z: .47510165, w: .597063839}
+  m_LocalPosition: {x: .0163327977, y: .495122313, z: -.194800913}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418748}
+  m_RootOrder: 6
 --- !u!23 &2318968
 Renderer:
   m_ObjectHideFlags: 1
@@ -4161,6 +4222,76 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!108 &10890644
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190644}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 1.5
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
+--- !u!108 &10890646
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190646}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 1.5
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!111 &11118972
 Animation:
   m_ObjectHideFlags: 1
@@ -4216,6 +4347,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06997b75180ba464b98d989ff7c30002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11401930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd6f98ee285f142a886265ec6b4d1b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 118702}
+--- !u!114 &11415192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b494b9e69ab4c8398f531822a99976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11416442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  distance: 10
+  height: 5
+  heightDamping: 2
+  rotationDamping: 3
 --- !u!114 &11418972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4251,6 +4421,8 @@ MonoBehaviour:
   fallingSpeed: 0
   gravity: .200000003
   targetDirection: {x: 0, y: 0, z: 0}
+  rotSpeed: 3
+  inputVector: {x: 0, y: 0, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

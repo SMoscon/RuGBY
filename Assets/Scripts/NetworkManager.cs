@@ -5,6 +5,10 @@ public class NetworkManager : MonoBehaviour
 {
 	private const string typeName = "UniqueGameName";
 	private const string gameName = "RoomName";
+	private bool blue;
+	private bool green;
+	private bool yellow;
+	private bool red;
 	
 	private bool isRefreshingHostList = false;
 	private HostData[] hostList;
@@ -30,6 +34,13 @@ public class NetworkManager : MonoBehaviour
 				}
 			}
 		}*/
+	}
+
+	void Awake(){
+		blue = false;
+		green = false;
+		yellow = false;
+		red = false;
 	}
 
 	public void RefreshFunction(){
@@ -84,7 +95,7 @@ public class NetworkManager : MonoBehaviour
 	
 	void OnConnectedToServer()
 	{
-		Debug.Log ("spawn character select");
+		//Debug.Log ("spawn character select");
 		SpawnPlayer();
 	}
 
@@ -102,9 +113,10 @@ public class NetworkManager : MonoBehaviour
 
 
 		var original = GameObject.FindWithTag("MainCamera");
-		Camera _cam = (Camera) Camera.Instantiate(original.camera, new Vector3(0, 0, 0), 
-										Quaternion.FromToRotation(new Vector3(0, 0, 0), new Vector3(0, 0, 1)));
-		DestroyImmediate(Camera.main.gameObject);
+		Debug.Log ("found main camera");
+		//Camera _cam = (Camera) Camera.Instantiate(original.camera, new Vector3(0, 0, 0), 
+		//								Quaternion.FromToRotation(new Vector3(0, 0, 0), new Vector3(0, 0, 1)));
+		//DestroyImmediate(Camera.main.gameObject);
 
 
 		//GameObject.FindWithTag("MainCamera").GetComponent<SmoothLookAt>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target");
