@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	public float fallingSpeed;
 	public float gravity = 0.2f;
 	public Vector3 targetDirection;
+	public float rotSpeed = 3f;
+	public Vector3 inputVector = Vector3.zero;
 
 	private int idleState;
 	private int dyingState;
@@ -35,8 +37,8 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		if (networkView.isMine) 
-		{
+		//if (networkView.isMine) 
+		//{
 			animator = GetComponent<Animator>();
 			controller = GetComponent<CharacterController>();
 			idleState = Animator.StringToHash("Base Layer.Idle");
@@ -54,31 +56,38 @@ public class PlayerController : MonoBehaviour
 			speedFloat = Animator.StringToHash("Speed");
 			
 			MotionLockedHash = Animator.StringToHash("MotionLocked");	
-		}
+		//}
 	}
 	
 	void FixedUpdate()
 	{
-		if (networkView.isMine) 
-		{
+		//if (networkView.isMine) 
+		//{
 			float h = Input.GetAxis("Horizontal");
 			float v = Input.GetAxis("Vertical");
 			bool run = Input.GetButton("Run");
 			
 			// Do not process movement and rotation if you are in motionlocked.
-			if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("MotionLocked"))
+			//if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("MotionLocked"))
 				MovementManagement(h, v, run);
-		}
+		//}
 
 	}
 	
 	void MovementManagement(float horizontal, float vertical, bool running)
 	{
 		characterSpeed = animator.GetFloat(speedFloat);
+		Debug.Log ("Horizontal: " + horizontal);
+		Debug.Log ("Vertical: " + vertical);
 		if (horizontal != 0f || vertical != 0f)
 		{
 			animator.SetBool(runningBool, running);
-			Rotating(horizontal, vertical);
+			Vector3 newX = Camera.main.transform.right * horizontal;
+			Vector3 newY = Camera.main.transform.forward * vertical;
+			newX = new Vector3(newX.x,0f,newX.z);
+			newY = new Vector3(newY.x, 0f, newY.z);
+			inputVector = newX + newY;
+			Rotating(horizontal, vertical, inputVector);
 			if (running)
 				animator.SetFloat(speedFloat, Mathf.Lerp(characterSpeed, topRunSpeed, Time.deltaTime*runDampTime));
 			else
@@ -92,12 +101,11 @@ public class PlayerController : MonoBehaviour
 		}
 		if (characterSpeed < 0.1)
 		{
-			characterSpeed = 0;
-			controller.Move(new Vector3(0f, ApplyGravity(), 0f));
+			//characterSpeed = 0;
+			//controller.Move(new Vector3(0f, ApplyGravity(), 0f));
 		}
 		else
-			controller.Move( new Vector3(transform.forward.normalized.x*characterSpeed*Time.deltaTime, 
-		             ApplyGravity(), transform.forward.normalized.z*characterSpeed*Time.deltaTime));
+			controller.Move(inputVector * characterSpeed * Time.deltaTime);
 	}
 
 	float ApplyGravity()
@@ -117,13 +125,9 @@ public class PlayerController : MonoBehaviour
 		return -fallingSpeed;
 	}
 	
-	void Rotating(float horizontal, float vertical)
+	void Rotating(float horizontal, float vertical, Vector3 direction)
 	{
-		if (vertical >= 0)
-			targetDirection = new Vector3(horizontal*Camera.main.transform.forward.x, 0f, vertical*Camera.main.transform.forward.z);
-		else
-			targetDirection = new Vector3(-horizontal*Camera.main.transform.forward.x, 0f, vertical*Camera.main.transform.forward.z);
-		Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
+		Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
 		Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 		transform.rotation = newRotation;
 	}
