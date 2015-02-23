@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetButton("Attack"))
+		if (Input.GetButtonDown("Attack"))
 		{
 			animator.SetBool(attackingBool, true);
 		}
@@ -56,8 +56,13 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 
-	public void SetAttackFalse()
+	public void OnEventAttack()
 	{
 		animator.SetBool(attackingBool, false);
+	}
+
+	public void OnEventSmashOff()
+	{
+		animator.SetBool(smashingBool, false);
 	}
 }

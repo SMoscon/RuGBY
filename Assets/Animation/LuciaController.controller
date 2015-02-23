@@ -405,7 +405,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110286148}
   m_DstState: {fileID: 110212884}
-  m_TransitionDuration: .149999991
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -465,15 +465,19 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212884}
   m_DstState: {fileID: 110212888}
-  m_TransitionDuration: .250074804
-  m_TransitionOffset: .00686300313
+  m_TransitionDuration: 0
+  m_TransitionOffset: .0172741115
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .710463762
+    m_ExitTime: .999806166
   - m_ConditionMode: 2
     m_ConditionEvent: Attacking
+    m_EventTreshold: 0
+    m_ExitTime: .710463762
+  - m_ConditionMode: 2
+    m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: .710463762
   m_Atomic: 1
@@ -489,13 +493,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212876}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: .149999991
+  m_TransitionDuration: .0316808149
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .850000024
+    m_ExitTime: .968319297
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -529,13 +533,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212880}
   m_DstState: {fileID: 110212872}
-  m_TransitionDuration: .299999982
+  m_TransitionDuration: .0141178556
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .700000048
+    m_ExitTime: .996470511
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -549,13 +553,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212874}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: .200000003
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .800000012
+    m_ExitTime: .964369535
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -589,13 +593,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212890}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: .299999982
-  m_TransitionOffset: 0
+  m_TransitionDuration: .0221851487
+  m_TransitionOffset: .00500842882
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .700000048
+    m_ExitTime: .952100754
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -609,7 +613,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212894}
   m_DstState: {fileID: 110212886}
-  m_TransitionDuration: .247996435
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -619,7 +623,7 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: Attacking
     m_EventTreshold: 0
-    m_ExitTime: .736805737
+    m_ExitTime: 1.00054204
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -633,13 +637,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212892}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: .299999982
+  m_TransitionDuration: .0462186709
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .700000048
+    m_ExitTime: .953781307
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -653,8 +657,8 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212884}
   m_DstState: {fileID: 110212894}
-  m_TransitionDuration: .287977695
-  m_TransitionOffset: 0
+  m_TransitionDuration: 0
+  m_TransitionOffset: .00669809245
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Attacking
@@ -663,7 +667,7 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: Attacking
     m_EventTreshold: 0
-    m_ExitTime: .709999979
+    m_ExitTime: 1.00024951
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -697,13 +701,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212884}
   m_DstState: {fileID: 110212880}
-  m_TransitionDuration: .533015788
-  m_TransitionOffset: 0
+  m_TransitionDuration: .00421774434
+  m_TransitionOffset: .00598636875
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .708239615
+    m_ExitTime: .99000001
   - m_ConditionMode: 1
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
@@ -721,13 +725,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212894}
   m_DstState: {fileID: 110212882}
-  m_TransitionDuration: .461538434
+  m_TransitionDuration: .00104680401
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .74000001
+    m_ExitTime: .99000001
   - m_ConditionMode: 1
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
@@ -765,13 +769,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212888}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: .260869563
+  m_TransitionDuration: .0132994633
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .739130437
+    m_ExitTime: .964194179
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -805,15 +809,19 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212894}
   m_DstState: {fileID: 110212892}
-  m_TransitionDuration: .461538434
-  m_TransitionOffset: 0
+  m_TransitionDuration: 2.20078633e-07
+  m_TransitionOffset: .00612244662
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .74000001
+    m_ExitTime: 1.00373602
   - m_ConditionMode: 2
     m_ConditionEvent: Attacking
+    m_EventTreshold: 0
+    m_ExitTime: .74000001
+  - m_ConditionMode: 2
+    m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: .74000001
   m_Atomic: 1
@@ -849,13 +857,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212882}
   m_DstState: {fileID: 110212876}
-  m_TransitionDuration: .25
+  m_TransitionDuration: .0231092591
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .75
+    m_ExitTime: .988235295
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -869,7 +877,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110227480}
   m_DstState: {fileID: 110212884}
-  m_TransitionDuration: .11999999
+  m_TransitionDuration: .00324894092
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -929,13 +937,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212872}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: .200000003
+  m_TransitionDuration: .0173672624
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .800000012
+    m_ExitTime: 1.0008961
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -1009,7 +1017,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110227480}
   m_DstState: {fileID: 110286148}
-  m_TransitionDuration: .191616327
+  m_TransitionDuration: .09144824
   m_TransitionOffset: .0103511438
   m_Conditions:
   - m_ConditionMode: 3
@@ -1089,13 +1097,17 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212886}
   m_DstState: {fileID: 110212890}
-  m_TransitionDuration: .400000006
-  m_TransitionOffset: 0
+  m_TransitionDuration: 0
+  m_TransitionOffset: .005986406
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .600000024
+    m_ExitTime: 1
+  - m_ConditionMode: 2
+    m_ConditionEvent: Smashing
+    m_EventTreshold: 0
+    m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -1109,13 +1121,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212886}
   m_DstState: {fileID: 110212878}
-  m_TransitionDuration: .400000006
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .600000024
+    m_ExitTime: .99000001
   - m_ConditionMode: 1
     m_ConditionEvent: Smashing
     m_EventTreshold: 0

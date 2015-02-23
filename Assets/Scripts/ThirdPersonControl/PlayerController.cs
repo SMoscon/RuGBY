@@ -55,21 +55,23 @@ public class PlayerController : MonoBehaviour
 			
 			speedFloat = Animator.StringToHash("Speed");
 			
-			MotionLockedHash = Animator.StringToHash("MotionLocked");	
-		//}
+			MotionLockedHash = Animator.StringToHash("ActionLocked");	
+		//} 
 	}
 	
 	void FixedUpdate()
 	{
 		//if (networkView.isMine) 
-		//{
+		//{  
 			float h = Input.GetAxis("Horizontal");
 			float v = Input.GetAxis("Vertical");
 			bool run = Input.GetButton("Run");
 			
 			// Do not process movement and rotation if you are in motionlocked.
-			//if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("MotionLocked"))
+			if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("ActionLocked"))
 				MovementManagement(h, v, run);
+			else
+				controller.Move(Vector3.zero);
 		//}
 
 	}
@@ -77,16 +79,12 @@ public class PlayerController : MonoBehaviour
 	void MovementManagement(float horizontal, float vertical, bool running)
 	{
 		characterSpeed = animator.GetFloat(speedFloat);
-		Debug.Log ("Horizontal: " + horizontal);
-		Debug.Log ("Vertical: " + vertical);
 		if (horizontal != 0f || vertical != 0f)
 		{
-			animator.SetBool(runningBool, running);
 			Vector3 newX = Camera.main.transform.right * horizontal;
 			Vector3 newY = Camera.main.transform.forward * vertical;
-			newX = new Vector3(newX.x,0f,newX.z);
-			newY = new Vector3(newY.x, 0f, newY.z);
 			inputVector = newX + newY;
+			inputVector = new Vector3(inputVector.x, 0f, inputVector.z);
 			Rotating(horizontal, vertical, inputVector);
 			if (running)
 				animator.SetFloat(speedFloat, Mathf.Lerp(characterSpeed, topRunSpeed, Time.deltaTime*runDampTime));
@@ -97,20 +95,19 @@ public class PlayerController : MonoBehaviour
 		{
 			// do a gradual deceleration (the same time frame as immediate acceleration)
 			animator.SetFloat(speedFloat, Mathf.Lerp(characterSpeed, 0f, Time.deltaTime*runDampTime));
-			animator.SetBool (runningBool, false);
 		}
 		if (characterSpeed < 0.1)
 		{
-			//characterSpeed = 0;
-			//controller.Move(new Vector3(0f, ApplyGravity(), 0f));
+			characterSpeed = 0;
+			controller.Move(new Vector3(0f, ApplyGravity(), 0f)*Time.deltaTime);
 		}
 		else
-			controller.Move(inputVector * characterSpeed * Time.deltaTime);
+			controller.Move(new Vector3(inputVector.x*characterSpeed, ApplyGravity(), inputVector.z*characterSpeed)*Time.deltaTime);
 	}
 
 	float ApplyGravity()
 	{
-		if (fallingSpeed < terminalVelocity)
+		if (!controller.isGrounded)
 		{
 			fallingSpeed += gravity*Time.deltaTime;
 		}
@@ -118,8 +115,9 @@ public class PlayerController : MonoBehaviour
 		//{
 		//	fallingSpeed = terminalVelocity;
 		//}
-		if (controller.isGrounded)
+		else
 		{
+			Debug.Log ("Grounded");
 			fallingSpeed = 0f;
 		}
 		return -fallingSpeed;
