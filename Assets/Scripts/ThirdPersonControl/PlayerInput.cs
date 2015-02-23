@@ -17,6 +17,8 @@ public class PlayerInput : MonoBehaviour
 	private int runningBool;
 	private int defendingBool;
 	private int jumpingBool;
+
+	private int dodgingTrigger;
 	
 	private int speedFloat;
 	
@@ -40,6 +42,7 @@ public class PlayerInput : MonoBehaviour
 		runningBool = Animator.StringToHash("Running");
 		defendingBool = Animator.StringToHash("Defending");
 		jumpingBool = Animator.StringToHash("Jumping");
+		dodgingTrigger = Animator.StringToHash("Dodging");
 		
 		speedFloat = Animator.StringToHash("Speed");
 		
@@ -51,17 +54,22 @@ public class PlayerInput : MonoBehaviour
 	void Update()
 	{
 		currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
+		CheckPlayerInput(currentTagHash);
+		CheckEndConditions(currentTagHash);
+	}
+
+	void CheckPlayerInput(int taghash)
+	{
+		// if we are locked in an animation that cannot be interrupted, don't check for input
+		if (taghash == ActionLockedHash)
+			return;
 
 		if (Input.GetButtonDown("Attack"))
 		{
 			animator.SetBool(attackingBool, true);
 		}
 
-		if (currentTagHash == DefendingHash)
-		{
-			animator.SetBool(defendingBool, Input.GetButton("Smash"));
-		}
-
+		// if you are attacking then the smash button will smash, else it will defend
 		if (Input.GetButton("Smash") && currentTagHash == AttackingHash)
 		{
 			animator.SetBool(smashingBool, true);
@@ -70,7 +78,28 @@ public class PlayerInput : MonoBehaviour
 		{
 			animator.SetBool(defendingBool, true);
 		}
+		
+		if (Input.GetButtonDown("Dodge"))
+		{
+			animator.SetTrigger(dodgingTrigger);
+		}
 	}
+
+	void CheckEndConditions(int taghash)
+	{
+		// if we are locked in an animation that cannot be interrupted, wait for it to finish
+		if (taghash == ActionLockedHash)
+		{
+			return;
+		}
+
+		if (currentTagHash == DefendingHash)
+		{
+			animator.SetBool(defendingBool, Input.GetButton("Smash"));
+		}
+	}
+
+	#region Animation Events to deal with Animator States
 
 	public void OnEventAttack()
 	{
@@ -81,4 +110,6 @@ public class PlayerInput : MonoBehaviour
 	{
 		animator.SetBool(smashingBool, false);
 	}
+
+	#endregion
 }
