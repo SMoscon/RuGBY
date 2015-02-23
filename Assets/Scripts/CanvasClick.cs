@@ -5,7 +5,8 @@ public class CanvasClick : MonoBehaviour {
 	//public bool clicked;
 	//public bool returnToMenuz;
 	//public static CanvasClick Instance;
-	private Animator animator;
+	public Animator animator;
+	public Animator animatorColor;
 	//public Button button;
 
 	// Use this for initialization
@@ -43,12 +44,21 @@ public class CanvasClick : MonoBehaviour {
 	{
 		animator.SetBool("TurnCamera", true);
 		//Debug.Log("Clicked() called to " + clicked);
+		animatorColor.SetBool("FadeButton", true);
+	}
+
+	public void Options() 
+	{
+		//animator.SetBool("TurnCamera", false);
+		Debug.Log("Return to menu called");
+		//animatorColor.SetBool("FadeButton", false);
 	}
 
 	public void ReturnToMenu() 
 	{
 		animator.SetBool("TurnCamera", false);
 		//Debug.Log("Return to menu called to " + clicked);
+		animatorColor.SetBool("FadeButton", false);
 	}
 
 }

@@ -13,7 +13,7 @@ public class NetworkManager : MonoBehaviour
 	
 	void OnGUI()
 	{
-		if (!Network.isClient && !Network.isServer)
+		/*if (!Network.isClient && !Network.isServer)
 		{
 			if (GUI.Button(new Rect(100, 100, 250, 100), "Start Server"))
 				StartServer();
@@ -29,10 +29,26 @@ public class NetworkManager : MonoBehaviour
 						JoinServer(hostList[i]);
 				}
 			}
+		}*/
+	}
+
+	public void RefreshFunction(){
+		//if (GUI.Button(new Rect(100, 250, 250, 100), "Refresh Hosts"))
+		RefreshHostList();
+		Debug.Log ("refreshing...");
+		if (hostList != null)
+		{
+			Debug.Log ("HostList not null");
+			for (int i = 0; i < hostList.Length; i++)
+			{
+				Debug.Log ("generating button");
+				//if (GUI.Button(new Rect(400, 100 + (110 * i), 300, 100), hostList[i].gameName))
+				JoinServer(hostList[i]);
+			}
 		}
 	}
 	
-	private void StartServer()
+	public void StartServer()
 	{
 		Network.InitializeServer(5, 25000, !Network.HavePublicAddress());
 		MasterServer.RegisterHost(typeName, gameName);
@@ -52,7 +68,7 @@ public class NetworkManager : MonoBehaviour
 		}
 	}
 	
-	private void RefreshHostList()
+	public void RefreshHostList()
 	{
 		if (!isRefreshingHostList)
 		{
@@ -68,6 +84,7 @@ public class NetworkManager : MonoBehaviour
 	
 	void OnConnectedToServer()
 	{
+		Debug.Log ("spawn character select");
 		SpawnPlayer();
 	}
 
