@@ -513,7 +513,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110227480}
   m_DstState: {fileID: 110276654}
-  m_TransitionDuration: .11999999
+  m_TransitionDuration: .00247747451
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -977,13 +977,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110228628}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: 0
-  m_TransitionOffset: .032460425
+  m_TransitionDuration: .399758756
+  m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: 1.01968336
+    m_ExitTime: .740696967
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -1165,7 +1165,7 @@ State:
   m_Position: {x: 132, y: 192, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212874
 State:
   m_ObjectHideFlags: 3
@@ -1180,7 +1180,7 @@ State:
   m_Position: {x: 1020, y: 168, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212876
 State:
   m_ObjectHideFlags: 3
@@ -1195,7 +1195,7 @@ State:
   m_Position: {x: 552, y: 192, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212878
 State:
   m_ObjectHideFlags: 3
@@ -1210,7 +1210,7 @@ State:
   m_Position: {x: 1020, y: 84, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212880
 State:
   m_ObjectHideFlags: 3
@@ -1225,7 +1225,7 @@ State:
   m_Position: {x: 132, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212882
 State:
   m_ObjectHideFlags: 3
@@ -1240,7 +1240,7 @@ State:
   m_Position: {x: 564, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212884
 State:
   m_ObjectHideFlags: 3
@@ -1255,7 +1255,7 @@ State:
   m_Position: {x: 288, y: 12, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212886
 State:
   m_ObjectHideFlags: 3
@@ -1270,7 +1270,7 @@ State:
   m_Position: {x: 888, y: 12, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212888
 State:
   m_ObjectHideFlags: 3
@@ -1285,7 +1285,7 @@ State:
   m_Position: {x: -84, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212890
 State:
   m_ObjectHideFlags: 3
@@ -1300,7 +1300,7 @@ State:
   m_Position: {x: 792, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212892
 State:
   m_ObjectHideFlags: 3
@@ -1315,7 +1315,7 @@ State:
   m_Position: {x: 336, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110212894
 State:
   m_ObjectHideFlags: 3
@@ -1330,7 +1330,7 @@ State:
   m_Position: {x: 564, y: 12, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Attacking
 --- !u!1102 &110227480
 State:
   m_ObjectHideFlags: 3
@@ -1405,7 +1405,7 @@ State:
   m_Position: {x: -240, y: -300, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
-  m_Tag: ActionLocked
+  m_Tag: Defending
 --- !u!1102 &110286148
 State:
   m_ObjectHideFlags: 3

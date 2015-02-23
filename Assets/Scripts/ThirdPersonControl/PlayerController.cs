@@ -30,7 +30,10 @@ public class PlayerController : MonoBehaviour
 	
 	private int speedFloat;
 	
-	private int MotionLockedHash;
+	private int ActionLockedHash;
+	private int DefendingHash;
+	private int AttackingHash;
+	private int currentTagHash;
 
 	private Animator animator;
 	private CharacterController controller;
@@ -38,7 +41,7 @@ public class PlayerController : MonoBehaviour
 	void Awake()
 	{
 		//if (networkView.isMine) 
-		//{
+		{
 			animator = GetComponent<Animator>();
 			controller = GetComponent<CharacterController>();
 			idleState = Animator.StringToHash("Base Layer.Idle");
@@ -55,24 +58,27 @@ public class PlayerController : MonoBehaviour
 			
 			speedFloat = Animator.StringToHash("Speed");
 			
-			MotionLockedHash = Animator.StringToHash("ActionLocked");	
-		//} 
+			ActionLockedHash = Animator.StringToHash("ActionLocked");
+			DefendingHash = Animator.StringToHash("Defending");
+			AttackingHash = Animator.StringToHash("Attacking");
+		} 
 	}
 	
 	void FixedUpdate()
 	{
 		//if (networkView.isMine) 
-		//{  
+		{  
 			float h = Input.GetAxis("Horizontal");
 			float v = Input.GetAxis("Vertical");
 			bool run = Input.GetButton("Run");
 			
 			// Do not process movement and rotation if you are in motionlocked.
-			if (!animator.GetCurrentAnimatorStateInfo(0).IsTag("ActionLocked"))
-				MovementManagement(h, v, run);
+			currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
+			if (currentTagHash == ActionLockedHash || currentTagHash == DefendingHash || currentTagHash == AttackingHash)
+				controller.Move(new Vector3(0f, ApplyGravity(), 0f)*Time.deltaTime);
 			else
-				controller.Move(Vector3.zero);
-		//}
+				MovementManagement(h, v, run);
+		}
 
 	}
 	

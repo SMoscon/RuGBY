@@ -20,7 +20,10 @@ public class PlayerInput : MonoBehaviour
 	
 	private int speedFloat;
 	
-	private int MotionLockedHash;
+	private int ActionLockedHash;
+	private int DefendingHash;
+	private int AttackingHash;
+	private int currentTagHash;
 	
 	void Start()
 	{
@@ -40,19 +43,32 @@ public class PlayerInput : MonoBehaviour
 		
 		speedFloat = Animator.StringToHash("Speed");
 		
-		MotionLockedHash = Animator.StringToHash("MotionLocked");
+		ActionLockedHash = Animator.StringToHash("ActionLocked");
+		DefendingHash = Animator.StringToHash("Defending");
+		AttackingHash = Animator.StringToHash("Attacking");
 	}
 
 	void Update()
 	{
+		currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
+
 		if (Input.GetButtonDown("Attack"))
 		{
 			animator.SetBool(attackingBool, true);
 		}
 
-		if (Input.GetButton("Smash"))
+		if (currentTagHash == DefendingHash)
+		{
+			animator.SetBool(defendingBool, Input.GetButton("Smash"));
+		}
+
+		if (Input.GetButton("Smash") && currentTagHash == AttackingHash)
 		{
 			animator.SetBool(smashingBool, true);
+		}
+		else if (Input.GetButton("Smash"))
+		{
+			animator.SetBool(defendingBool, true);
 		}
 	}
 
