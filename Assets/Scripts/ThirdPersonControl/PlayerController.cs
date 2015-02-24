@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		//if (networkView.isMine) 
+		if (networkView.isMine) 
 		{
 			animator = GetComponent<Animator>();
 			controller = GetComponent<CharacterController>();
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-		//if (networkView.isMine) 
+		if (networkView.isMine) 
 		{  
 			float h = Input.GetAxis("Horizontal");
 			float v = Input.GetAxis("Vertical");
