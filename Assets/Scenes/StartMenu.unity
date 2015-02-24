@@ -894,7 +894,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11410740, guid: 586a0e02f3231104490de00eb7c0f658, type: 2}
+      - m_Target: {fileID: 0}
         m_MethodName: StartServer
         m_Mode: 1
         m_Arguments:
@@ -1009,7 +1009,6 @@ GameObject:
   - 223: {fileID: 509881781}
   - 114: {fileID: 509881780}
   - 114: {fileID: 509881779}
-  - 114: {fileID: 509881782}
   m_Layer: 5
   m_Name: Canvas_Server
   m_TagString: Untagged
@@ -1091,18 +1090,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!114 &509881782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 509881777}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd6f98ee285f142a886265ec6b4d1b09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
 --- !u!1 &543774398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,7 +1638,6 @@ GameObject:
   - 222: {fileID: 711758306}
   - 114: {fileID: 711758305}
   - 114: {fileID: 711758304}
-  - 114: {fileID: 711758308}
   m_Layer: 5
   m_Name: Button_Yellow
   m_TagString: Untagged
@@ -1710,7 +1696,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11401930, guid: 738ee9a67379642a4b7563959c23b76c, type: 2}
+      - m_Target: {fileID: 543774399}
         m_MethodName: StartServer
         m_Mode: 1
         m_Arguments:
@@ -1721,7 +1707,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &711758305
@@ -1768,18 +1754,6 @@ RectTransform:
   m_AnchoredPosition: {x: 120, y: 115}
   m_SizeDelta: {x: 512, y: 512}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &711758308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 711758303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd6f98ee285f142a886265ec6b4d1b09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c, type: 2}
 --- !u!1 &740092554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,9 +1841,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 509881781}
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 543774399}
+        m_MethodName: StartServer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -3939,7 +3913,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 509881782}
+      - m_Target: {fileID: 543774399}
         m_MethodName: RefreshFunction
         m_Mode: 1
         m_Arguments:
@@ -3950,7 +3924,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 1051163967}
         m_MethodName: set_enabled
         m_Mode: 6

@@ -17,7 +17,7 @@ public class NetworkManager : MonoBehaviour
 	
 	void OnGUI()
 	{
-		/*if (!Network.isClient && !Network.isServer)
+		if (!Network.isClient && !Network.isServer)
 		{
 			if (GUI.Button(new Rect(100, 100, 250, 100), "Start Server"))
 				StartServer();
@@ -33,7 +33,7 @@ public class NetworkManager : MonoBehaviour
 						JoinServer(hostList[i]);
 				}
 			}
-		}*/
+		}
 	}
 
 	void Awake(){
@@ -61,6 +61,7 @@ public class NetworkManager : MonoBehaviour
 	
 	public void StartServer()
 	{
+		Debug.Log ("StartServer");
 		Network.InitializeServer(5, 25000, !Network.HavePublicAddress());
 		MasterServer.RegisterHost(typeName, gameName);
 	}
