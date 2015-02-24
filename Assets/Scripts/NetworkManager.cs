@@ -67,6 +67,7 @@ public class NetworkManager : MonoBehaviour
 	
 	void OnServerInitialized()
 	{
+		Debug.Log ("Spawn");
 		SpawnPlayer();
 	}
 	

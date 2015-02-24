@@ -93,6 +93,7 @@ GameObject:
   - 114: {fileID: 11418972}
   - 114: {fileID: 11415192}
   - 114: {fileID: 11401930}
+  - 114: {fileID: 11483744}
   m_Layer: 0
   m_Name: Player_Lucia
   m_TagString: Player
@@ -4353,7 +4354,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118702}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd6f98ee285f142a886265ec6b4d1b09, type: 3}
   m_Name: 
@@ -4400,6 +4401,33 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 100
   healthBarLength: 0
+--- !u!114 &11483744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e9aae9ee8a945408254cde6b3117d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleState: 0
+  dyingState: 0
+  locomotionState: 0
+  jumpingState: 0
+  attackingState: 0
+  attackingBool: 0
+  smashingBool: 0
+  runningBool: 0
+  defendingBool: 0
+  jumpingBool: 0
+  dodgingTrigger: 0
+  speedFloat: 0
+  ActionLockedTagHash: 0
+  DefendingTagHash: 0
+  AttackingTagHash: 0
+  currentTagHash: 0
 --- !u!114 &11488034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4422,7 +4450,6 @@ MonoBehaviour:
   gravity: .200000003
   targetDirection: {x: 0, y: 0, z: 0}
   rotSpeed: 3
-  inputVector: {x: 0, y: 0, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
