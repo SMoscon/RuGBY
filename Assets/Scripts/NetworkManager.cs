@@ -3,8 +3,8 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour
 {
-	private const string typeName = "UniqueGameName";
-	private const string gameName = "RoomName";
+	private const string typeName = "com.dillongu.rgby.something";
+	private const string gameName = "CARL";
 	private bool blue;
 	private bool green;
 	private bool yellow;
