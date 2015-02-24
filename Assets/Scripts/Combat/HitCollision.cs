@@ -12,7 +12,7 @@ public class HitCollision : MonoBehaviour {
 	void Update () {
 		if (networkView.isMine){
 			if (HealthBar.Instance.curHealth==0){
-				TP_Animator.Instance.Die();
+				//Die here
 			}
 		}
 	}
