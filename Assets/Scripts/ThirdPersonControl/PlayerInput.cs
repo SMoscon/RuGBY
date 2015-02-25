@@ -62,7 +62,7 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 
-	#region Animation Events to deal with Animator States
+	#region Animation Events
 
 	public void OnEventAttack()
 	{
@@ -72,6 +72,16 @@ public class PlayerInput : MonoBehaviour
 	public void OnEventSmashOff()
 	{
 		animator.SetBool(hash.smashingBool, false);
+	}
+
+	/* This function will snap the player's rotation to the rotation of 
+	 * the camera on the y axis. The main use for this is when attacking.
+	 */
+
+	public void OnEventSnapToCamera()
+	{
+		Debug.Log("Snapped Player to Camera y axis");
+		transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
 	}
 
 	#endregion

@@ -22,8 +22,8 @@ public class HashIDs : MonoBehaviour
 	public int ActionLockedTagHash;
 	public int DefendingTagHash;
 	public int AttackingTagHash;
-	public int currentTagHash;
-	
+	public int DodgingTagHash;
+
 	void Awake()
 	{
 		idleState = Animator.StringToHash("Base Layer.Idle");
@@ -44,6 +44,7 @@ public class HashIDs : MonoBehaviour
 		ActionLockedTagHash = Animator.StringToHash("ActionLocked");
 		DefendingTagHash = Animator.StringToHash("Defending");
 		AttackingTagHash = Animator.StringToHash("Attacking");
+		DodgingTagHash = Animator.StringToHash("Dodging");
 
 	}
 }
