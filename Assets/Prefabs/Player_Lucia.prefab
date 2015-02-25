@@ -4426,17 +4426,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f09471e7fdd242a98a9886d6eb46b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSmoothing: 15
+  turnSmoothing: 10
   walkDampTime: 5
   runDampTime: 10
   characterSpeed: 0
   topRunSpeed: 6
-  topWalkSpeed: 3
+  topWalkSpeed: 4.5
   terminalVelocity: 10
   fallingSpeed: 0
-  gravity: .200000003
+  gravity: 3
   targetDirection: {x: 0, y: 0, z: 0}
-  rotSpeed: 3
+  rotSpeed: 15
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
