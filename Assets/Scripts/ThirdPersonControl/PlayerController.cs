@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 		else
 		{
 			// do a gradual deceleration (the same time frame as immediate acceleration)
-				networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, 0f, Time.deltaTime*runDampTime));
+			networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, 0f, Time.deltaTime*runDampTime));
 		}
 		if (characterSpeed < 0.1)
 		{
@@ -107,7 +107,16 @@ public class PlayerController : MonoBehaviour
 	void Rotating(float horizontal, float vertical, Vector3 direction)
 	{
 		Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-		Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
-		transform.rotation = newRotation;
+		// if you are currently dodging, snap to the desired direction instead of lerping
+		if (hash.currentTagHash == hash.DodgingTagHash)
+		{
+			transform.rotation = targetRotation;
+		}
+		// normal lerp rotation
+		else 
+		{
+			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
+			transform.rotation = newRotation;
+		}
 	}
 }
