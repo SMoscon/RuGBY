@@ -81,7 +81,7 @@ public class PlayerInput : MonoBehaviour
 	public void OnEventSnapToCamera()
 	{
 		Debug.Log("Snapped Player to Camera y axis");
-		transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
+		transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
 	}
 
 	#endregion

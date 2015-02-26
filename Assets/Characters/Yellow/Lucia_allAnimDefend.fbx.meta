@@ -403,6 +403,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: .00146450789
+        functionName: OnEventSnapToCamera
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -727,6 +735,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: OnEventSnapToCamera
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1045,6 +1061,14 @@ ModelImporter:
         messageOptions: 0
       - time: .172084197
         functionName: OnEventSmashOff
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: OnEventSnapToCamera
         data: 
         objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
           type: 2}
@@ -2590,7 +2614,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .0146341464
+        functionName: OnEventSnapToDirection
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

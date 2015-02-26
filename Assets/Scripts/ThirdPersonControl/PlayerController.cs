@@ -9,13 +9,14 @@ public class PlayerController : MonoBehaviour
 	public float characterSpeed;
 	public float topRunSpeed = 6f;
 	public float topWalkSpeed = 3f;
-	public float terminalVelocity = 10f;
 	public float fallingSpeed;
 	public float gravity = 0.2f;
-	public Vector3 targetDirection;
 	public float rotSpeed = 3f;
 
-	private Vector3 inputVector = Vector3.zero;
+	public float horizontal;
+	public float vertical;
+
+	public Vector3 inputVector = Vector3.zero;
 
 	private int currentTagHash;
 
@@ -37,16 +38,22 @@ public class PlayerController : MonoBehaviour
 	{
 		if (networkView.isMine) 
 		{  
-			float h = Input.GetAxis("Horizontal");
-			float v = Input.GetAxis("Vertical");
+			horizontal = Input.GetAxis("Horizontal");
+			vertical = Input.GetAxis("Vertical");
 			bool run = Input.GetButton("Run");
+
 			
 			// Do not process movement and rotation if you are in motionlocked.
 			currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
-			if (currentTagHash == hash.ActionLockedTagHash || currentTagHash == hash.DefendingTagHash || currentTagHash == hash.AttackingTagHash)
+			if (currentTagHash == hash.ActionLockedTagHash || currentTagHash == hash.DefendingTagHash || currentTagHash == hash.AttackingTagHash
+			    || currentTagHash == hash.DodgingTagHash)
+			{
 				controller.Move(new Vector3(0f, ApplyGravity(), 0f)*Time.deltaTime);
+			}
 			else
-				MovementManagement(h, v, run);
+			{
+				MovementManagement(horizontal, vertical, run, inputVector);
+			}
 		}
 
 	}
@@ -57,16 +64,16 @@ public class PlayerController : MonoBehaviour
 		animator.SetFloat (a, b);
 	}
 
-	void MovementManagement(float horizontal, float vertical, bool running)
+	void MovementManagement(float h, float v, bool running, Vector3 inputVector)
 	{
 		characterSpeed = animator.GetFloat(hash.speedFloat);
 		if (horizontal != 0f || vertical != 0f)
 		{
-			Vector3 newX = Camera.main.transform.right * horizontal;
-			Vector3 newY = Camera.main.transform.forward * vertical;
+			Vector3 newX = Camera.main.transform.right * h;
+			Vector3 newY = Camera.main.transform.forward * v;
 			inputVector = newX + newY;
 			inputVector = new Vector3(inputVector.x, 0f, inputVector.z);
-			Rotating(horizontal, vertical, inputVector);
+			Rotating(inputVector);
 			if (running)
 				networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, topRunSpeed, Time.deltaTime*runDampTime));
 			else
@@ -104,19 +111,28 @@ public class PlayerController : MonoBehaviour
 		return -fallingSpeed;
 	}
 	
-	void Rotating(float horizontal, float vertical, Vector3 direction)
+	void Rotating(Vector3 direction)
 	{
-		Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-		// if you are currently dodging, snap to the desired direction instead of lerping
-		if (hash.currentTagHash == hash.DodgingTagHash)
+		//if (currentTagHash != hash.DodgingTagHash)
 		{
-			transform.rotation = targetRotation;
-		}
-		// normal lerp rotation
-		else 
-		{
+			Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
 			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 			transform.rotation = newRotation;
 		}
 	}
+
+	#region Animation Events (Movement and Move Rotation only)
+
+	public void OnEventSnapToDirection()
+	{
+		Vector3 newX = Camera.main.transform.right * horizontal;
+		Vector3 newY = Camera.main.transform.forward * vertical;
+		inputVector = newX + newY;
+		inputVector = new Vector3(inputVector.x, 0f, inputVector.z);
+		if (inputVector == Vector3.zero)
+			inputVector = transform.forward;
+		transform.rotation = Quaternion.LookRotation(inputVector, Vector3.up);
+	}
+
+	#endregion
 }
