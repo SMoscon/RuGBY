@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 9506861622cf68d4389c47c7f3d54404
 ModelImporter:
-  serializedVersion: 15
+  serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
     100002: Ceiling
@@ -29,6 +29,105 @@ ModelImporter:
     100046: WallLedge
     100048: Walls
     100050: Window
+    100052: Church.000
+    100054: Church.001
+    100056: Church.002
+    100058: Church.003
+    100060: Church.003_MeshPart0
+    100062: Church.003_MeshPart1
+    100064: Church.003_MeshPart2
+    100066: Church.003_MeshPart3
+    100068: Church.004
+    100070: Church.004_MeshPart0
+    100072: Church.004_MeshPart1
+    100074: Church.004_MeshPart2
+    100076: Church.004_MeshPart3
+    100078: Church.005
+    100080: Church.007
+    100082: Church.007_MeshPart0
+    100084: Church.007_MeshPart1
+    100086: Church.008
+    100088: Church.009
+    100090: Church.010
+    100092: Church.012
+    100094: Church.018
+    100096: Church.019
+    100098: Church.020
+    100100: Church.021
+    100102: Church.022
+    100104: Church.023
+    100106: Church.024
+    100108: Church.025
+    100110: Church.026
+    100112: Church.027
+    100114: Church.028
+    100116: Church.031
+    100118: Church.032
+    100120: Church.035
+    100122: Church.036
+    100124: Church.036_MeshPart0
+    100126: Church.036_MeshPart1
+    100128: Church.037
+    100130: Church.038
+    100132: Church.039
+    100134: Church.040
+    100136: Church.041
+    100138: Church.042
+    100140: Church.042_MeshPart0
+    100142: Church.042_MeshPart1
+    100144: Church.042_MeshPart2
+    100146: Church.042_MeshPart3
+    100148: Church.043
+    100150: Church.043_MeshPart0
+    100152: Church.043_MeshPart1
+    100154: Church.043_MeshPart2
+    100156: Church.043_MeshPart3
+    100158: Church.046
+    100160: Church.047
+    100162: Church.048
+    100164: Church.051
+    100166: Church.052
+    100168: Coal
+    100170: Coal.001
+    100172: MetalCan.001
+    100174: Pillars.000
+    100176: Pillars.001
+    100178: Pillars.004
+    100180: Pillars.005
+    100182: Pillars.006
+    100184: Pillars.007
+    100186: Pillars.008
+    100188: Pillars.009
+    100190: Pillars.010
+    100192: Pillars.011
+    100194: Pillars.012
+    100196: Pillars.013
+    100198: Pillars.014
+    100200: Pillars.015
+    100202: Pillars.016
+    100204: Pillars.017
+    100206: Pillars.018
+    100208: Pillars.019
+    100210: Pillars.020
+    100212: Pillars.021
+    100214: Pillars.022
+    100216: Pillars.023
+    100218: Pillars.024
+    100220: Pillars.025
+    100222: Pillars.026
+    100224: Pillars.027
+    100226: Pillars.028
+    100228: Pillars.029
+    100230: Plane
+    100232: Plane.001
+    100234: Plane.004
+    100236: Plane.213
+    100238: Plane.214
+    100240: Pillars.030
+    100242: Pillars.031
+    100244: Pillars.032
+    100246: Pillars.033
+    100248: Pillars.034
     400000: //RootNode
     400002: Ceiling
     400004: Church.006
@@ -55,6 +154,105 @@ ModelImporter:
     400046: WallLedge
     400048: Walls
     400050: Window
+    400052: Church.000
+    400054: Church.001
+    400056: Church.002
+    400058: Church.003
+    400060: Church.003_MeshPart0
+    400062: Church.003_MeshPart1
+    400064: Church.003_MeshPart2
+    400066: Church.003_MeshPart3
+    400068: Church.004
+    400070: Church.004_MeshPart0
+    400072: Church.004_MeshPart1
+    400074: Church.004_MeshPart2
+    400076: Church.004_MeshPart3
+    400078: Church.005
+    400080: Church.007
+    400082: Church.007_MeshPart0
+    400084: Church.007_MeshPart1
+    400086: Church.008
+    400088: Church.009
+    400090: Church.010
+    400092: Church.012
+    400094: Church.018
+    400096: Church.019
+    400098: Church.020
+    400100: Church.021
+    400102: Church.022
+    400104: Church.023
+    400106: Church.024
+    400108: Church.025
+    400110: Church.026
+    400112: Church.027
+    400114: Church.028
+    400116: Church.031
+    400118: Church.032
+    400120: Church.035
+    400122: Church.036
+    400124: Church.036_MeshPart0
+    400126: Church.036_MeshPart1
+    400128: Church.037
+    400130: Church.038
+    400132: Church.039
+    400134: Church.040
+    400136: Church.041
+    400138: Church.042
+    400140: Church.042_MeshPart0
+    400142: Church.042_MeshPart1
+    400144: Church.042_MeshPart2
+    400146: Church.042_MeshPart3
+    400148: Church.043
+    400150: Church.043_MeshPart0
+    400152: Church.043_MeshPart1
+    400154: Church.043_MeshPart2
+    400156: Church.043_MeshPart3
+    400158: Church.046
+    400160: Church.047
+    400162: Church.048
+    400164: Church.051
+    400166: Church.052
+    400168: Coal
+    400170: Coal.001
+    400172: MetalCan.001
+    400174: Pillars.000
+    400176: Pillars.001
+    400178: Pillars.004
+    400180: Pillars.005
+    400182: Pillars.006
+    400184: Pillars.007
+    400186: Pillars.008
+    400188: Pillars.009
+    400190: Pillars.010
+    400192: Pillars.011
+    400194: Pillars.012
+    400196: Pillars.013
+    400198: Pillars.014
+    400200: Pillars.015
+    400202: Pillars.016
+    400204: Pillars.017
+    400206: Pillars.018
+    400208: Pillars.019
+    400210: Pillars.020
+    400212: Pillars.021
+    400214: Pillars.022
+    400216: Pillars.023
+    400218: Pillars.024
+    400220: Pillars.025
+    400222: Pillars.026
+    400224: Pillars.027
+    400226: Pillars.028
+    400228: Pillars.029
+    400230: Plane
+    400232: Plane.001
+    400234: Plane.004
+    400236: Plane.213
+    400238: Plane.214
+    400240: Pillars.030
+    400242: Pillars.031
+    400244: Pillars.032
+    400246: Pillars.033
+    400248: Pillars.034
     2300000: Ceiling
     2300002: Church.006
     2300004: Church.011
@@ -78,6 +276,99 @@ ModelImporter:
     2300040: WallLedge
     2300042: Walls
     2300044: Window
+    2300046: Church.000
+    2300048: Church.001
+    2300050: Church.002
+    2300052: Church.003_MeshPart0
+    2300054: Church.003_MeshPart1
+    2300056: Church.003_MeshPart2
+    2300058: Church.003_MeshPart3
+    2300060: Church.004_MeshPart0
+    2300062: Church.004_MeshPart1
+    2300064: Church.004_MeshPart2
+    2300066: Church.004_MeshPart3
+    2300068: Church.005
+    2300070: Church.007_MeshPart0
+    2300072: Church.007_MeshPart1
+    2300074: Church.008
+    2300076: Church.009
+    2300078: Church.010
+    2300080: Church.012
+    2300082: Church.018
+    2300084: Church.019
+    2300086: Church.020
+    2300088: Church.021
+    2300090: Church.022
+    2300092: Church.023
+    2300094: Church.024
+    2300096: Church.025
+    2300098: Church.026
+    2300100: Church.027
+    2300102: Church.028
+    2300104: Church.031
+    2300106: Church.032
+    2300108: Church.035
+    2300110: Church.036_MeshPart0
+    2300112: Church.036_MeshPart1
+    2300114: Church.037
+    2300116: Church.038
+    2300118: Church.039
+    2300120: Church.040
+    2300122: Church.041
+    2300124: Church.042_MeshPart0
+    2300126: Church.042_MeshPart1
+    2300128: Church.042_MeshPart2
+    2300130: Church.042_MeshPart3
+    2300132: Church.043_MeshPart0
+    2300134: Church.043_MeshPart1
+    2300136: Church.043_MeshPart2
+    2300138: Church.043_MeshPart3
+    2300140: Church.046
+    2300142: Church.047
+    2300144: Church.048
+    2300146: Church.051
+    2300148: Church.052
+    2300150: Coal
+    2300152: Coal.001
+    2300154: MetalCan.001
+    2300156: Pillars.000
+    2300158: Pillars.001
+    2300160: Pillars.004
+    2300162: Pillars.005
+    2300164: Pillars.006
+    2300166: Pillars.007
+    2300168: Pillars.008
+    2300170: Pillars.009
+    2300172: Pillars.010
+    2300174: Pillars.011
+    2300176: Pillars.012
+    2300178: Pillars.013
+    2300180: Pillars.014
+    2300182: Pillars.015
+    2300184: Pillars.016
+    2300186: Pillars.017
+    2300188: Pillars.018
+    2300190: Pillars.019
+    2300192: Pillars.020
+    2300194: Pillars.021
+    2300196: Pillars.022
+    2300198: Pillars.023
+    2300200: Pillars.024
+    2300202: Pillars.025
+    2300204: Pillars.026
+    2300206: Pillars.027
+    2300208: Pillars.028
+    2300210: Pillars.029
+    2300212: Plane
+    2300214: Plane.001
+    2300216: Plane.004
+    2300218: Plane.213
+    2300220: Plane.214
+    2300222: Pillars.030
+    2300224: Pillars.031
+    2300226: Pillars.032
+    2300228: Pillars.033
+    2300230: Pillars.034
     3300000: Ceiling
     3300002: Church.006
     3300004: Church.011
@@ -101,6 +392,99 @@ ModelImporter:
     3300040: WallLedge
     3300042: Walls
     3300044: Window
+    3300046: Church.000
+    3300048: Church.001
+    3300050: Church.002
+    3300052: Church.003_MeshPart0
+    3300054: Church.003_MeshPart1
+    3300056: Church.003_MeshPart2
+    3300058: Church.003_MeshPart3
+    3300060: Church.004_MeshPart0
+    3300062: Church.004_MeshPart1
+    3300064: Church.004_MeshPart2
+    3300066: Church.004_MeshPart3
+    3300068: Church.005
+    3300070: Church.007_MeshPart0
+    3300072: Church.007_MeshPart1
+    3300074: Church.008
+    3300076: Church.009
+    3300078: Church.010
+    3300080: Church.012
+    3300082: Church.018
+    3300084: Church.019
+    3300086: Church.020
+    3300088: Church.021
+    3300090: Church.022
+    3300092: Church.023
+    3300094: Church.024
+    3300096: Church.025
+    3300098: Church.026
+    3300100: Church.027
+    3300102: Church.028
+    3300104: Church.031
+    3300106: Church.032
+    3300108: Church.035
+    3300110: Church.036_MeshPart0
+    3300112: Church.036_MeshPart1
+    3300114: Church.037
+    3300116: Church.038
+    3300118: Church.039
+    3300120: Church.040
+    3300122: Church.041
+    3300124: Church.042_MeshPart0
+    3300126: Church.042_MeshPart1
+    3300128: Church.042_MeshPart2
+    3300130: Church.042_MeshPart3
+    3300132: Church.043_MeshPart0
+    3300134: Church.043_MeshPart1
+    3300136: Church.043_MeshPart2
+    3300138: Church.043_MeshPart3
+    3300140: Church.046
+    3300142: Church.047
+    3300144: Church.048
+    3300146: Church.051
+    3300148: Church.052
+    3300150: Coal
+    3300152: Coal.001
+    3300154: MetalCan.001
+    3300156: Pillars.000
+    3300158: Pillars.001
+    3300160: Pillars.004
+    3300162: Pillars.005
+    3300164: Pillars.006
+    3300166: Pillars.007
+    3300168: Pillars.008
+    3300170: Pillars.009
+    3300172: Pillars.010
+    3300174: Pillars.011
+    3300176: Pillars.012
+    3300178: Pillars.013
+    3300180: Pillars.014
+    3300182: Pillars.015
+    3300184: Pillars.016
+    3300186: Pillars.017
+    3300188: Pillars.018
+    3300190: Pillars.019
+    3300192: Pillars.020
+    3300194: Pillars.021
+    3300196: Pillars.022
+    3300198: Pillars.023
+    3300200: Pillars.024
+    3300202: Pillars.025
+    3300204: Pillars.026
+    3300206: Pillars.027
+    3300208: Pillars.028
+    3300210: Pillars.029
+    3300212: Plane
+    3300214: Plane.001
+    3300216: Plane.004
+    3300218: Plane.213
+    3300220: Plane.214
+    3300222: Pillars.030
+    3300224: Pillars.031
+    3300226: Pillars.032
+    3300228: Pillars.033
+    3300230: Pillars.034
     4300000: Church.013
     4300002: Church.011
     4300004: Pillars.003
@@ -124,6 +508,99 @@ ModelImporter:
     4300040: Pillars_MeshPart0
     4300042: Pillars_MeshPart1
     4300044: MetalCan
+    4300046: Church.009
+    4300048: Church.008
+    4300050: Church.001
+    4300052: Pillars.029
+    4300054: Pillars.028
+    4300056: Pillars.027
+    4300058: Pillars.026
+    4300060: Pillars.025
+    4300062: Pillars.024
+    4300064: Pillars.023
+    4300066: Pillars.022
+    4300068: Pillars.021
+    4300070: Pillars.010
+    4300072: Pillars.009
+    4300074: Pillars.008
+    4300076: Pillars.007
+    4300078: Pillars.006
+    4300080: Pillars.005
+    4300082: Pillars.004
+    4300084: Plane.001
+    4300086: Plane
+    4300088: Church.022
+    4300090: Church.052
+    4300092: Church.051
+    4300094: Church.048
+    4300096: Church.047
+    4300098: Church.046
+    4300100: Church.032
+    4300102: Church.031
+    4300104: MetalCan.001
+    4300106: Coal.001
+    4300108: Church.035
+    4300110: Church.043_MeshPart0
+    4300112: Church.043_MeshPart1
+    4300114: Church.043_MeshPart2
+    4300116: Church.043_MeshPart3
+    4300118: Church.042_MeshPart0
+    4300120: Church.042_MeshPart1
+    4300122: Church.042_MeshPart2
+    4300124: Church.042_MeshPart3
+    4300126: Church.041
+    4300128: Church.040
+    4300130: Church.039
+    4300132: Church.038
+    4300134: Church.037
+    4300136: Church.036_MeshPart0
+    4300138: Church.036_MeshPart1
+    4300140: Church.023
+    4300142: Pillars.020
+    4300144: Pillars.019
+    4300146: Pillars.018
+    4300148: Pillars.017
+    4300150: Pillars.016
+    4300152: Pillars.015
+    4300154: Pillars.014
+    4300156: Pillars.013
+    4300158: Pillars.011
+    4300160: Church.028
+    4300162: Church.027
+    4300164: Plane.214
+    4300166: Church.026
+    4300168: Church.025
+    4300170: Church.024
+    4300172: Plane.213
+    4300174: Plane.004
+    4300176: Church.021
+    4300178: Church.000
+    4300180: Church.018
+    4300182: Church.012
+    4300184: Church.007_MeshPart0
+    4300186: Church.007_MeshPart1
+    4300188: Church.005
+    4300190: Church.002
+    4300192: Church.020
+    4300194: Church.019
+    4300196: Pillars.012
+    4300198: Pillars.001
+    4300200: Pillars.000
+    4300202: Church.010
+    4300204: Church.004_MeshPart0
+    4300206: Church.004_MeshPart1
+    4300208: Church.004_MeshPart2
+    4300210: Church.004_MeshPart3
+    4300212: Church.003_MeshPart0
+    4300214: Church.003_MeshPart1
+    4300216: Church.003_MeshPart2
+    4300218: Church.003_MeshPart3
+    4300220: Coal
+    4300222: Pillars.034
+    4300224: Pillars.033
+    4300226: Pillars.032
+    4300228: Pillars.031
+    4300230: Pillars.030
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -133,6 +610,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
+    motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -176,4 +654,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
+  additionalBone: 0
   userData: 
