@@ -69,6 +69,7 @@ public class NetworkManager : MonoBehaviour
 	void OnServerInitialized()
 	{
 		//Debug.Log ("Spawn");
+		Screen.lockCursor = true;
 		SpawnPlayer();
 	}
 	
