@@ -123,8 +123,10 @@ public class NetworkManager : MonoBehaviour
 
 
 		//GameObject.FindWithTag("MainCamera").GetComponent<SmoothLookAt>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target");
-		GameObject.FindWithTag("MainCamera").GetComponent<MouseOrbitImproved>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target");; 
-		GameObject.FindWithTag("MainCamera").GetComponent<SmoothFollow>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target"); 
-
+		original.GetComponent<MouseOrbitImproved>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target"); 
+		//original.GetComponent<SmoothFollow>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target"); 
+		
+		original.AddComponent<CameraRaycast>();
+		original.GetComponent<CameraRaycast>().Player = temp; 
 	}
 }
