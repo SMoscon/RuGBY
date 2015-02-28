@@ -47,7 +47,7 @@ public class PlayerInput : MonoBehaviour
 			animator.SetTrigger(hash.dodgingTrigger);
 		}
 
-		if (Input.GetButton("Test"))
+		if (Input.GetButton("Test") && taghash != hash.DefendingTagHash)
 		{
 			animator.SetTrigger(hash.hurtTrigger);
 		}
@@ -56,15 +56,21 @@ public class PlayerInput : MonoBehaviour
 	void CheckEndConditions(int taghash)
 	{
 		// if we are locked in an animation that cannot be interrupted, wait for it to finish
-		if (taghash == hash.ActionLockedTagHash)
-		{
-			return;
-		}
+		//if (taghash == hash.ActionLockedTagHash)
+		//{
+		//	return;
+		//}
 
 		if (currentTagHash == hash.DefendingTagHash)
 		{
 			animator.SetBool(hash.defendingBool, Input.GetButton("Smash"));
 		}
+
+	}
+
+	public void Die()
+	{
+		animator.SetBool(hash.deadBool, true);
 	}
 
 	#region Animation Events

@@ -4410,11 +4410,12 @@ MonoBehaviour:
   defendingBool: 0
   jumpingBool: 0
   dodgingTrigger: 0
+  hurtTrigger: 0
   speedFloat: 0
   ActionLockedTagHash: 0
   DefendingTagHash: 0
   AttackingTagHash: 0
-  currentTagHash: 0
+  DodgingTagHash: 0
 --- !u!114 &11488034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4426,17 +4427,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f09471e7fdd242a98a9886d6eb46b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSmoothing: 10
+  turnSmoothing: 25
   walkDampTime: 5
   runDampTime: 10
   characterSpeed: 0
   topRunSpeed: 6
   topWalkSpeed: 4.5
-  terminalVelocity: 10
   fallingSpeed: 0
   gravity: 3
-  targetDirection: {x: 0, y: 0, z: 0}
   rotSpeed: 15
+  horizontal: 0
+  vertical: 0
+  inputVector: {x: 0, y: 0, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

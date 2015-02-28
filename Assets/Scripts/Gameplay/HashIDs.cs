@@ -3,27 +3,29 @@ using System.Collections;
 
 public class HashIDs : MonoBehaviour
 {
-	public int idleState;
-	public int dyingState;
-	public int locomotionState;
-	public int jumpingState;
-	public int attackingState;
+	[HideInInspector] public int idleState;
+	[HideInInspector] public int dyingState;
+	[HideInInspector] public int locomotionState;
+	[HideInInspector] public int jumpingState;
+	[HideInInspector] public int attackingState;
 	
-	public int attackingBool;
-	public int smashingBool;
-	public int runningBool;
-	public int defendingBool;
-	public int jumpingBool;
+	[HideInInspector] public int attackingBool;
+	[HideInInspector] public int smashingBool;
+	[HideInInspector] public int runningBool;
+	[HideInInspector] public int defendingBool;
+	[HideInInspector] public int jumpingBool;
+	[HideInInspector] public int deadBool;
 	
-	public int dodgingTrigger;
-	public int hurtTrigger;
+	[HideInInspector] public int dodgingTrigger;
+	[HideInInspector] public int hurtTrigger;
 	
-	public int speedFloat;
+	[HideInInspector] public int speedFloat;
 	
-	public int ActionLockedTagHash;
-	public int DefendingTagHash;
-	public int AttackingTagHash;
-	public int DodgingTagHash;
+	[HideInInspector] public int ActionLockedTagHash;
+	[HideInInspector] public int DefendingTagHash;
+	[HideInInspector] public int AttackingTagHash;
+	[HideInInspector] public int DodgingTagHash;
+
 
 	void Awake()
 	{
@@ -38,6 +40,7 @@ public class HashIDs : MonoBehaviour
 		runningBool = Animator.StringToHash("Running");
 		defendingBool = Animator.StringToHash("Defending");
 		jumpingBool = Animator.StringToHash("Jumping");
+		deadBool = Animator.StringToHash("Dead");
 
 		dodgingTrigger = Animator.StringToHash("Dodging");
 		hurtTrigger = Animator.StringToHash("Hurt");

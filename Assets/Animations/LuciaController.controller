@@ -56,6 +56,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: Dead
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -492,7 +498,7 @@ Transition:
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: .710463762
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -512,7 +518,7 @@ Transition:
     m_ConditionEvent: Speed
     m_EventTreshold: 0
     m_ExitTime: .968319297
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -552,7 +558,7 @@ Transition:
     m_ConditionEvent: Speed
     m_EventTreshold: 0
     m_ExitTime: .996470511
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -565,14 +571,14 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110209396}
   m_DstState: {fileID: 110227480}
-  m_TransitionDuration: .0242764149
+  m_TransitionDuration: .220322028
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Dodging
     m_EventTreshold: 0
-    m_ExitTime: .995518148
-  m_Atomic: 1
+    m_ExitTime: .888584197
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -591,8 +597,8 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .964369535
-  m_Atomic: 1
+    m_ExitTime: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -631,8 +637,8 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .952100754
-  m_Atomic: 1
+    m_ExitTime: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -656,7 +662,7 @@ Transition:
     m_ConditionEvent: Attacking
     m_EventTreshold: 0
     m_ExitTime: 1.00054204
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -675,8 +681,8 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .953781307
-  m_Atomic: 1
+    m_ExitTime: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -700,7 +706,7 @@ Transition:
     m_ConditionEvent: Attacking
     m_EventTreshold: 0
     m_ExitTime: 1.00024951
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -744,7 +750,7 @@ Transition:
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: .708239615
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -763,12 +769,12 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .99000001
+    m_ExitTime: 1
   - m_ConditionMode: 1
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: .74000001
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -807,8 +813,8 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .964194179
-  m_Atomic: 1
+    m_ExitTime: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -828,7 +834,7 @@ Transition:
     m_ConditionEvent: Speed
     m_EventTreshold: .100000001
     m_ExitTime: .75
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -856,7 +862,7 @@ Transition:
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: .74000001
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -869,13 +875,13 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110212878}
   m_DstState: {fileID: 110212874}
-  m_TransitionDuration: .200000003
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Speed
     m_EventTreshold: 0
-    m_ExitTime: .800000012
+    m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -893,7 +899,7 @@ Transition:
   m_TransitionOffset: .0543203503
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: 
+    m_ConditionEvent: Dead
     m_EventTreshold: 0
     m_ExitTime: .882641435
   m_Atomic: 1
@@ -916,6 +922,26 @@ Transition:
     m_ConditionEvent: Speed
     m_EventTreshold: 0
     m_ExitTime: .988235295
+  m_Atomic: 0
+  m_Solo: 0
+  m_Mute: 0
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110159774
+Transition:
+  serializedVersion: 2
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_SrcState: {fileID: 0}
+  m_DstState: {fileID: 110282858}
+  m_TransitionDuration: .100000001
+  m_TransitionOffset: 0
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Dead
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -936,7 +962,7 @@ Transition:
     m_ConditionEvent: Dodging
     m_EventTreshold: 0
     m_ExitTime: 0
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -956,7 +982,7 @@ Transition:
     m_ConditionEvent: Attacking
     m_EventTreshold: 0
     m_ExitTime: 0
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -1016,7 +1042,7 @@ Transition:
     m_ConditionEvent: Speed
     m_EventTreshold: 0
     m_ExitTime: 1.0008961
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -1069,18 +1095,18 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 110209396}
   m_DstState: {fileID: 110286148}
-  m_TransitionDuration: .36141333
+  m_TransitionDuration: .263705105
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
     m_ConditionEvent: Dodging
     m_EventTreshold: 0
-    m_ExitTime: .694832802
+    m_ExitTime: .916249871
   - m_ConditionMode: 1
     m_ConditionEvent: Running
     m_EventTreshold: 0
     m_ExitTime: .997366786
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -1120,7 +1146,7 @@ Transition:
     m_ConditionEvent: Speed
     m_EventTreshold: .100000001
     m_ExitTime: .879999995
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -1180,7 +1206,7 @@ Transition:
     m_ConditionEvent: Dodging
     m_EventTreshold: 0
     m_ExitTime: 0
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -1193,7 +1219,7 @@ Transition:
   m_Name: 
   m_SrcState: {fileID: 0}
   m_DstState: {fileID: 110288776}
-  m_TransitionDuration: 0
+  m_TransitionDuration: .264485151
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 1
@@ -1228,7 +1254,7 @@ Transition:
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: 1
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -1252,7 +1278,7 @@ Transition:
     m_ConditionEvent: Smashing
     m_EventTreshold: 0
     m_ExitTime: .600000024
-  m_Atomic: 1
+  m_Atomic: 0
   m_Solo: 0
   m_Mute: 0
   m_CanTransitionToSelf: 0
@@ -1541,6 +1567,21 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: Defending
+--- !u!1102 &110282858
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Dead
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400006, guid: 439dcc94416414b71b8e22b45bde871c, type: 3}
+  m_ParentStateMachine: {fileID: 110719924}
+  m_Position: {x: -576, y: -360, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: ActionLocked
 --- !u!1102 &110286148
 State:
   m_ObjectHideFlags: 3
@@ -1617,11 +1658,15 @@ StateMachine:
   - {fileID: 110228628}
   - {fileID: 110209396}
   - {fileID: 110288776}
+  - {fileID: 110282858}
   m_ChildStateMachine:
   - {fileID: 110770032}
   m_ChildStateMachinePosition:
   - {x: -12, y: 72, z: 0}
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110282858}
+      second: []
     data:
       first: {fileID: 110288776}
       second:
@@ -1630,6 +1675,7 @@ StateMachine:
       first: {fileID: 0}
       second:
       - {fileID: 110190544}
+      - {fileID: 110159774}
     data:
       first: {fileID: 110227480}
       second:
