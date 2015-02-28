@@ -16,6 +16,7 @@ public class HashIDs : MonoBehaviour
 	public int jumpingBool;
 	
 	public int dodgingTrigger;
+	public int hurtTrigger;
 	
 	public int speedFloat;
 	
@@ -37,7 +38,9 @@ public class HashIDs : MonoBehaviour
 		runningBool = Animator.StringToHash("Running");
 		defendingBool = Animator.StringToHash("Defending");
 		jumpingBool = Animator.StringToHash("Jumping");
+
 		dodgingTrigger = Animator.StringToHash("Dodging");
+		hurtTrigger = Animator.StringToHash("Hurt");
 		
 		speedFloat = Animator.StringToHash("Speed");
 		

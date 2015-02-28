@@ -46,6 +46,11 @@ public class PlayerInput : MonoBehaviour
 		{
 			animator.SetTrigger(hash.dodgingTrigger);
 		}
+
+		if (Input.GetButton("Test"))
+		{
+			animator.SetTrigger(hash.hurtTrigger);
+		}
 	}
 
 	void CheckEndConditions(int taghash)
