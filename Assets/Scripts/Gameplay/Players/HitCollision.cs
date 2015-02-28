@@ -3,16 +3,23 @@ using System.Collections;
 
 public class HitCollision : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	private PlayerAnimator playeranimator;
+
+	void Start () 
+	{
+		if (networkView.isMine)
+		{
+			playeranimator = GetComponent<PlayerAnimator>();
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (networkView.isMine){
-			if (HealthBar.Instance.curHealth==0){
-				//Die here
+
+	void Update () 
+	{
+		if (networkView.isMine)
+		{
+			if (HealthBar.Instance.curHealth==0)
+			{
+				playeranimator.Die();
 			}
 		}
 	}
@@ -28,8 +35,10 @@ public class HitCollision : MonoBehaviour {
 			Debug.Log (other.collider.transform.parent.gameObject);
 			Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
 			string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
-			if(!player.Equals(Network.player.ToString())){
+			if(!player.Equals(Network.player.ToString()))
+			{
 				HealthBar.Instance.AdjustCurrentHealth(-15);
+				playeranimator.Hurt();
 			}
 
 		}

@@ -26,7 +26,6 @@ public class HashIDs : MonoBehaviour
 	[HideInInspector] public int AttackingTagHash;
 	[HideInInspector] public int DodgingTagHash;
 
-
 	void Awake()
 	{
 		idleState = Animator.StringToHash("Base Layer.Idle");

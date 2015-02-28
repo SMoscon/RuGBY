@@ -58,12 +58,6 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-
-	[RPC] void SetFloat(int a, float b)
-	{
-		animator.SetFloat (a, b);
-	}
-
 	void MovementManagement(float h, float v, bool running, Vector3 inputVector)
 	{
 		characterSpeed = animator.GetFloat(hash.speedFloat);
@@ -75,14 +69,14 @@ public class PlayerController : MonoBehaviour
 			inputVector = new Vector3(inputVector.x, 0f, inputVector.z);
 			Rotating(inputVector);
 			if (running)
-				networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, topRunSpeed, Time.deltaTime*runDampTime));
+				animator.SetFloat(hash.speedFloat, Mathf.Lerp(characterSpeed, topRunSpeed, Time.deltaTime*runDampTime));
 			else
-                networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, topWalkSpeed, Time.deltaTime*walkDampTime));
+				animator.SetFloat(hash.speedFloat, Mathf.Lerp(characterSpeed, topWalkSpeed, Time.deltaTime*walkDampTime));
 		}
 		else
 		{
 			// do a gradual deceleration (the same time frame as immediate acceleration)
-			networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, 0f, Time.deltaTime*runDampTime));
+			animator.SetFloat(hash.speedFloat, Mathf.Lerp(characterSpeed, 0f, Time.deltaTime*runDampTime));
 		}
 		if (characterSpeed < 0.1)
 		{
