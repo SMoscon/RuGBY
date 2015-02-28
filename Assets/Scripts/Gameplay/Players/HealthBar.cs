@@ -9,20 +9,23 @@ public class HealthBar : MonoBehaviour {
 	public static HealthBar Instance;
 
 	void Start(){
-		healthBarSlider.value = maxHealth;
 		if (networkView.isMine)
 		{
+			healthBarSlider.value = maxHealth;
 			Instance = this;
 		}
 	}
 
 	void Update () {
-		AdjustCurrentHealth(0);
+		if(networkView.isMine) {			
+			AdjustCurrentHealth(0);
+		}
 	}
 
 	public void AdjustCurrentHealth(int adj) {
 		if (networkView.isMine){
 			healthBarSlider.value += adj;
+			Debug.Log("my current health is: " + healthBarSlider.value);
 
 			if (healthBarSlider.value < 0)
 				healthBarSlider.value = 0;
