@@ -11,7 +11,7 @@ public class HitCollision : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (networkView.isMine){
-			if (HealthBar.Instance.curHealth==0){
+			if (HealthBar.Instance.healthBarSlider.value==0){
 				//Die here
 			}
 		}
