@@ -138,7 +138,6 @@ public class NetworkManager : MonoBehaviour
 		
 		original.AddComponent<CameraRaycast>();
 		original.GetComponent<CameraRaycast>().Player = temp;
-		temp.GetComponent<PlayerController>().enabled=true;
-		temp.GetComponent<Animator>().enabled=true;
+		//temp.GetComponent<PlayerInput>().enabled=true;
 	}
 }

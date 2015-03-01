@@ -26,22 +26,18 @@ public class PlayerController : Photon.MonoBehaviour
 
 	void Awake()
 	{
-		if (photonView.isMine) 
-		{
-			animator = GetComponent<Animator>();
-			controller = GetComponent<CharacterController>();
-			hash = GetComponent<HashIDs>();
-		} 
+		animator = GetComponent<Animator>();
+		controller = GetComponent<CharacterController>();
+		hash = GetComponent<HashIDs>();
 	}
 	
 	void FixedUpdate()
 	{
-		if (photonView.isMine) 
-		{  
+		if(photonView.isMine)
+		{
 			horizontal = Input.GetAxis("Horizontal");
 			vertical = Input.GetAxis("Vertical");
 			bool run = Input.GetButton("Run");
-
 			
 			// Do not process movement and rotation if you are in motionlocked.
 			currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
@@ -55,14 +51,7 @@ public class PlayerController : Photon.MonoBehaviour
 				MovementManagement(horizontal, vertical, run, inputVector);
 			}
 		}
-
 	}
-
-
-	/*[RPC] void SetFloat(int a, float b)
-	{
-		animator.SetFloat (a, b);
-	}*/
 
 	void MovementManagement(float h, float v, bool running, Vector3 inputVector)
 	{

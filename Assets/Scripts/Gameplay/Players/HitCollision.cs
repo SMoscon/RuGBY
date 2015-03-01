@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HitCollision : MonoBehaviour {
+public class HitCollision : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -10,7 +10,7 @@ public class HitCollision : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (networkView.isMine){
+		if (photonView.isMine){
 			if (HealthBar.Instance.curHealth==0){
 				//Die here
 			}
@@ -20,9 +20,9 @@ public class HitCollision : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("I have collided!");
-		Debug.Log ("networkView: "+networkView);
-		if (this.networkView.isMine)
-		{
+		Debug.Log ("photonView: "+photonView);
+		if (this.photonView.isMine)
+		{/*
 			Debug.Log ("this: " + this);
 			Debug.Log ("NetworkPlayer : "+Network.player.ToString());
 			Debug.Log (other.collider.transform.parent.gameObject);
@@ -30,7 +30,7 @@ public class HitCollision : MonoBehaviour {
 			string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
 			if(!player.Equals(Network.player.ToString())){
 				HealthBar.Instance.AdjustCurrentHealth(-15);
-			}
+			}*/
 
 		}
 	}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerInput : MonoBehaviour 
+public class PlayerInput : Photon.MonoBehaviour 
 {
 	private Animator animator;
 	private HashIDs hash;
@@ -16,9 +16,12 @@ public class PlayerInput : MonoBehaviour
 
 	void Update()
 	{
-		currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
-		CheckPlayerInput(currentTagHash);
-		CheckEndConditions(currentTagHash);
+        if (photonView.isMine)
+        {
+			currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
+			CheckPlayerInput(currentTagHash);
+			CheckEndConditions(currentTagHash);
+		}
 	}
 
 	void CheckPlayerInput(int taghash)
