@@ -47,10 +47,10 @@ public class NetworkManager : MonoBehaviour
 		yellow = false;
 		red = false;
 	}
-/*
+
 	public void RefreshFunction(){
 		//if (GUI.Button(new Rect(100, 250, 250, 100), "Refresh Hosts"))
-		RefreshHostList();
+		/*RefreshHostList();
 		Debug.Log ("refreshing...");
 		if (hostList != null)
 		{
@@ -61,9 +61,10 @@ public class NetworkManager : MonoBehaviour
 				//if (GUI.Button(new Rect(400, 100 + (110 * i), 300, 100), hostList[i].gameName))
 				//JoinServer(hostList[i]);
 			}
-		}
+		}*/
+		PhotonNetwork.JoinRoom(gameName);
 	}
-	*/
+	
 	public void StartServer()
 	{
 		Debug.Log ("StartServer");
@@ -136,6 +137,8 @@ public class NetworkManager : MonoBehaviour
 		//original.GetComponent<SmoothFollow>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target"); 
 		
 		original.AddComponent<CameraRaycast>();
-		original.GetComponent<CameraRaycast>().Player = temp; 
+		original.GetComponent<CameraRaycast>().Player = temp;
+		temp.GetComponent<PlayerController>().enabled=true;
+		temp.GetComponent<Animator>().enabled=true;
 	}
 }
