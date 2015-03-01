@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Photon.MonoBehaviour
 {
 	public float turnSmoothing = 15f;
 	public float walkDampTime = 5f;
@@ -26,22 +26,18 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		if (networkView.isMine) 
-		{
-			animator = GetComponent<Animator>();
-			controller = GetComponent<CharacterController>();
-			hash = GetComponent<HashIDs>();
-		} 
+		animator = GetComponent<Animator>();
+		controller = GetComponent<CharacterController>();
+		hash = GetComponent<HashIDs>();
 	}
 	
 	void FixedUpdate()
 	{
-		if (networkView.isMine) 
-		{  
+		if(photonView.isMine)
+		{
 			horizontal = Input.GetAxis("Horizontal");
 			vertical = Input.GetAxis("Vertical");
 			bool run = Input.GetButton("Run");
-
 			
 			// Do not process movement and rotation if you are in motionlocked.
 			currentTagHash = animator.GetCurrentAnimatorStateInfo(0).tagHash;
@@ -55,7 +51,6 @@ public class PlayerController : MonoBehaviour
 				MovementManagement(horizontal, vertical, run, inputVector);
 			}
 		}
-
 	}
 
 	void MovementManagement(float h, float v, bool running, Vector3 inputVector)

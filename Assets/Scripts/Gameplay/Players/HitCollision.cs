@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HitCollision : MonoBehaviour 
-{
+public class HitCollision : Photon.MonoBehaviour {
 	private PlayerAnimator playeranimator;
 	private Animator animator;
 	private HashIDs hash;
@@ -19,9 +18,9 @@ public class HitCollision : MonoBehaviour
 		}
 	}
 
-	void Update() 
-	{
-		if (networkView.isMine)
+	// Update is called once per frame
+	void Update () {
+		if (photonView.isMine)
 		{
 			if (playerHealth.currentHealth <= 0)
 			{
@@ -33,7 +32,7 @@ public class HitCollision : MonoBehaviour
 	void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("I have collided!");
-		Debug.Log ("networkView: "+networkView);
+		Debug.Log ("photonView: "+photonView);
 		//if (this.networkView.isMine)
 		{
 			Debug.Log ("this: " + this);
