@@ -9,13 +9,13 @@ public class PlayerAnimator : MonoBehaviour
 	private GameManager manager;
 	private Stocks stocks;
 	private PlayerController controller;
-	private HealthBar health;
+	private PlayerHealth health;
 
 	private int currentTagHash;
 	
 	void Start()
 	{
-		health = GetComponent<HealthBar>();
+		health = GetComponent<PlayerHealth>();
 		controller = GetComponent<PlayerController>();
 		animator = GetComponent<Animator>();
 		hash = GetComponent<HashIDs>();

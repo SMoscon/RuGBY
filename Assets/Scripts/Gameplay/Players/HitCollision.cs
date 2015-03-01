@@ -6,6 +6,7 @@ public class HitCollision : MonoBehaviour
 	private PlayerAnimator playeranimator;
 	private Animator animator;
 	private HashIDs hash;
+	private PlayerHealth playerHealth;
 
 
 	void Start() 
@@ -13,6 +14,7 @@ public class HitCollision : MonoBehaviour
 		if (networkView.isMine)
 		{
 			playeranimator = GetComponent<PlayerAnimator>();
+			playerHealth = GetComponent<PlayerHealth>();
 
 		}
 	}
@@ -21,7 +23,7 @@ public class HitCollision : MonoBehaviour
 	{
 		if (networkView.isMine)
 		{
-			if (HealthBar.Instance.curHealth == 0)
+			if (playerHealth.currentHealth <= 0)
 			{
 				playeranimator.Die();
 			}
@@ -35,13 +37,13 @@ public class HitCollision : MonoBehaviour
 		//if (this.networkView.isMine)
 		{
 			Debug.Log ("this: " + this);
-			Debug.Log ("NetworkPlayer : "+Network.player.ToString());
-			Debug.Log (other.collider.transform.parent.gameObject);
-			Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
-			string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
+			//Debug.Log ("NetworkPlayer : "+Network.player.ToString());
+			//Debug.Log (other.collider.transform.parent.gameObject);
+			//Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
+			//string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
 			//if(!player.Equals(Network.player.ToString()))
 			//{
-				HealthBar.Instance.AdjustCurrentHealth(-15);
+				playerHealth.TakeDamage(15);
 				playeranimator.Hurt();
 			//}
 
@@ -68,6 +70,7 @@ public class HitCollision : MonoBehaviour
 
 	public void HealthTest()
 	{
-		HealthBar.Instance.AdjustCurrentHealth(-15);
+		Debug.Log ("why are you hitting yourself?");
+		playerHealth.TakeDamage(15);
 	}
 }

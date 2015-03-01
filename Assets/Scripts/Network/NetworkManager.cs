@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -114,6 +115,8 @@ public class NetworkManager : MonoBehaviour
 		GameObject temp = (GameObject) Network.Instantiate(playerPrefab, Vector3.up * 5, Quaternion.identity, 0);
 		//Network.Instantiate(cameraPrefab, Vector3.up * 5, Quaternion.identity, 0);
 
+		temp.GetComponent<PlayerHealth>().healthSlider = GameObject.FindWithTag("HUD").GetComponentInChildren<Slider>();
+		temp.GetComponent<PlayerHealth>().damageImage = GameObject.FindWithTag("HUD").GetComponentInChildren<Image>();
 
 		var original = GameObject.FindWithTag("MainCamera");
 		Debug.Log ("found main camera");
@@ -135,7 +138,9 @@ public class NetworkManager : MonoBehaviour
 		GameObject temp = (GameObject) Network.Instantiate(playerPrefab, spawnPoint, Quaternion.identity, 0);
 		//Network.Instantiate(cameraPrefab, Vector3.up * 5, Quaternion.identity, 0);
 		
-		
+		temp.GetComponent<PlayerHealth>().healthSlider = GameObject.FindWithTag("HUD").GetComponentInChildren<Slider>();
+		temp.GetComponent<PlayerHealth>().damageImage = GameObject.FindWithTag("HUD").GetComponentInChildren<Image>();
+
 		var original = GameObject.FindWithTag("MainCamera");
 		Debug.Log ("found main camera");
 		//Camera _cam = (Camera) Camera.Instantiate(original.camera, new Vector3(0, 0, 0), 
