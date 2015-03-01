@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
 	float ApplyGravity()
 	{
-		if (!controller.isGrounded)
+		if (!controller.isGrounded && currentTagHash != hash.JumpingTagHash)
 		{
 			fallingSpeed += gravity*Time.deltaTime;
 		}
@@ -113,6 +113,13 @@ public class PlayerController : MonoBehaviour
 			Quaternion newRotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 			transform.rotation = newRotation;
 		}
+	}
+
+	public void SpawnPlayer(Vector3 spawnPoint)
+	{
+		transform.position = spawnPoint;
+		transform.rotation = Quaternion.identity;
+		animator.SetBool(hash.deadBool, false);
 	}
 
 	#region Animation Events (Movement and Move Rotation only)
