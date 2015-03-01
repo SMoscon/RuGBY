@@ -1230,7 +1230,7 @@ Transition:
     m_ConditionEvent: Defending
     m_EventTreshold: 0
     m_ExitTime: 0
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: Dead
     m_EventTreshold: 0
     m_ExitTime: 0

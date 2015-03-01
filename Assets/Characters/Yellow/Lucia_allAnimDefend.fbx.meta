@@ -379,6 +379,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: .00146450789
+        functionName: OnEventSnapToCamera
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: .167224079
         functionName: OnEventSmashOff
         data: 
@@ -403,8 +411,16 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: .00146450789
-        functionName: OnEventSnapToCamera
+      - time: .578593731
+        functionName: OnEventAttackBegin
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .952206254
+        functionName: OnEventAttackEnd
         data: 
         objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
           type: 2}
@@ -743,6 +759,22 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: .180000365
+        functionName: OnEventAttackBegin
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .438039541
+        functionName: OnEventAttackEnd
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -1069,6 +1101,22 @@ ModelImporter:
         messageOptions: 0
       - time: 0
         functionName: OnEventSnapToCamera
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .0678433925
+        functionName: OnEventAttackBegin
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .802879632
+        functionName: OnEventAttackEnd
         data: 
         objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
           type: 2}
@@ -7882,7 +7930,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .376470566
+        functionName: OnEventAttackBegin
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .556862772
+        functionName: OnEventAttackEnd
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
@@ -8498,7 +8562,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: .613725483
+        functionName: OnEventAttackBegin
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: .999019623
+        functionName: OnEventAttackEnd
+        data: 
+        objectReferenceParameter: {fileID: 118702, guid: 738ee9a67379642a4b7563959c23b76c,
+          type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

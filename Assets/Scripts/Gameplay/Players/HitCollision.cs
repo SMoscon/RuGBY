@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HitCollision : MonoBehaviour {
-
+public class HitCollision : MonoBehaviour 
+{
 	private PlayerAnimator playeranimator;
+	private Animator animator;
+	private HashIDs hash;
 
-	void Start () 
+	void Start() 
 	{
 		if (networkView.isMine)
 		{
@@ -13,7 +15,7 @@ public class HitCollision : MonoBehaviour {
 		}
 	}
 
-	void Update () 
+	void Update() 
 	{
 		if (networkView.isMine)
 		{
@@ -42,5 +44,23 @@ public class HitCollision : MonoBehaviour {
 			}
 
 		}
+	}
+
+	public void OnEventAttackBegin()
+	{
+		//if (networkView.isMine)
+		//{
+			GameObject.FindGameObjectWithTag("Weapon").GetComponent<BoxCollider>().enabled = true;
+			Debug.Log ("Attack enabled");
+		//}
+	}
+
+	public void OnEventAttackEnd()
+	{
+		//if (networkView.isMine)
+		//{
+			GameObject.FindGameObjectWithTag("Weapon").GetComponent<BoxCollider>().enabled = false;
+			Debug.Log ("Attack disabled");
+		//}
 	}
 }

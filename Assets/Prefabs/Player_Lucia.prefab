@@ -1604,10 +1604,10 @@ GameObject:
   - 33: {fileID: 3318972}
   - 23: {fileID: 2318972}
   - 65: {fileID: 6500000}
-  - 54: {fileID: 5400000}
+  - 54: {fileID: 5409640}
   m_Layer: 0
   m_Name: Yellow_Hilt.001
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4168,7 +4168,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130228}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5400000
+--- !u!54 &5409640
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -4181,7 +4181,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &6500000
 BoxCollider:
@@ -4191,7 +4191,7 @@ BoxCollider:
   m_GameObject: {fileID: 118902}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: .0927899629, y: .200000003, z: .899999976}
   m_Center: {x: -.0028877852, y: .0179326776, z: .899999976}
