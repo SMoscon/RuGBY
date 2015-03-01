@@ -46,7 +46,7 @@ public class PlayerAnimator : Photon.MonoBehaviour
 		}
 
 		// if you are attacking then the smash button will smash, else it will defend
-		if (Input.GetButton("Smash") && currentTagHash == hash.AttackingTagHash)
+		if (Input.GetButton("Smash") && taghash == hash.AttackingTagHash)
 		{
 			animator.SetBool(hash.smashingBool, true);
 		}
@@ -55,7 +55,7 @@ public class PlayerAnimator : Photon.MonoBehaviour
 			animator.SetBool(hash.defendingBool, true);
 		}
 		
-		if (Input.GetButtonDown("Dodge") && currentTagHash != hash.DodgingTagHash)
+		if (Input.GetButtonDown("Dodge") && taghash != hash.DodgingTagHash)
 		{
 			animator.SetTrigger(hash.dodgingTrigger);
 		}
@@ -65,7 +65,7 @@ public class PlayerAnimator : Photon.MonoBehaviour
 			hitcollision.HealthTest();
 		}
 
-		if (Input.GetButton("Jump"))
+		if (Input.GetButton("Jump") && taghash != hash.JumpingTagHash)
 		{
 			animator.SetTrigger(hash.jumpingTrigger);
 		}
