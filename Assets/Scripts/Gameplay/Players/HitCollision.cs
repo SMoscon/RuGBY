@@ -48,19 +48,19 @@ public class HitCollision : MonoBehaviour
 
 	public void OnEventAttackBegin()
 	{
-		//if (networkView.isMine)
-		//{
+		if (networkView.isMine)
+		{
 			GameObject.FindGameObjectWithTag("Weapon").GetComponent<BoxCollider>().enabled = true;
 			Debug.Log ("Attack enabled");
-		//}
+		}
 	}
 
 	public void OnEventAttackEnd()
 	{
-		//if (networkView.isMine)
-		//{
+		if (networkView.isMine)
+		{
 			GameObject.FindGameObjectWithTag("Weapon").GetComponent<BoxCollider>().enabled = false;
 			Debug.Log ("Attack disabled");
-		//}
+		}
 	}
 }
