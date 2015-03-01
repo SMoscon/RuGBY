@@ -9,7 +9,8 @@ public class HealthBar : MonoBehaviour {
 
 	public float healthBarLength;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		healthBarLength = Screen.width / 2;
 		if (networkView.isMine)
 		{
@@ -18,18 +19,21 @@ public class HealthBar : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		AdjustCurrentHealth(0);
 	}
 
-	void OnGUI(){
+	void OnGUI()
+	{
 		if (networkView.isMine)
 		{
 			GUI.Box(new Rect(10, 10,healthBarLength, 20), curHealth + "/" + maxHealth);
 		}
 	}
 
-	public void AdjustCurrentHealth(int adj) {
+	public void AdjustCurrentHealth(int adj) 
+	{
 		if (networkView.isMine){
 			curHealth += adj;
 

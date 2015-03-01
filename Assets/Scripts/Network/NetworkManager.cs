@@ -129,4 +129,25 @@ public class NetworkManager : MonoBehaviour
 		original.AddComponent<CameraRaycast>();
 		original.GetComponent<CameraRaycast>().Player = temp; 
 	}
+
+	public void SpawnPlayer(Vector3 spawnPoint)
+	{
+		GameObject temp = (GameObject) Network.Instantiate(playerPrefab, spawnPoint, Quaternion.identity, 0);
+		//Network.Instantiate(cameraPrefab, Vector3.up * 5, Quaternion.identity, 0);
+		
+		
+		var original = GameObject.FindWithTag("MainCamera");
+		Debug.Log ("found main camera");
+		//Camera _cam = (Camera) Camera.Instantiate(original.camera, new Vector3(0, 0, 0), 
+		//								Quaternion.FromToRotation(new Vector3(0, 0, 0), new Vector3(0, 0, 1)));
+		//DestroyImmediate(Camera.main.gameObject);
+		
+		
+		//GameObject.FindWithTag("MainCamera").GetComponent<SmoothLookAt>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target");
+		original.GetComponent<MouseOrbitImproved>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target"); 
+		//original.GetComponent<SmoothFollow>().target = temp.GetComponentInChildren<Transform>().Find("Head_Target"); 
+		
+		original.AddComponent<CameraRaycast>();
+		original.GetComponent<CameraRaycast>().Player = temp;
+	}
 }

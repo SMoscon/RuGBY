@@ -5,6 +5,8 @@ public class PlayerAnimator : MonoBehaviour
 {
 	private Animator animator;
 	private HashIDs hash;
+	private HitCollision hitcollision;
+	private GameManager manager;
 
 	private int currentTagHash;
 	
@@ -12,6 +14,8 @@ public class PlayerAnimator : MonoBehaviour
 	{
 		animator = GetComponent<Animator>();
 		hash = GetComponent<HashIDs>();
+		hitcollision = GetComponent<HitCollision>();
+		manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 	}
 
 	void Update()
@@ -49,7 +53,7 @@ public class PlayerAnimator : MonoBehaviour
 
 		if (Input.GetButton("Test") && taghash != hash.DefendingTagHash)
 		{
-			animator.SetTrigger(hash.hurtTrigger);
+			hitcollision.HealthTest();
 		}
 	}
 
@@ -102,6 +106,12 @@ public class PlayerAnimator : MonoBehaviour
 	{
 		Debug.Log("Snapped Player to Camera y axis");
 		transform.rotation = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f);
+	}
+
+	public void OnEventDie()
+	{
+		Network.DestroyPlayerObjects(Network.player);
+		manager.Respawn();
 	}
 
 	#endregion

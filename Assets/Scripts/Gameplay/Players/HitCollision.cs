@@ -7,11 +7,13 @@ public class HitCollision : MonoBehaviour
 	private Animator animator;
 	private HashIDs hash;
 
+
 	void Start() 
 	{
 		if (networkView.isMine)
 		{
 			playeranimator = GetComponent<PlayerAnimator>();
+
 		}
 	}
 
@@ -19,7 +21,7 @@ public class HitCollision : MonoBehaviour
 	{
 		if (networkView.isMine)
 		{
-			if (HealthBar.Instance.curHealth==0)
+			if (HealthBar.Instance.curHealth == 0)
 			{
 				playeranimator.Die();
 			}
@@ -30,18 +32,18 @@ public class HitCollision : MonoBehaviour
 	{
 		Debug.Log("I have collided!");
 		Debug.Log ("networkView: "+networkView);
-		if (this.networkView.isMine)
+		//if (this.networkView.isMine)
 		{
 			Debug.Log ("this: " + this);
 			Debug.Log ("NetworkPlayer : "+Network.player.ToString());
 			Debug.Log (other.collider.transform.parent.gameObject);
 			Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
 			string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
-			if(!player.Equals(Network.player.ToString()))
-			{
+			//if(!player.Equals(Network.player.ToString()))
+			//{
 				HealthBar.Instance.AdjustCurrentHealth(-15);
 				playeranimator.Hurt();
-			}
+			//}
 
 		}
 	}
@@ -62,5 +64,10 @@ public class HitCollision : MonoBehaviour
 			GameObject.FindGameObjectWithTag("Weapon").GetComponent<BoxCollider>().enabled = false;
 			Debug.Log ("Attack disabled");
 		}
+	}
+
+	public void HealthTest()
+	{
+		HealthBar.Instance.AdjustCurrentHealth(-15);
 	}
 }
