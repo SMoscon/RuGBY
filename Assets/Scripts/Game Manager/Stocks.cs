@@ -1,15 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Stocsk : MonoBehaviour {
+public class Stocks : MonoBehaviour 
+{
+	private int stocks;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Awake() 
+	{
+		stocks = 3;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void AdjustStocks(int stockAdjust)
+	{
+		stocks += stockAdjust;
 	}
+
+	public int GetStocks()
+	{
+		return stocks;
+	}
+
+
 }

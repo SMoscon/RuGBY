@@ -13,10 +13,10 @@ public class HashIDs : MonoBehaviour
 	[HideInInspector] public int smashingBool;
 	[HideInInspector] public int runningBool;
 	[HideInInspector] public int defendingBool;
-	[HideInInspector] public int jumpingBool;
 	[HideInInspector] public int deadBool;
 	
 	[HideInInspector] public int dodgingTrigger;
+	[HideInInspector] public int jumpingTrigger;
 	[HideInInspector] public int hurtTrigger;
 	
 	[HideInInspector] public int speedFloat;
@@ -25,6 +25,7 @@ public class HashIDs : MonoBehaviour
 	[HideInInspector] public int DefendingTagHash;
 	[HideInInspector] public int AttackingTagHash;
 	[HideInInspector] public int DodgingTagHash;
+	[HideInInspector] public int JumpingTagHash;
 
 	void Awake()
 	{
@@ -38,11 +39,11 @@ public class HashIDs : MonoBehaviour
 		smashingBool = Animator.StringToHash("Smashing");
 		runningBool = Animator.StringToHash("Running");
 		defendingBool = Animator.StringToHash("Defending");
-		jumpingBool = Animator.StringToHash("Jumping");
 		deadBool = Animator.StringToHash("Dead");
 
 		dodgingTrigger = Animator.StringToHash("Dodging");
 		hurtTrigger = Animator.StringToHash("Hurt");
+		jumpingTrigger = Animator.StringToHash("Jumping");
 		
 		speedFloat = Animator.StringToHash("Speed");
 		
@@ -50,6 +51,7 @@ public class HashIDs : MonoBehaviour
 		DefendingTagHash = Animator.StringToHash("Defending");
 		AttackingTagHash = Animator.StringToHash("Attacking");
 		DodgingTagHash = Animator.StringToHash("Dodging");
+		JumpingTagHash = Animator.StringToHash("Jumping");
 
 	}
 }

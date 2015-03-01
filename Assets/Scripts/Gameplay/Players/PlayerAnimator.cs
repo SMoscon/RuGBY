@@ -7,15 +7,21 @@ public class PlayerAnimator : MonoBehaviour
 	private HashIDs hash;
 	private HitCollision hitcollision;
 	private GameManager manager;
+	private Stocks stocks;
+	private PlayerController controller;
+	private HealthBar health;
 
 	private int currentTagHash;
 	
 	void Start()
 	{
+		health = GetComponent<HealthBar>();
+		controller = GetComponent<PlayerController>();
 		animator = GetComponent<Animator>();
 		hash = GetComponent<HashIDs>();
 		hitcollision = GetComponent<HitCollision>();
 		manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+		stocks = GetComponent<Stocks>();
 	}
 
 	void Update()
@@ -54,6 +60,11 @@ public class PlayerAnimator : MonoBehaviour
 		if (Input.GetButton("Test") && taghash != hash.DefendingTagHash)
 		{
 			hitcollision.HealthTest();
+		}
+
+		if (Input.GetButton("Jump"))
+		{
+			animator.SetBool(hash.jumpingTrigger, true);
 		}
 	}
 
@@ -110,8 +121,15 @@ public class PlayerAnimator : MonoBehaviour
 
 	public void OnEventDie()
 	{
-		Network.DestroyPlayerObjects(Network.player);
-		manager.Respawn();
+		stocks.AdjustStocks(-1);
+		Debug.Log (stocks.GetStocks());
+		if (stocks.GetStocks() <= 0)
+			Debug.Log ("LOL game over noob");
+		else
+		{
+			manager.Respawn(controller);
+			health.ResetHealth();
+		}
 	}
 
 	#endregion

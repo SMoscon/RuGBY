@@ -10,20 +10,13 @@ public class GameManager : MonoBehaviour
 
 	private int spawn;
 
-	private NetworkManager network;
-
-	void Awake()
-	{
-		network = GetComponent<NetworkManager>();
-	}
-
-	public void Respawn()
+	public void Respawn(PlayerController controller)
 	{
 		while (spawn == lastSpawnPoint || spawn == beforeLastSpawnPoint)
 			spawn = Random.Range(0, 4);
 		beforeLastSpawnPoint = lastSpawnPoint;
 		lastSpawnPoint = spawn;
-		network.SpawnPlayer(SpawnPoints[spawn].transform.position);
+		controller.SpawnPlayer(SpawnPoints[spawn].transform.position);
 
 	}
 }
