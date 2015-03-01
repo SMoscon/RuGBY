@@ -52,7 +52,7 @@ public class PlayerAnimator : MonoBehaviour
 			animator.SetBool(hash.defendingBool, true);
 		}
 		
-		if (Input.GetButtonDown("Dodge"))
+		if (Input.GetButtonDown("Dodge") && currentTagHash != hash.DodgingTagHash)
 		{
 			animator.SetTrigger(hash.dodgingTrigger);
 		}
@@ -64,7 +64,7 @@ public class PlayerAnimator : MonoBehaviour
 
 		if (Input.GetButton("Jump"))
 		{
-			animator.SetBool(hash.jumpingTrigger, true);
+			animator.SetTrigger(hash.jumpingTrigger);
 		}
 	}
 
