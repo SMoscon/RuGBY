@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Photon.MonoBehaviour
 {
 	public float turnSmoothing = 15f;
 	public float walkDampTime = 5f;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
-		if (networkView.isMine) 
+		if (photonView.isMine) 
 		{
 			animator = GetComponent<Animator>();
 			controller = GetComponent<CharacterController>();
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-		if (networkView.isMine) 
+		if (photonView.isMine) 
 		{  
 			horizontal = Input.GetAxis("Horizontal");
 			vertical = Input.GetAxis("Vertical");
@@ -75,14 +75,14 @@ public class PlayerController : MonoBehaviour
 			inputVector = new Vector3(inputVector.x, 0f, inputVector.z);
 			Rotating(inputVector);
 			if (running)
-				networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, topRunSpeed, Time.deltaTime*runDampTime));
+				photonView.RPC("SetFloat", PhotonTargets.All, hash.speedFloat, Mathf.Lerp(characterSpeed, topRunSpeed, Time.deltaTime*runDampTime));
 			else
-                networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, topWalkSpeed, Time.deltaTime*walkDampTime));
+                photonView.RPC("SetFloat", PhotonTargets.All, hash.speedFloat, Mathf.Lerp(characterSpeed, topWalkSpeed, Time.deltaTime*walkDampTime));
 		}
 		else
 		{
 			// do a gradual deceleration (the same time frame as immediate acceleration)
-			networkView.RPC("SetFloat", RPCMode.All, hash.speedFloat, Mathf.Lerp(characterSpeed, 0f, Time.deltaTime*runDampTime));
+			photonView.RPC("SetFloat", PhotonTargets.All, hash.speedFloat, Mathf.Lerp(characterSpeed, 0f, Time.deltaTime*runDampTime));
 		}
 		if (characterSpeed < 0.1)
 		{

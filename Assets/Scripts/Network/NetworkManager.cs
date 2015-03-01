@@ -15,6 +15,11 @@ public class NetworkManager : MonoBehaviour
 	
 	public GameObject playerPrefab;
 	
+	void Start()
+    {
+        PhotonNetwork.ConnectUsingSettings("0.1");
+    }
+
 	void OnGUI()
 	{
 		/*if (!Network.isClient && !Network.isServer)
@@ -42,7 +47,7 @@ public class NetworkManager : MonoBehaviour
 		yellow = false;
 		red = false;
 	}
-
+/*
 	public void RefreshFunction(){
 		//if (GUI.Button(new Rect(100, 250, 250, 100), "Refresh Hosts"))
 		RefreshHostList();
@@ -54,26 +59,30 @@ public class NetworkManager : MonoBehaviour
 			{
 				Debug.Log ("generating button");
 				//if (GUI.Button(new Rect(400, 100 + (110 * i), 300, 100), hostList[i].gameName))
-				JoinServer(hostList[i]);
+				//JoinServer(hostList[i]);
 			}
 		}
 	}
-	
+	*/
 	public void StartServer()
 	{
-		//Debug.Log ("StartServer");
-		Network.InitializeServer(5, 25000, !Network.HavePublicAddress());
-		MasterServer.RegisterHost(typeName, gameName);
+		Debug.Log ("StartServer");
+		//Create this room. 
+		// PhotonNetwork.CreateRoom(gameName); 
+		PhotonNetwork.CreateRoom(gameName, true, true, 5);
+
+		// Network.InitializeServer(5, 25000, !Network.HavePublicAddress());
+		// MasterServer.RegisterHost(typeName, gameName);
 	}
 	
-	void OnServerInitialized()
+	void OnJoinedRoom()
 	{
-		//Debug.Log ("Spawn");
+	    Debug.Log("Connected to Room");
 		Screen.lockCursor = true;
 		SpawnPlayer();
 	}
 	
-	void Update()
+/*	void Update()
 	{
 		if (isRefreshingHostList && MasterServer.PollHostList().Length > 0)
 		{
@@ -93,7 +102,7 @@ public class NetworkManager : MonoBehaviour
 	
 	private void JoinServer(HostData hostData)
 	{
-		Network.Connect(hostData);
+		//Network.Connect(hostData);
 	}
 	
 	void OnConnectedToServer()
@@ -108,10 +117,10 @@ public class NetworkManager : MonoBehaviour
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
 	}
-	
+	*/
 	private void SpawnPlayer()
 	{
-		GameObject temp = (GameObject) Network.Instantiate(playerPrefab, Vector3.up * 5, Quaternion.identity, 0);
+		GameObject temp = (GameObject) PhotonNetwork.Instantiate(playerPrefab.name, Vector3.up * 5, Quaternion.identity, 0);
 		//Network.Instantiate(cameraPrefab, Vector3.up * 5, Quaternion.identity, 0);
 
 
