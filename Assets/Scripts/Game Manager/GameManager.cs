@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour 
 {
-	public GameObject[] SpawnPoints = new GameObject[4];
+	public Transform[] SpawnPoints;
 
 	private int lastSpawnPoint;
 	private int beforeLastSpawnPoint;

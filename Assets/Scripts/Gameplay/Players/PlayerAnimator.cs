@@ -54,11 +54,6 @@ public class PlayerAnimator : Photon.MonoBehaviour
 		{
 			animator.SetBool(hash.defendingBool, true);
 		}
-		
-		if (Input.GetButtonDown("Dodge") && taghash != hash.DodgingTagHash)
-		{
-			animator.SetTrigger(hash.dodgingTrigger);
-		}
 
 		if (Input.GetButton("Test") && taghash != hash.DefendingTagHash)
 		{
@@ -67,7 +62,14 @@ public class PlayerAnimator : Photon.MonoBehaviour
 
 		if (Input.GetButton("Jump") && taghash != hash.JumpingTagHash)
 		{
+			networkView.RPC("SetAnimationTrigger", PhotonTargets.Others, hash.JumpingTagHash);
 			animator.SetTrigger(hash.jumpingTrigger);
+		}
+
+		if (Input.GetButtonDown("Dodge") && taghash != hash.DodgingTagHash)
+		{
+			networkView.RPC("SetAnimationTrigger", PhotonTargets.Others, hash.DodgingTagHash);
+			animator.SetTrigger(hash.dodgingTrigger);
 		}
 	}
 
@@ -84,6 +86,12 @@ public class PlayerAnimator : Photon.MonoBehaviour
 			animator.SetBool(hash.defendingBool, Input.GetButton("Smash"));
 		}
 
+	}
+
+	[RPC]
+	void SetAnimationTrigger (int triggerHash)
+	{
+		animator.SetTrigger(triggerHash);
 	}
 
 	#region public animation changes

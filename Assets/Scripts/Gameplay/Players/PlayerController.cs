@@ -13,8 +13,8 @@ public class PlayerController : Photon.MonoBehaviour
 	public float gravity = 0.2f;
 	public float rotSpeed = 3f;
 
-	public float horizontal;
-	public float vertical;
+	[HideInInspector] public float horizontal;
+	[HideInInspector] public float vertical;
 
 	public Vector3 inputVector = Vector3.zero;
 

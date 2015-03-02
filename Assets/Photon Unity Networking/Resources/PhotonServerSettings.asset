@@ -29,4 +29,5 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupTimes
   - SetFloat
+  - SetAnimationTrigger
   DisableAutoOpenWizard: 0
