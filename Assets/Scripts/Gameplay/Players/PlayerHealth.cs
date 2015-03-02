@@ -19,8 +19,8 @@ public class PlayerHealth : MonoBehaviour
 	//PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
 	bool isDead;                                                // Whether the player is dead.
 	bool damaged;                                               // True when the player gets damaged.
-	
-	
+
+
 	void Awake ()
 	{
 		// Setting up the references.
@@ -40,13 +40,13 @@ public class PlayerHealth : MonoBehaviour
 		if(damaged)
 		{
 			// ... set the colour of the damageImage to the flash colour.
-			damageImage.color = flashColour;
+			//damageImage.color = flashColour;
 		}
 		// Otherwise...
 		else
 		{
 			// ... transition the colour back to clear.
-			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+			//damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 		}
 		
 		// Reset the damaged flag.
@@ -64,6 +64,8 @@ public class PlayerHealth : MonoBehaviour
 		
 		// Set the health bar's value to the current health.
 		healthSlider.value = currentHealth;
+
+		Debug.Log("doing damage now");
 		
 		// Play the hurt sound effect.
 		//playerAudio.Play ();

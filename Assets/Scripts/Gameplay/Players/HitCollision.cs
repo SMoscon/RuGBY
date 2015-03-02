@@ -8,9 +8,10 @@ public class HitCollision : Photon.MonoBehaviour {
 	private PlayerHealth playerHealth;
 
 
+
 	void Start() 
 	{
-		if (networkView.isMine)
+		if (photonView.isMine)
 		{
 			playeranimator = GetComponent<PlayerAnimator>();
 			playerHealth = GetComponent<PlayerHealth>();
@@ -33,17 +34,18 @@ public class HitCollision : Photon.MonoBehaviour {
 	{
 		Debug.Log("I have collided!");
 		Debug.Log ("photonView: "+photonView);
-		//if (this.networkView.isMine)
+		if (photonView.isMine)
 		{
 			Debug.Log ("this: " + this);
-			//Debug.Log ("NetworkPlayer : "+Network.player.ToString());
+			Debug.Log ("NetworkPlayer : "+Network.player.ToString());
 			//Debug.Log (other.collider.transform.parent.gameObject);
 			//Debug.Log ("OtherNetworkPlayer : "+other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner);
 			//string player = other.transform.parent.parent.parent.parent.parent.parent.parent.parent.parent.gameObject.networkView.owner.ToString();
 			//if(!player.Equals(Network.player.ToString()))
 			//{
-				playerHealth.TakeDamage(15);
-				playeranimator.Hurt();
+			playeranimator.Hurt();
+			playerHealth.TakeDamage(15);
+			Debug.Log ("afterTAkeDamage");
 			//}
 
 		}
@@ -51,7 +53,7 @@ public class HitCollision : Photon.MonoBehaviour {
 
 	public void OnEventAttackBegin()
 	{
-		if (networkView.isMine)
+		if (!photonView.isMine)
 		{
 			GameObject.FindGameObjectWithTag("Weapon").GetComponent<BoxCollider>().enabled = true;
 			Debug.Log ("Attack enabled");
@@ -60,7 +62,7 @@ public class HitCollision : Photon.MonoBehaviour {
 
 	public void OnEventAttackEnd()
 	{
-		if (networkView.isMine)
+		if (!photonView.isMine)
 		{
 			GameObject.FindGameObjectWithTag("Weapon").GetComponent<BoxCollider>().enabled = false;
 			Debug.Log ("Attack disabled");
