@@ -19,6 +19,8 @@ public class NetworkManager : MonoBehaviour
 	void Start()
     {
         PhotonNetwork.ConnectUsingSettings("0.1");
+		PhotonNetwork.sendRate = 60;
+		PhotonNetwork.sendRateOnSerialize = 60;
     }
 
 	void OnGUI()

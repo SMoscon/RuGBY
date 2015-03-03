@@ -5789,8 +5789,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1436146882}
-  - {fileID: 1525820161}
   - {fileID: 2070460589}
+  - {fileID: 1525820161}
   - {fileID: 2054245567}
   - {fileID: 1922017060}
   - {fileID: 1959902814}
@@ -8230,7 +8230,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1060123117}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!23 &1525820162
 Renderer:
   m_ObjectHideFlags: 0
@@ -11043,7 +11043,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1060123117}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!23 &2070460590
 Renderer:
   m_ObjectHideFlags: 0

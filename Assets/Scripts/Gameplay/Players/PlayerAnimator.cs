@@ -62,13 +62,13 @@ public class PlayerAnimator : Photon.MonoBehaviour
 
 		if (Input.GetButton("Jump") && taghash != hash.JumpingTagHash)
 		{
-			networkView.RPC("SetAnimationTrigger", PhotonTargets.Others, hash.JumpingTagHash);
+			PhotonNetwork.RPC(photonView, "SetAnimationTrigger", PhotonTargets.Others, false, hash.jumpingTrigger);
 			animator.SetTrigger(hash.jumpingTrigger);
 		}
 
 		if (Input.GetButtonDown("Dodge") && taghash != hash.DodgingTagHash)
 		{
-			networkView.RPC("SetAnimationTrigger", PhotonTargets.Others, hash.DodgingTagHash);
+			PhotonNetwork.RPC(photonView, "SetAnimationTrigger", PhotonTargets.Others, false, hash.dodgingTrigger);
 			animator.SetTrigger(hash.dodgingTrigger);
 		}
 	}
